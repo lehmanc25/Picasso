@@ -14,6 +14,7 @@ import picasso.parser.SemanticAnalyzer;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.*;
 import picasso.parser.tokens.*;
+import picasso.parser.tokens.functions.CosToken;
 import picasso.parser.tokens.operations.*;
 
 /**
