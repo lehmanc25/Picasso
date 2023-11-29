@@ -66,6 +66,8 @@ public class EvaluatorTests {
 					myTree.evaluate(testVal, testVal));
 		}
 	}
+	
+	
 
 	// TODO: More tests of evaluation
 

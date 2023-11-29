@@ -90,5 +90,14 @@ public class ExpressionTreeGeneratorTests {
 		e = parser.makeExpression("floor( x + y )");
 		assertEquals(new Floor(new Addition(new X(), new Y())), e);
 	}
+	
+	@Test
+	public void cosineFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("cos( x )");
+		assertEquals(new Cosine(new X()), e);
+		
+		e = parser.makeExpression("cos( x + y )");
+		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
+	}
 
 }

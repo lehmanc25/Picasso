@@ -83,13 +83,21 @@ public class TokenizerTest {
 	}
 
 	@Test
-	public void testTokenizeBasicFunctionExpression() {
+	public void testTokenizeBasicFunctionExpressions() {
 		String expression = "floor(x)";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new FloorToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression2 = "cos(x)";
+		tokens = tokenizer.parseTokens(expression2);
+		assertEquals(new CosToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
 	}
 
 	@Test
