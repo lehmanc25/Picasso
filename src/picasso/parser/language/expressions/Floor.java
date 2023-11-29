@@ -35,5 +35,11 @@ public class Floor extends UnaryFunction {
 
 		return new RGBColor(red, green, blue);
 	}
+	@Override
+    public String toString() {
+        return "floor(" + this.param + ")";
+    }
+
+}
 
 }
