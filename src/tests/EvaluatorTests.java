@@ -68,6 +68,26 @@ public class EvaluatorTests {
 	}
 	
 	@Test
+	public void testCosineEvaluation() {
+		Cosine myTree = new Cosine(new X());
+		
+		assertEquals(new RGBColor(0.5403023058681398, 0.5403023058681398, 0.5403023058681398), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(0.5403023058681398, 0.5403023058681398, 0.5403023058681398), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0.5403023058681398, 0.5403023058681398, 0.5403023058681398), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0.5403023058681398, 0.5403023058681398, 0.5403023058681398), myTree.evaluate(1, 1));
+		
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+		for (double testVal : tests) {
+			double cosOfTestVal = Math.cos(testVal);
+			assertEquals(new RGBColor(cosOfTestVal, cosOfTestVal, cosOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(cosOfTestVal, cosOfTestVal, cosOfTestVal),
+					myTree.evaluate(testVal, testVal));
+		}
+		
+	}
+	@Test
 	public void testAdditionEvaluation() {
 		Addition myTree = new Addition(new X(), new Y());
 		//first and last 2 assertions need work; colors need to be clamped between -1 and 1
