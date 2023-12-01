@@ -13,6 +13,7 @@ import picasso.parser.Tokenizer;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
+import picasso.parser.tokens.operations.PlusToken;
 
 /**
  * Tests that the tokenizer tokens as expected. 
@@ -83,7 +84,7 @@ public class TokenizerTest {
 	}
 
 	@Test
-	public void testTokenizeBasicFunctionExpression() {
+	public void testTokenizeBasicFunctionExpressions() {
 		String expression = "floor(x)";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new FloorToken(), tokens.get(0));
@@ -91,6 +92,9 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
+		String expression2 = "cos(x)";
+		tokens = tokenizer.parseTokens(expression2);
+		assertEquals(new CosToken(), tokens.get(0));
 		
 		String expression3 = "ceil(x)";
 		tokens = tokenizer.parseTokens(expression3);
@@ -111,7 +115,16 @@ public class TokenizerTest {
 		tokens = tokenizer.parseTokens(expression);
 		// TODO: Check the tokens...
 	}
-
-	// TODO: Test arithmetic (rather than function-based) expressions ...
+	@Test
+	public void testTokenizeArithmeticExpressions() {
+		String expression1 = "x+y";
+		tokens = tokenizer.parseTokens(expression1);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new PlusToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+		
+		
+		
+	}
 
 }

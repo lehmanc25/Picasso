@@ -13,17 +13,17 @@ public class Ceil extends UnaryFunction {
 	/**
 	 * Create a floor expression that takes as a parameter the given expression
 	 * 
-	 * @param param the expression to floor
+	 * @param param the expression to ceil
 	 */
 	public Ceil(ExpressionTreeNode param) {
 		super(param);
 	}
 
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the floor of
+	 * Evaluates this expression at the given x,y point by evaluating the ceil of
 	 * the function's parameter.
 	 * 
-	 * @return the color from evaluating the floor of the expression's parameter
+	 * @return the color from evaluating the ceil of the expression's parameter
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {

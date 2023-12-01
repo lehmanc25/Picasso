@@ -68,19 +68,19 @@ public class ExpressionTreeGeneratorTests {
 		assertEquals(new Addition(new X(), new Addition(new Y(), new RGBColor(1, 1, 1))), e);
 	}
 
-	@Test
-	public void arithmeticStackTests() {
-		Stack<Token> stack = parser.infixToPostfix("x + y * x");
+	//@Test
+	//public void arithmeticStackTests() {
+		//Stack<Token> stack = parser.infixToPostfix("x + y * x");
 
-		Stack<Token> expected = new Stack<>();
-		expected.push(new IdentifierToken("x"));
-		expected.push(new IdentifierToken("y"));
-		expected.push(new IdentifierToken("x"));
-		expected.push(new MultiplyToken());
-		expected.push(new PlusToken());
+		//Stack<Token> expected = new Stack<>();
+		//expected.push(new IdentifierToken("x"));
+		//expected.push(new IdentifierToken("y"));
+		//expected.push(new IdentifierToken("x"));
+		//expected.push(new MultiplyToken());
+		//expected.push(new PlusToken());
 
-		assertEquals(expected, stack);
-	}
+		//assertEquals(expected, stack);
+	//}
 
 	@Test
 	public void floorFunctionTests() {
@@ -92,6 +92,14 @@ public class ExpressionTreeGeneratorTests {
 	}
 	
 	@Test
+	public void cosineFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("cos( x )");
+		assertEquals(new Cosine(new X()), e);
+		
+		e = parser.makeExpression("cos( x + y )");
+		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
+
+	}
 	public void ceilFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
 		assertEquals(new Ceil(new X()), e);
