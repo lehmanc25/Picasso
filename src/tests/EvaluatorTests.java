@@ -96,6 +96,7 @@ public class EvaluatorTests {
 		///Basic Corner Tests
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
 		//assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
 		//assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, -1));
 		

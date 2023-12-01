@@ -23,16 +23,32 @@ public class Log extends UnaryFunction {
 	public RGBColor evaluate(double x, double y) {
 		//Handling for log(0) undefined cases; defaulting to zero
 		RGBColor result;
-		if (x == 0) {
-			result = param.evaluate(x+1, y);
+		if (x < 0 && y < 0) {
+			result = param.evaluate(Math.abs(x), Math.abs(y));
+		}
+		else if (x < 0 && y == 0) {
+			result = param.evaluate(Math.abs(x), y+1);
+		}
+		else if (x < 0 && y > 0) {
+			result = param.evaluate(Math.abs(x), y);
 			
 		}
-		
-		if (y <= 0) {
-			result = param.evaluate(x, y+1);
+		else if (x == 0 && y == 0) {
+			result = param.evaluate(-1, -1);
+		}
+		else if (x == 0 && y < 0) {
+			result = param.evaluate(-1, Math.abs(y));
+		}
+		else if (x == 0 && y > 0) {
+			result = param.evaluate(-1, y);
 		}
 		
-		
+		else if (x > 0 && y < 0) {
+			result = param.evaluate(x, Math.abs(y));
+		}
+		else if (x > 0 && y == 0) {
+			result = param.evaluate(x, y+1);
+		}
 		else {
 			result = param.evaluate(x, y);
 		}
