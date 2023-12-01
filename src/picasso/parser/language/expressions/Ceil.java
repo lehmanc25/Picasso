@@ -3,20 +3,19 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the floor function in the Picasso language.
+ * Represents the Ceil function in the Picasso language.
  * 
- * @author Robert C. Duvall
- * @author Sara Sprenkle
+ * @author Nabil Youssef
  * 
  */
-public class Floor extends UnaryFunction {
+public class Ceil extends UnaryFunction {
 
 	/**
 	 * Create a floor expression that takes as a parameter the given expression
 	 * 
 	 * @param param the expression to floor
 	 */
-	public Floor(ExpressionTreeNode param) {
+	public Ceil(ExpressionTreeNode param) {
 		super(param);
 	}
 
@@ -29,17 +28,16 @@ public class Floor extends UnaryFunction {
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result = param.evaluate(x, y);
-		double red = Math.floor(result.getRed());
-		double green = Math.floor(result.getGreen());
-		double blue = Math.floor(result.getBlue());
+		double red = Math.ceil(result.getRed());
+		double green = Math.ceil(result.getGreen());
+		double blue = Math.ceil(result.getBlue());
 
 		return new RGBColor(red, green, blue);
 	}
+	
 	@Override
     public String toString() {
-        return "floor(" + this.param + ")";
+        return "ceil(" + this.param + ")";
     }
 
 }
-
-
