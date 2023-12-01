@@ -24,12 +24,12 @@ public class Log extends UnaryFunction {
 		//Handling for log(0) undefined cases; defaulting to zero
 		RGBColor result;
 		if (x == 0.0) {
-			result = param.evaluate(x+1, y);
+			result = param.evaluate(x+ .000001, y);
 			
 		}
 		
 		if (y== 0.0) {
-			result = param.evaluate(x, y+1);
+			result = param.evaluate(x, y+ .000001);
 		}
 		
 		
