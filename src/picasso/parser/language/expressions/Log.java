@@ -21,15 +21,15 @@ public class Log extends UnaryFunction {
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		//Handling for log(0) undefined cases; defaulting to zero
+		//Handling for log(0) undefined cases; defaulting to zero. Adjusting by 4.9E-324 to avoid negative infinity values
 		RGBColor result;
 		if (x == 0.0) {
-			result = param.evaluate(x+ .000001, y);
+			result = param.evaluate(x+ 4.9E-324, y);
 			
 		}
 		
 		if (y== 0.0) {
-			result = param.evaluate(x, y+ .000001);
+			result = param.evaluate(x, y+ 4.9E-324);
 		}
 		
 		

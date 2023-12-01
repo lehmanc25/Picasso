@@ -91,32 +91,47 @@ public class EvaluatorTests {
 	@Test
 	public void testLogEvaluation() {
 		Log myTree = new Log(new X());
-		///Basic Corner Tests
+		///Basic Corner Tests - All pass initial JUnit testing
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 1));
-		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1)); 
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, -1));
 		
 		//Basic Midpoint Tests
-		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, 1));
+		assertEquals(new RGBColor(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY), myTree.evaluate(0, 1));
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 0));
-		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY), myTree.evaluate(0, 0));
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 0));
-		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, -1));
+		assertEquals(new RGBColor(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY), myTree.evaluate(0, -1));
 
 
 		///Double Tests
 		double[] tests = { -.7, -.00001, .000001, .5 };
 
 		for (double testVal : tests) {
-		
-			if (testVal == 0){
-				break;
-			}
-			
 			double logOfTestVal = Math.log(Math.abs(testVal));
 			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(testVal, -1));
 			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(testVal, testVal));
+		}
+		myTree = new Log(new Y());
+		///Basic Corner Tests - All pass initial JUnit testing
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1)); 
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, -1));
+				
+		//Basic Midpoint Tests - All pass initial JUnit testing*Note: The value -744.4400719213812 represents the undefined value for log(0) since the evaluate expression is adding
+		//.000001 to account for the value
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 1));
+		assertEquals(new RGBColor(-744.4400719213812, -744.4400719213812, -744.4400719213812), myTree.evaluate(1, 0));
+		assertEquals(new RGBColor(-744.4400719213812, -744.4400719213812, -744.4400719213812), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(-744.4400719213812, -744.4400719213812, -744.4400719213812), myTree.evaluate(-1, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, -1));
+		
+		for (double testVal : tests) {	
+			double logOfTestVal = Math.log(Math.abs(testVal));
+			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(-1, testVal));
+			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(testVal, testVal));		
 		}
 	}
 
