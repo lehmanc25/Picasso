@@ -70,9 +70,8 @@ class SemanticAnalyzerTest {
 		tokens.push(new LogToken());
 		
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
-		
-		assertEquals(new Log(new X()), actual);
-		
+	
+		assertEquals(new Log(new X()), actual);	
 	}	
 	
 	
