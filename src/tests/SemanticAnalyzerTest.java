@@ -72,4 +72,5 @@ class SemanticAnalyzerTest {
 		assertEquals(new Log(new X()), actual);
 		
 	}	
+	
 }

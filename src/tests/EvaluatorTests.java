@@ -4,7 +4,8 @@
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import Math.log
+import Math.abs
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -88,6 +89,37 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(ceilOfTestVal, ceilOfTestVal, ceilOfTestVal), myTree.evaluate(testVal, -1));
 			assertEquals(new RGBColor(ceilOfTestVal, ceilOfTestVal, ceilOfTestVal),
 					myTree.evaluate(testVal, testVal));
+		}
+	} 
+	@Test
+	public void testLogEvaluation() {
+		Log myTree = new Log(new X());
+		///Basic Corner Tests
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, -1));
+		
+		//Basic Midpoint Tests
+		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 0));
+		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 0));
+		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, -1));
+
+
+		///Double Tests
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+		for (double testVal : tests) {
+		
+			if (testVal == 0){
+				break;
+			}
+			
+			double logOfTestVal = Math.log(Math.abs(testVal));
+			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(testVal, testVal));
 		}
 	}
 

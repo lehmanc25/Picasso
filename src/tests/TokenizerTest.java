@@ -99,6 +99,27 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
+		String expression4 = "log(x)";
+		List<Token> tokens = tokenizer.parseTokens(expression);
+		asserEquals(new LogToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));	
+		
+	}
+	
+	
+	@Test
+	public void testTokenizeNestedLogFunctionExpression() {
+		String expression = "log(log(y))";
+		List<Token> tokens = tokenizer.parseTokens(expression);
+		asserEquals(new LogToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		asserEquals(new LogToken(), tokens.get(2));
+		assertEquals(new LeftParenToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));	
+		assertEquals(new RightParenToken(), tokens.get(6));	
 	}
 
 	@Test
