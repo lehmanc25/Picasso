@@ -80,4 +80,24 @@ public class ErrorParsedEvaluatedTests {
 		});
 	}
 
+	@Test
+	public void errorMissingLogFunctionRightParenTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("log(x");
+		});
+	}
+	@Test
+	public void errorMissingLogFunctionLeftParenTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("logx)");
+		});
+	}
+	
+	@Test
+	public void errorMissingLogFunctionNoParenTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("logx");
+		});
+	}
+
 }
