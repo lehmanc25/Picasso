@@ -25,6 +25,7 @@ public class Log extends UnaryFunction {
 		RGBColor result;
 		if (x == 0.0) {
 			result = param.evaluate(x+1, y);
+			
 		}
 		
 		if (y== 0.0) {
