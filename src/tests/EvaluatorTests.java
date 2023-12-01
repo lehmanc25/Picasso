@@ -120,7 +120,7 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1)); 
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, -1));
 				
-		//Basic Midpoint Tests - All pass initial JUnit testing*Note: The value -744.4400719213812 represents the undefined value for log(0) since the evaluate expression is adding
+		//Basic Midpoint Tests - All pass initial JUnit testing **Note: The value -744.4400719213812 represents the undefined value for log(0) since the evaluate expression is adding
 		//.000001 to account for the value
 		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 1));
 		assertEquals(new RGBColor(-744.4400719213812, -744.4400719213812, -744.4400719213812), myTree.evaluate(1, 0));
@@ -154,6 +154,15 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(cosOfTestVal, cosOfTestVal, cosOfTestVal),
 					myTree.evaluate(testVal, testVal));
 		}
+	}
+	@Test
+	public void testAbsEvaluation() {
+		Abs myTree = new Abs(new X());
+		
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, -1));
+
 		
 	}
 	@Test

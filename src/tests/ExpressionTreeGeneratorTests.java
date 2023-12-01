@@ -100,12 +100,30 @@ public class ExpressionTreeGeneratorTests {
 		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
 
 	}
+	
+	@Test
 	public void ceilFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
 		assertEquals(new Ceil(new X()), e);
 
 		e = parser.makeExpression("ceil( x + y )");
 		assertEquals(new Ceil(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void absFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("abs( x )");
+		assertEquals(new Abs(new X()), e);
+
+		e = parser.makeExpression("abs( x + y )");
+		assertEquals(new Abs(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void logFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("log( x )");
+		assertEquals(new Log(new X()), e);
+
+		e = parser.makeExpression("log( x + y )");
+		assertEquals(new Log(new Addition(new X(), new Y())), e);
 	}
 
 }
