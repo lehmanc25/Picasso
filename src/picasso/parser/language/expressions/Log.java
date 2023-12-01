@@ -23,12 +23,12 @@ public class Log extends UnaryFunction {
 	public RGBColor evaluate(double x, double y) {
 		//Handling for log(0) undefined cases; defaulting to zero
 		RGBColor result;
-		if (x == 0.0) {
+		if (x == 0) {
 			result = param.evaluate(x+1, y);
 			
 		}
 		
-		if (y== 0.0) {
+		if (y <= 0) {
 			result = param.evaluate(x, y+1);
 		}
 		
@@ -41,6 +41,7 @@ public class Log extends UnaryFunction {
 		double blue = Math.log(result.getBlue());
 		
 		return new RGBColor(red, green, blue);
+
 		
 	}
 	

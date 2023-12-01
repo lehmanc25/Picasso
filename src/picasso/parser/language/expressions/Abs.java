@@ -2,13 +2,13 @@ package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 
-public class AbsValue extends UnaryFunction {
+public class Abs extends UnaryFunction {
 
     /**
      * Constructor for AbsValue.
      * @param param The expression node that this function will be applied to.
      */
-    public AbsValue(ExpressionTreeNode param) {
+    public Abs(ExpressionTreeNode param) {
         super(param);
     }
 
