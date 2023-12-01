@@ -1,3 +1,7 @@
+package picasso.parser.language.expressions;
+
+import picasso.parser.language.ExpressionTreeNode;
+
 public class AbsValue extends UnaryFunction {
 
     /**
