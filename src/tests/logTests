@@ -1,0 +1,85 @@
+--------------
+Tokenizer.java
+--------------	
+@Test
+	public void testTokenizeBasicLogFunctionExpression() {
+		String expression = "log(x)";
+		List<Token> tokens = tokenizer.parseTokens(expression);
+		asserEquals(new LogToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));	
+	}
+	
+@Test
+	public void testTokenizeNestedLogFunctionExpression() {
+		String expression = "log(log(y))";
+		List<Token> tokens = tokenizer.parseTokens(expression);
+		asserEquals(new LogToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		asserEquals(new LogToken(), tokens.get(2));
+		assertEquals(new LeftParenToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));	
+		assertEquals(new RightParenToken(), tokens.get(6));	
+	}
+
+------------------------------
+ErrorParsedEvaluatedTests.java
+------------------------------
+@Test
+	public void errorMissingLogFunctionRightParenTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("log(x");
+		});
+	}
+@Test
+	public void errorMissingLogFunctionLeftParenTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("logx)");
+		});
+	}
+	
+@Test
+	public void errorMissingLogFunctionNoParenTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("logx");
+		});
+	}
+-------------------
+EvaluatorTests.java	
+-------------------
+	import Math.log
+	import Math.abs 
+	@Test
+	public void testLogEvaluation() {
+		Log myTree = new Log(new X());
+		///Basic Corner Tests
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, -1));
+		
+		//Basic Midpoint Tests
+		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 0));
+		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 0));
+		assertEquals(new RGBColor(0,0,0), myTree.evaluate(0, -1));
+
+
+		///Double Tests
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+		for (double testVal : tests) {
+		
+			if (testVal == 0){
+				break;
+			}
+			
+			double logOfTestVal = Math.log(Math.abs(testVal));
+			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(testVal, testVal));
+		}
+	}
+	
