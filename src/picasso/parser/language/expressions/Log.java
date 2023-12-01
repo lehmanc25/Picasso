@@ -21,44 +21,21 @@ public class Log extends UnaryFunction {
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		//Handling for log(0) undefined cases; defaulting to zero
+		//Handling for log(0) undefined cases; defaulting to zero. Adjusting by 4.9E-324 to avoid negative infinity values
 		RGBColor result;
-		if (x < 0 && y < 0) {
-			result = param.evaluate(Math.abs(x), Math.abs(y));
-		}
-		else if (x < 0 && y == 0) {
-			result = param.evaluate(Math.abs(x), y+1);
-		}
-		else if (x < 0 && y > 0) {
-			result = param.evaluate(Math.abs(x), y);
-			
-		}
-		else if (x == 0 && y == 0) {
-			result = param.evaluate(-1, -1);
-		}
-		else if (x == 0 && y < 0) {
-			result = param.evaluate(-1, Math.abs(y));
-		}
-		else if (x == 0 && y > 0) {
-			result = param.evaluate(-1, y);
-		}
-		
-		else if (x > 0 && y < 0) {
-			result = param.evaluate(x, Math.abs(y));
-		}
-		else if (x > 0 && y == 0) {
-			result = param.evaluate(x, y+1);
+		if (x == 0.0) {
+			result = param.evaluate(x+ 4.9E-324, y);
+		if (y== 0.0) {
+			result = param.evaluate(x, y+ 4.9E-324);
 		}
 		else {
 			result = param.evaluate(x, y);
 		}
-		double red = Math.log(result.getRed());
-		double green = Math.log(result.getGreen());
-		double blue = Math.log(result.getBlue());
+		double red = Math.log(Math.abs(result.getRed()));
+		double green = Math.log(Math.abs(result.getGreen()));
+		double blue = Math.log(Math.abs(result.getBlue()));
 		
-		return new RGBColor(red, green, blue);
-
-		
+		return new RGBColor(red, green, blue);		
 	}
 	
 	@Override

@@ -104,7 +104,7 @@ public class TokenizerTest {
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
 		String expression4 = "log(x)";
-		List<Token> tokens = tokenizer.parseTokens(expression4);
+		tokens = tokenizer.parseTokens(expression4);
 		assertEquals(new LogToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
@@ -118,7 +118,6 @@ public class TokenizerTest {
 		assertEquals(new RightParenToken(), newTokens.get(3));	
 		
 	}
-	
 	
 	@Test
 	public void testTokenizeNestedLogFunctionExpression() {
