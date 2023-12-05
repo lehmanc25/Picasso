@@ -36,7 +36,9 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 		}
 
 		// TODO : What should we do if we don't recognize the identifier?
-		// Is that an error? Or, could there a valid reason?
+		// Is that an error? Or, could there a valid reason? 
+		// If we cannot recognize the identifier, then it could have been assigned to a value, or it could have been undefined. If undefined, return null. 
+		// Otherwise, return the expression tree of the value the identifier is assigned to. But then, how do we know an identifier is assigned a value?
 		return null;
 	}
 
