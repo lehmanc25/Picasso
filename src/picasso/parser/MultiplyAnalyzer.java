@@ -17,10 +17,10 @@ public class MultiplyAnalyzer implements SemanticAnalyzerInterface {
 		tokens.pop(); 
 
 				
-		ExpressionTreeNode expressionTreeNodeRight = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
-		ExpressionTreeNode expressionTreeNodeLeft = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
+		ExpressionTreeNode Param1 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
+		ExpressionTreeNode Param2 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		
-		return new Multiplication(expressionTreeNodeLeft, expressionTreeNodeRight);
+		return new Multiplication(Param1, Param2);
 	}
 
 }
