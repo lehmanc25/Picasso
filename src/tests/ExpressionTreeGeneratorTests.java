@@ -81,19 +81,19 @@ public class ExpressionTreeGeneratorTests {
 		
 		assertEquals(expected, stack);
 	}
-	//@Test
-	//public void arithmeticStackTests() {
-		//Stack<Token> stack = parser.infixToPostfix("x + y * x");
+	@Test
+	public void arithmeticStackTests() {
+		Stack<Token> stack = parser.infixToPostfix("x + y * x");
 
-		//Stack<Token> expected = new Stack<>();
-		//expected.push(new IdentifierToken("x"));
-		//expected.push(new IdentifierToken("y"));
-		//expected.push(new IdentifierToken("x"));
-		//expected.push(new MultiplyToken());
-		//expected.push(new PlusToken());
+		Stack<Token> expected = new Stack<>();
+		expected.push(new IdentifierToken("x"));
+		expected.push(new IdentifierToken("y"));
+		expected.push(new IdentifierToken("x"));
+		expected.push(new MultiplyToken());
+		expected.push(new PlusToken());
 
-		//assertEquals(expected, stack);
-	//}
+		assertEquals(expected, stack);
+	}
 
 	@Test
 	public void floorFunctionTests() {
