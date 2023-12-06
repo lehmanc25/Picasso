@@ -11,7 +11,7 @@ public class ImageWrapToken extends FunctionToken {
      * Constructs an ImageWrapToken.
      */
     public ImageWrapToken() {
-        super("Image Wrap Token");
+        super("ImageWrap Function Token");
     }
 
     @Override

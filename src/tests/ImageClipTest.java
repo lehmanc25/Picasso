@@ -20,7 +20,7 @@ public class ImageClipTest {
 
     @BeforeEach
     public void setUp() {
-        testImage = new Image("testImage.jpg"); 
+        testImage = new Image("vortex.jpg"); 
         xExpr = new Constant(0.5); 
         yExpr = new Constant(0.5); 
         imageClip = new ImageClip(testImage, xExpr, yExpr);

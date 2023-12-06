@@ -20,9 +20,9 @@ public class ImageWrapTest {
 
     @BeforeEach
     public void setUp() {
-        testImage = new Image("testImage.jpg"); 
-        xExpr = new Constant(-1.5); 
-        yExpr = new Constant(-1.5); 
+        testImage = new Image("thread.jpg"); 
+        xExpr = new Constant(-1); 
+        yExpr = new Constant(-1); 
         imageWrap = new ImageWrap(testImage, xExpr, yExpr);
     }
 

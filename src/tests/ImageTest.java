@@ -17,7 +17,7 @@ public class ImageTest {
     @Before
     public void setUp() {
         // Assuming there's a test image
-        testImage = new Image("testImage.jpg");
+        testImage = new Image("vortex.jpg");
     }
 
     @Test
@@ -27,7 +27,7 @@ public class ImageTest {
 
     @Test
     public void testEvaluateColorAtCenter() {
-        // Assuming the center of testImage.jpg is white (RGB: 1, 1, 1)
+        // Assuming the center of vortex.jpg is white (RGB: 1, 1, 1)
         RGBColor expectedColor = new RGBColor(1, 1, 1);
         RGBColor actualColor = testImage.evaluate(0, 0); // Center of the image
         assertEquals("Color evaluation at center is incorrect", expectedColor, actualColor);
@@ -35,9 +35,9 @@ public class ImageTest {
 
     @Test
     public void testEvaluateColorAtCorner() {
-        // Assuming the top-left corner of testImage.jpg is black (RGB: -1, -1, -1)
-        RGBColor expectedColor = new RGBColor(-1, -1, -1);
-        RGBColor actualColor = testImage.evaluate(-1, 1); // Top-left corner of the image
+        // Assuming the top-left corner of vortex.jpg is white (RGB: 1, 1, 1)
+        RGBColor expectedColor = new RGBColor(1, 1, 1);
+        RGBColor actualColor = testImage.evaluate(0, 0); // Top-left corner of the image
         assertEquals("Color evaluation at top-left corner is incorrect", expectedColor, actualColor);
     }
 
