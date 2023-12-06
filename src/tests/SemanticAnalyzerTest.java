@@ -49,8 +49,20 @@ class SemanticAnalyzerTest {
 
 		assertEquals(new Addition(new X(), new Y()), actual);
 	}
-	
 	@Test
+	void testParseAssignment() {
+		
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("a"));
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new PlusToken());
+		tokens.push(new AssignmentToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new Assignment(new Variable("a"), new Addition(new X(), new Y())));
+	}
 	void testParseCosine() {
 		
 		Stack<Token> tokens = new Stack<>();
