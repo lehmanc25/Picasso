@@ -13,6 +13,7 @@ import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.*;
 import picasso.parser.tokens.IdentifierToken;
 import picasso.parser.tokens.Token;
+import picasso.parser.tokens.operations.MultiplyToken;
 import picasso.parser.tokens.operations.PlusToken;
 
 /**
@@ -58,6 +59,22 @@ public class ExpressionTreeGeneratorTests {
 		e = parser.makeExpression("x + y + [ -.51, 0, 1]");
 		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
 	}
+	
+	@Test
+	public void multiplicationExpressionTests() {
+		ExpressionTreeNode e = parser.makeExpression("x * y");
+		assertEquals(new Multiplication(new X(), new Y()), e);
+
+		// no spaces!
+		e = parser.makeExpression("x*y");
+		assertEquals(new Multiplication(new X(), new Y()), e);
+
+		e = parser.makeExpression("[1,.3,-1] * y");
+		assertEquals(new Multiplication(new RGBColor(1, .3, -1), new Y()), e);
+
+		e = parser.makeExpression("x * y * [ -.51, 0, 1]");
+		assertEquals(new Multiplication(new Multiplication(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+	}
 
 	@Test
 	public void parenthesesExpressionTests() {
@@ -68,19 +85,19 @@ public class ExpressionTreeGeneratorTests {
 		assertEquals(new Addition(new X(), new Addition(new Y(), new RGBColor(1, 1, 1))), e);
 	}
 
-	//@Test
-	//public void arithmeticStackTests() {
-		//Stack<Token> stack = parser.infixToPostfix("x + y * x");
+	@Test
+	public void arithmeticStackTests() {
+		Stack<Token> stack = parser.infixToPostfix("x + y * x");
 
-		//Stack<Token> expected = new Stack<>();
-		//expected.push(new IdentifierToken("x"));
-		//expected.push(new IdentifierToken("y"));
-		//expected.push(new IdentifierToken("x"));
-		//expected.push(new MultiplyToken());
-		//expected.push(new PlusToken());
+		Stack<Token> expected = new Stack<>();
+		expected.push(new IdentifierToken("x"));
+		expected.push(new IdentifierToken("y"));
+		expected.push(new IdentifierToken("x"));
+		expected.push(new MultiplyToken());
+		expected.push(new PlusToken());
 
-		//assertEquals(expected, stack);
-	//}
+		assertEquals(expected, stack);
+	}
 
 	@Test
 	public void floorFunctionTests() {

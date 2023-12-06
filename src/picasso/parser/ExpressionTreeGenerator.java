@@ -34,6 +34,8 @@ public class ExpressionTreeGenerator {
 	 *         formula
 	 */
 	public ExpressionTreeNode makeExpression(String infix) {
+		// we could have a map that maps variable to expression: a -> x+y; mapping should only occur if the expression has = sign (what if expression is,
+		// sin(a))? 
 		Stack<Token> postfix = infixToPostfix(infix);
 
 		if (postfix.isEmpty()) {
@@ -195,7 +197,8 @@ public class ExpressionTreeGenerator {
 
 		if (token instanceof PlusToken)
 			return ADD_OR_SUBTRACT;
-		else
+		else if (token instanceof MultiplyToken)
+			return MULTIPLY_OR_DIVIDE;
 			return CONSTANT;
 	}
 }

@@ -166,13 +166,22 @@ public class EvaluatorTests {
 		
 	}
 	@Test
-	public void testAdditionEvaluation() {
-		Addition myTree = new Addition(new X(), new Y());
+	public void testArithmeticExpressionsEvaluation() {
+		Addition myTree1 = new Addition(new X(), new Y());
 		//first and last 2 assertions need work; colors need to be clamped between -1 and 1
-		assertEquals(new RGBColor(-2, -2, -2), myTree.evaluate(-1, -1));
-		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
-		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
-		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
-		assertEquals(new RGBColor(2, 2, 2), myTree.evaluate(1, 1));
+		assertEquals(new RGBColor(-2, -2, -2), myTree1.evaluate(-1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree1.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree1.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree1.evaluate(-1, 1));
+		assertEquals(new RGBColor(2, 2, 2), myTree1.evaluate(1, 1));
+		
+		Multiplication myTree2 = new Multiplication(new X(), new Y());
+		
+		assertEquals(new RGBColor(1, 1, 1), myTree2.evaluate(-1, -1));
+		assertEquals(new RGBColor(-1, -1, -1), myTree2.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree2.evaluate(0, 0));
+		assertEquals(new RGBColor(-1, -1, -1), myTree2.evaluate(-1, 1));
+		assertEquals(new RGBColor(1, 1, 1), myTree2.evaluate(1, 1));
+		
 	}
 }

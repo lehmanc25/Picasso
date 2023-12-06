@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File; 
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import picasso.model.Pixmap;
@@ -74,6 +75,10 @@ public class Evaluator implements Command<Pixmap> {
 		//render the expression
 		render(target, expression);
 	}
+	
+	public static void errorBox(String message){
+        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.INFORMATION_MESSAGE);
+	}
 
 	/**
 	 * Convert from image space to domain space.
@@ -93,10 +98,27 @@ public class Evaluator implements Command<Pixmap> {
 
 		// String test = "floor(y)";
 		// String test = "x + y";
+	
+		try {
+	
+			ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
+			return expTreeGen.makeExpression(input);
+		}
 
-		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
-		return expTreeGen.makeExpression(input);
-		
+		catch (IllegalArgumentException e) {
+			Evaluator.errorBox("Please enter a valid expression");
+			return null;
+		}
+		catch (RuntimeException e) {
+			Evaluator.errorBox("You did something wrong");
+			e.printStackTrace();
+			return null;
+		}
+		catch (Exception e) {
+			Evaluator.errorBox("Something went wrong");
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
