@@ -20,9 +20,9 @@ public class ImageWrapTest {
 
     @BeforeEach
     public void setUp() {
-        testImage = new Image("testImage.jpg"); // Adjust as per your setup
-        xExpr = new Constant(-1.5); // Replace with actual expression logic
-        yExpr = new Constant(-1.5); // Replace with actual expression logic
+        testImage = new Image("testImage.jpg"); 
+        xExpr = new Constant(-1.5); 
+        yExpr = new Constant(-1.5); 
         imageWrap = new ImageWrap(testImage, xExpr, yExpr);
     }
 
