@@ -20,9 +20,9 @@ public class ImageClipTest {
 
     @BeforeEach
     public void setUp() {
-        testImage = new Image("testImage.jpg"); // Adjust as per your setup
-        xExpr = new Constant(0.5); // Replace with actual expression logic
-        yExpr = new Constant(0.5); // Replace with actual expression logic
+        testImage = new Image("testImage.jpg"); 
+        xExpr = new Constant(0.5); 
+        yExpr = new Constant(0.5); 
         imageClip = new ImageClip(testImage, xExpr, yExpr);
     }
 
