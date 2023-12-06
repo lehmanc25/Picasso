@@ -23,13 +23,17 @@ public class Evaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MAX = 1;
 
 	protected JTextField textfield;
-	protected File file;
 	
-	//GUI Evaluator
+	//GUI Evaluator - Why does the evaluator always have to take in a text field?
 	public Evaluator(JTextField tf) {
 		this.textfield = tf;
 	}
 	
+	 // Default constructor for file expressions
+    public Evaluator() {
+        this.textfield = null;
+    }
+
 	/**
 	 * Renders the expression for each pixel on Pixmap.
 	 * @param target
