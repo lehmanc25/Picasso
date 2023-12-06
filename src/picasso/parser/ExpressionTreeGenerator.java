@@ -20,8 +20,9 @@ import picasso.parser.tokens.operations.*;
 public class ExpressionTreeGenerator {
 
 	// TODO: Do these belong here?
-	private static final int CONSTANT = 0;
-	private static final int GROUPING = 1; // parentheses
+	private static final int CONSTANT = -1;
+	private static final int GROUPING = 0; // parentheses
+	private static final int ASSIGNMENT = 1;
 	private static final int ADD_OR_SUBTRACT = 2;
 	private static final int MULTIPLY_OR_DIVIDE = 3;
 
@@ -159,7 +160,8 @@ public class ExpressionTreeGenerator {
 					postfixResult.push(operators.pop());
 				}
 
-			} else {
+			} 
+			else {
 				System.out.println("ERROR: No match: " + token);
 			}
 			// System.out.println("Postfix: " + postfixResult);
@@ -199,6 +201,8 @@ public class ExpressionTreeGenerator {
 			return ADD_OR_SUBTRACT;
 		else if (token instanceof MultiplyToken)
 			return MULTIPLY_OR_DIVIDE;
+		else if (token instanceof EqualsToken)
+			return ASSIGNMENT;
 			return CONSTANT;
 	}
 }

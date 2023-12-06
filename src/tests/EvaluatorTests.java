@@ -184,4 +184,15 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(1, 1, 1), myTree2.evaluate(1, 1));
 		
 	}
+	@Test
+	public void testAssignmentEvaluation() {
+		Assignment myTree = new Assignment(new Variable("a"), new Addition(new X(), new Y()));
+		//check that addition is evaluated when the assignment is created
+		assertEquals(new RGBColor(-2, -2, -2), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(2, 2, 2), myTree.evaluate(1, 1));
+		//more tests to be included, such as how to evaluate "a" by itself, and make sure both evaluations are equal. 
+	}
 }
