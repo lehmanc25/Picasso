@@ -86,7 +86,7 @@ public class Evaluator implements Command<Pixmap> {
 			return null;
 		}
 		catch (Exception e) {
-			Evaluator.errorBox("You did something wrong");
+			Evaluator.errorBox("Something went wrong");
 			e.printStackTrace();
 			return null;
 		}
