@@ -8,6 +8,8 @@ import picasso.parser.tokens.Token;
 
 /**
  * Handles parsing for the absolute value function.
+ * 
+ * @author Ford Scott
  */
 public class AbsAnalyzer implements SemanticAnalyzerInterface {
 

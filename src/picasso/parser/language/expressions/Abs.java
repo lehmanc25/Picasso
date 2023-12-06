@@ -2,6 +2,13 @@ package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 
+/**
+ * Represents the 'abs' function in the Picasso language. This function applies
+ * the absolute value operation to an expression node, operating on each color
+ * component (red, green, blue) of the evaluated RGBColor.
+ * 
+ * @author Ford Scott
+ */
 public class Abs extends UnaryFunction {
 
     /**
