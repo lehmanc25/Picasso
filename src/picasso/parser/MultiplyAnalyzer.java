@@ -17,8 +17,8 @@ public class MultiplyAnalyzer implements SemanticAnalyzerInterface {
 		tokens.pop(); 
 
 				
-		ExpressionTreeNode Param1 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		ExpressionTreeNode Param2 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
+		ExpressionTreeNode Param1 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		
 		return new Multiplication(Param1, Param2);
 	}
