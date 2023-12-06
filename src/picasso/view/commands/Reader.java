@@ -11,14 +11,12 @@ import picasso.util.FileCommand;
  * @author Robert C Duvall
  */
 public class Reader extends FileCommand<Pixmap> {
-
 	/**
 	 * Creates a Reader object, which prompts users for image files to open
 	 */
 	public Reader() {
 		super(JFileChooser.OPEN_DIALOG);
 	}
-
 	/**
 	 * Displays the image file on the given target.
 	 */
@@ -29,3 +27,4 @@ public class Reader extends FileCommand<Pixmap> {
 		}
 	}
 }
+
