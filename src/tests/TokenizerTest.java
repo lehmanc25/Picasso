@@ -13,6 +13,7 @@ import picasso.parser.Tokenizer;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
+import picasso.parser.tokens.operations.MultiplyToken;
 import picasso.parser.tokens.operations.PlusToken;
 
 /**
@@ -103,6 +104,34 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
+		String expression4 = "log(x)";
+		tokens = tokenizer.parseTokens(expression4);
+		assertEquals(new LogToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));	
+		
+		String expression5 = "abs(x)";
+		List<Token> newTokens = tokenizer.parseTokens(expression5);
+		assertEquals(new AbsToken(), newTokens.get(0));
+		assertEquals(new LeftParenToken(), newTokens.get(1));
+		assertEquals(new IdentifierToken("x"), newTokens.get(2));
+		assertEquals(new RightParenToken(), newTokens.get(3));	
+		
+	}
+	
+	@Test
+	public void testTokenizeNestedLogFunctionExpression() {
+		String expression = "log(log(y))";
+		List<Token> tokens = tokenizer.parseTokens(expression);
+		assertEquals(new LogToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new LogToken(), tokens.get(2));
+		assertEquals(new LeftParenToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));	
+		assertEquals(new RightParenToken(), tokens.get(6));	
+
 	}
 
 	@Test
@@ -123,7 +152,11 @@ public class TokenizerTest {
 		assertEquals(new PlusToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		
-		
+		String expression2 = "x*y";
+		tokens = tokenizer.parseTokens(expression2);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new MultiplyToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		
 	}
 	@Test

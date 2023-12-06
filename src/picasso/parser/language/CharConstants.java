@@ -27,4 +27,5 @@ public class CharConstants {
 	public static final char QUESTION = '?';
 	public static final char TILDE = '~';
 
+
 }

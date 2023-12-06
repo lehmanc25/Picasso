@@ -3,11 +3,13 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.AbsValue;
+import picasso.parser.language.expressions.Abs;
 import picasso.parser.tokens.Token;
 
 /**
  * Handles parsing for the absolute value function.
+ * 
+ * @author Ford Scott
  */
 public class AbsAnalyzer implements SemanticAnalyzerInterface {
 
@@ -25,7 +27,7 @@ public class AbsAnalyzer implements SemanticAnalyzerInterface {
         ExpressionTreeNode paramETN = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
         
         // Return a new AbsFunction node with the generated parameter expression tree node
-        return new AbsValue(paramETN);
+        return new Abs(paramETN);
     }
 
 }

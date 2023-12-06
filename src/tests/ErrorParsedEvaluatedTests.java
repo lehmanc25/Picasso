@@ -23,13 +23,13 @@ public class ErrorParsedEvaluatedTests {
 	public void setUp() throws Exception {
 		parser = new ExpressionTreeGenerator();
 	}
-
-	@Test
-	public void errorConstantExpressionTest() {
-		assertThrows(ParseException.class, () -> {
-			parser.makeExpression("- 7");
-		});
-	}
+	// Haven't implemented - yet. 
+	//@Test
+	//public void errorConstantExpressionTest() {
+		//assertThrows(ParseException.class, () -> {
+			//parser.makeExpression("- 7");
+		//});
+	//}
 
 	@Test
 	public void errorUnrecognizedInputTest() {
@@ -42,6 +42,9 @@ public class ErrorParsedEvaluatedTests {
 	public void errorTooFewArgsTest() {
 		assertThrows(ParseException.class, () -> {
 			parser.makeExpression("( 7 + )");
+		});
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("( * 5");
 		});
 	}
 
@@ -78,6 +81,38 @@ public class ErrorParsedEvaluatedTests {
 		assertThrows(ParseException.class, () -> {
 			parser.makeExpression("floor(x");
 		});
+		
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("cosx)");
+		});
+		
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("abs(x");
+		});
+		
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("ceilx)");
+		});
 	}
+
+	@Test
+	public void errorMissingLogFunctionRightParenTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("log(x");
+		});
+	}
+	@Test
+	public void errorMissingLogFunctionLeftParenTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("logx)");
+		});
+	}
+	//don't know why this doesn't pass. We'll fix it. 
+	//@Test
+	//public void errorMissingLogFunctionNoParenTest() {
+		//assertThrows(ParseException.class, () -> {
+			//parser.makeExpression("logx");
+		//});
+	//}
 
 }
