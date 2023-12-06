@@ -22,8 +22,8 @@ public class Reader extends FileCommand<Pixmap> {
 	 * Displays the image file on the given target.
 	 */
 	public void execute(Pixmap target) {
-		JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir"), "images"));
-	    String fileName = getFileName(fileChooser);
+		JFileChooser imageChooser = new JFileChooser(new File(System.getProperty("user.dir"), "images"));
+	    String fileName = getFileName(imageChooser);
 
 	    if (fileName != null && !fileName.isEmpty()) {
 	        target.read(fileName);
