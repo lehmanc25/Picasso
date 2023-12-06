@@ -4,6 +4,7 @@ import javax.swing.JFileChooser;
 
 import picasso.model.Pixmap;
 import picasso.util.FileCommand;
+import java.io.File;
 
 /**
  * Open the chosen image file and display in the Pixmap target.
@@ -21,10 +22,15 @@ public class Reader extends FileCommand<Pixmap> {
 	 * Displays the image file on the given target.
 	 */
 	public void execute(Pixmap target) {
-		String fileName = getFileName();
-		if (fileName != null) {
-			target.read(fileName);
-		}
+		JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir"), "images"));
+	    String fileName = getFileName(fileChooser);
+
+	    if (fileName != null && !fileName.isEmpty()) {
+	        target.read(fileName);
+	    } 
+	    else {
+	        System.out.println("File selection cancelled or no file selected.");
+	    }
 	}
 }
 

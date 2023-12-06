@@ -16,7 +16,7 @@ import java.nio.file.Paths;
  */
 public class FileReader extends FileCommand<Pixmap> {
 	
-	private Evaluator FileEvaluator;
+	private Evaluator fileEvaluator;
 	private String expression;
 
 	/**
@@ -24,7 +24,7 @@ public class FileReader extends FileCommand<Pixmap> {
 	 */
 	public FileReader(Evaluator eval) {
 		super(JFileChooser.OPEN_DIALOG);
-		FileEvaluator = eval;
+		fileEvaluator = eval;
 	}
 	
 	/**
@@ -33,25 +33,26 @@ public class FileReader extends FileCommand<Pixmap> {
 	
 	@Override
 	public void execute(Pixmap target) {
-		//FileCommand Name
-		String fileName = getFileName();
-		
-		//Getting absolute path
-		String filePath = new File(fileName).getAbsolutePath();
-		
-		//Read file into expression
-		try {
-			expression = new String(Files.readAllBytes(Paths.get(filePath)));
-			System.out.println(expression);
-        } 
-		
-		catch (IOException e) {
-            e.printStackTrace();
-        }
-		FileEvaluator.execute(target, expression);		
-	}
-}
+	    JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir"), "expressions"));
+	    String fileName = getFileName(fileChooser);
 
+	    if (fileName != null && !fileName.isEmpty()) {
+	        try {
+	            expression = new String(Files.readAllBytes(Paths.get(fileName)));
+	         
+	        } 
+	        catch (IOException e) {
+	            e.printStackTrace();  
+	        }
+	        
+	        fileEvaluator.execute(target, expression);
+	    } 
+	    else {
+	        System.out.println("File selection cancelled or no file selected.");
+	    }
+	}
+
+}
 
 
 
