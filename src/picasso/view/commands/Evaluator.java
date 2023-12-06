@@ -22,7 +22,6 @@ public class Evaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
 
-
 	protected JTextField textfield;
 	protected File file;
 	
@@ -30,7 +29,6 @@ public class Evaluator implements Command<Pixmap> {
 	public Evaluator(JTextField tf) {
 		this.textfield = tf;
 	}
-	
 	
 	/**
 	 * Renders the expression for each pixel on Pixmap.
@@ -49,6 +47,7 @@ public class Evaluator implements Command<Pixmap> {
 			}
 		}		
 	}
+	
 	/**
 	 * Evaluate an expression from GUI input.
 	 * @param target
