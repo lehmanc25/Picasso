@@ -201,7 +201,7 @@ public class ExpressionTreeGenerator {
 			return ADD_OR_SUBTRACT;
 		else if (token instanceof MultiplyToken)
 			return MULTIPLY_OR_DIVIDE;
-		else if (token instanceof EqualsToken)
+		else if (token instanceof AssignmentToken)
 			return ASSIGNMENT;
 			return CONSTANT;
 	}
