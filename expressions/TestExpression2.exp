@@ -1,0 +1,8 @@
+// Test Expression 2
+log(cos(log(x) + log(y + x)) * abs(cos(log(x) + log(y * x)))) + [0.6, -0.8, -0.9] * log(y) + log(log(cos(x+y)))
+
+
+
+
+
+
