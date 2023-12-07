@@ -24,6 +24,7 @@ public class Assignment extends ExpressionTreeNode {
 	public Assignment(ExpressionTreeNode var, ExpressionTreeNode expr) {
 		this.var = var;
 		this.expr = expr;
+		idToExpression.put(var, expr);
 	}
 	
 	static Map<ExpressionTreeNode, ExpressionTreeNode> idToExpression = new HashMap<ExpressionTreeNode, ExpressionTreeNode>();
@@ -31,10 +32,10 @@ public class Assignment extends ExpressionTreeNode {
 	public static Map<ExpressionTreeNode, ExpressionTreeNode> getIdToExpression() {
 		return idToExpression;
 	}
+
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		// TODO Auto-generated method stub
-		idToExpression.put(var, expr);
 		return expr.evaluate(x, y);
 	}
 	

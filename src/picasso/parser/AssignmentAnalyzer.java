@@ -6,6 +6,8 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.parser.language.expressions.Assignment;
+import picasso.parser.tokens.IdentifierToken;
 import picasso.parser.tokens.Token;
 
 /**
@@ -24,11 +26,14 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		
 		ExpressionTreeNode expression = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
-		ExpressionTreeNode variable = SemanticAnalyzer.getInstance().generateExpressionTree(
-				tokens);
-				
-				
-		return new Assignment(variable, expression);
+		Token t = tokens.peek();
+		if (t instanceof IdentifierToken) {
+			ExpressionTreeNode variable = SemanticAnalyzer.getInstance().generateExpressionTree(
+					tokens);
+			return new Assignment(variable, expression);
+		}
+		
+		return null;
 	}
 
 }
