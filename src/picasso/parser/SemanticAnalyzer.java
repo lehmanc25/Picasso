@@ -66,9 +66,9 @@ public class SemanticAnalyzer implements SemanticAnalyzerInterface {
 		parserName = PARSER_PACKAGE + "ColorAnalyzer";
 		addSemanticAnalyzerMapping(tokenName, parserName);
 		
-		//Images
-		tokenName = TOKENS_PACKAGE_NAME + "ImageToken";
-		parserName = PARSER_PACKAGE + "ImageAnalyzer";
+		//Quote/String
+		tokenName = TOKENS_PACKAGE_NAME + "QuoteToken";
+		parserName = PARSER_PACKAGE + "QuoteAnalyzer";
 		addSemanticAnalyzerMapping(tokenName, parserName);
 		
 
