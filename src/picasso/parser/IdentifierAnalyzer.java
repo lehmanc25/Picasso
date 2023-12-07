@@ -7,6 +7,7 @@ import java.util.Stack;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.X;
 import picasso.parser.language.expressions.Y;
+import picasso.parser.language.expressions.Variable;
 import picasso.parser.tokens.IdentifierToken;
 import picasso.parser.tokens.Token;
 
@@ -25,7 +26,7 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 		idToExpression.put("x", new X());
 		idToExpression.put("y", new Y());
 	}
-
+	
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		IdentifierToken t = (IdentifierToken) tokens.pop();
@@ -39,7 +40,7 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 		// Is that an error? Or, could there a valid reason? 
 		// If we cannot recognize the identifier, then it could have been assigned to a value, or it could have been undefined. If undefined, return null. 
 		// Otherwise, return the expression tree of the value the identifier is assigned to. But then, how do we know an identifier is assigned a value?
-		return null;
+		return new Variable(id);
 	}
 
 }

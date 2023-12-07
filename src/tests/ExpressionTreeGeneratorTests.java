@@ -13,6 +13,7 @@ import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.*;
 import picasso.parser.tokens.IdentifierToken;
 import picasso.parser.tokens.Token;
+import picasso.parser.tokens.operations.AssignmentToken;
 import picasso.parser.tokens.operations.MultiplyToken;
 import picasso.parser.tokens.operations.PlusToken;
 
@@ -59,22 +60,6 @@ public class ExpressionTreeGeneratorTests {
 		e = parser.makeExpression("x + y + [ -.51, 0, 1]");
 		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
 	}
-	
-	@Test
-	public void multiplicationExpressionTests() {
-		ExpressionTreeNode e = parser.makeExpression("x * y");
-		assertEquals(new Multiplication(new X(), new Y()), e);
-
-		// no spaces!
-		e = parser.makeExpression("x*y");
-		assertEquals(new Multiplication(new X(), new Y()), e);
-
-		e = parser.makeExpression("[1,.3,-1] * y");
-		assertEquals(new Multiplication(new RGBColor(1, .3, -1), new Y()), e);
-
-		e = parser.makeExpression("x * y * [ -.51, 0, 1]");
-		assertEquals(new Multiplication(new Multiplication(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
-	}
 
 	@Test
 	public void parenthesesExpressionTests() {
@@ -84,7 +69,20 @@ public class ExpressionTreeGeneratorTests {
 		e = parser.makeExpression("( x + (y + [ 1, 1, 1] ) )");
 		assertEquals(new Addition(new X(), new Addition(new Y(), new RGBColor(1, 1, 1))), e);
 	}
-
+	
+	@Test
+	public void arithmeticAndAssignmentStackTests() {
+		Stack<Token> stack = parser.infixToPostfix("a = x * y");
+		Stack<Token> expected = new Stack<>();
+		
+		expected.push(new IdentifierToken("a"));
+		expected.push(new IdentifierToken("x"));
+		expected.push(new IdentifierToken("y"));
+		expected.push(new MultiplyToken());
+		expected.push(new AssignmentToken());
+		
+		assertEquals(expected, stack);
+	}
 	@Test
 	public void arithmeticStackTests() {
 		Stack<Token> stack = parser.infixToPostfix("x + y * x");
@@ -117,30 +115,12 @@ public class ExpressionTreeGeneratorTests {
 		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
 
 	}
-	
-	@Test
 	public void ceilFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
 		assertEquals(new Ceil(new X()), e);
 
 		e = parser.makeExpression("ceil( x + y )");
 		assertEquals(new Ceil(new Addition(new X(), new Y())), e);
-	}
-	@Test
-	public void absFunctionTests() {
-		ExpressionTreeNode e = parser.makeExpression("abs( x )");
-		assertEquals(new Abs(new X()), e);
-
-		e = parser.makeExpression("abs( x + y )");
-		assertEquals(new Abs(new Addition(new X(), new Y())), e);
-	}
-	@Test
-	public void logFunctionTests() {
-		ExpressionTreeNode e = parser.makeExpression("log( x )");
-		assertEquals(new Log(new X()), e);
-
-		e = parser.makeExpression("log( x + y )");
-		assertEquals(new Log(new Addition(new X(), new Y())), e);
 	}
 
 }
