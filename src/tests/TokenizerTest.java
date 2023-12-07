@@ -13,8 +13,8 @@ import picasso.parser.Tokenizer;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
-import picasso.parser.tokens.operations.MultiplyToken;
-import picasso.parser.tokens.operations.PlusToken;
+import picasso.parser.tokens.operations.*;
+
 
 /**
  * Tests that the tokenizer tokens as expected. 
