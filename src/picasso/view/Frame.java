@@ -22,6 +22,7 @@ public class Frame extends JFrame {
         // create GUI components
         Canvas canvas = new Canvas(this);
         canvas.setSize(size);
+       
 
         JPanel panel = new JPanel();
         JTextField textfield = new JTextField(10);
@@ -29,9 +30,10 @@ public class Frame extends JFrame {
 
         // add commands to test here
         ButtonPanel commands = new ButtonPanel(canvas);
-        commands.add("Open", new Reader());
+        commands.add("Open Image", new Reader());
+        commands.add("Open File", new FileReader(new Evaluator()));
         commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator(textfield)));
-        commands.add("Save", new Writer());
+        commands.add("Save Image", new Writer());
 
         panel.setLayout(new BorderLayout());
         panel.add(commands, BorderLayout.NORTH);

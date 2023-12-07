@@ -10,12 +10,8 @@ import javax.swing.JFileChooser;
  * @author Robert C Duvall
  */
 public abstract class FileCommand<T> implements Command<T> {
-	// only one dialog box needed for an application
-	private static final JFileChooser ourChooser = new JFileChooser(System.getProperties().getProperty("user.dir"));
-
 	// what kind of dialog to open, see JFileChooser constants
 	private int myDialogType;
-
 	/**
 	 * Create command that will pop-up the given type of JFileChooser dialog
 	 * 
@@ -31,11 +27,11 @@ public abstract class FileCommand<T> implements Command<T> {
 	 * 
 	 * @return the name of the file chosen by the user or null if no file chosen.
 	 */
-	protected String getFileName() {
-		ourChooser.setDialogType(myDialogType);
-		int response = ourChooser.showDialog(null, null);
+	protected String getFileName(JFileChooser type) {
+		type.setDialogType(myDialogType);
+		int response = type.showDialog(null, null);
 		if (response == JFileChooser.APPROVE_OPTION) {
-			return ourChooser.getSelectedFile().getPath();
+			return type.getSelectedFile().getPath();
 		}
 		return null;
 	}
