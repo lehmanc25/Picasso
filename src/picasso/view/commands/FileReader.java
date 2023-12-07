@@ -35,7 +35,7 @@ public class FileReader extends FileCommand<Pixmap> {
 	public void execute(Pixmap target) {
 	    JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir"), "expressions"));
 	    String fileName = getFileName(fileChooser);
-
+	    
 	    if (fileName != null && !fileName.isEmpty()) {
 	        try {
 	            expression = new String(Files.readAllBytes(Paths.get(fileName)));
