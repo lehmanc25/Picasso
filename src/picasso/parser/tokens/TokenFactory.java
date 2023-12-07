@@ -46,7 +46,7 @@ public class TokenFactory {
 				// parse a color token if it starts with a [
 				return parseColorToken(tokenizer);
 			case '"':
-				return new ImageToken(tokenizer.sval);				
+				return new QuoteToken(tokenizer.sval);				
 			default:
 				Token ct = CharTokenFactory.getToken(result);
 

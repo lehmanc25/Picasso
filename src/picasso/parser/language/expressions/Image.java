@@ -1,11 +1,11 @@
 package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.parser.tokens.QuoteToken; // Import the QuoteToken class
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.*;
 
 /**
@@ -15,25 +15,25 @@ import javax.imageio.*;
  * @author Ford Scott
  */
 public class Image extends ExpressionTreeNode {
-	
-	private String myfilename;
-	private BufferedImage myImage;
-	
-	/**
-	 * Constructs an Image object from a given filename.
-	 * 
-	 * @param filename A string representation of the image file.
-	 */
-	public Image(String filename) {
-		try {
-			this.myfilename = filename;
-			File file = new File("images/" + filename);
-			this.myImage = ImageIO.read(file);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    
+    private String myfilename;
+    private BufferedImage myImage;
+    
+    /**
+     * Constructs an Image object from a QuoteToken.
+     * 
+     * @param token A QuoteToken representing the image file.
+     */
+    public Image(QuoteToken token) {
+        try {
+            this.myfilename = token.toString(); // Extract filename from QuoteToken
+            File file = new File("images/" + myfilename);
+            this.myImage = ImageIO.read(file);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	/**
 	 * Scales a double value to fit within the bounds.
