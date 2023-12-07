@@ -85,11 +85,7 @@ public class Evaluator implements Command<Pixmap> {
 			e.printStackTrace();
 			return null;
 		}
-		catch (Exception e) {
-			Evaluator.errorBox("Something went wrong");
-			e.printStackTrace();
-			return null;
-		}
+	
 	}
 
 }
