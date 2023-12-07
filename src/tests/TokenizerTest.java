@@ -13,8 +13,8 @@ import picasso.parser.Tokenizer;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
-import picasso.parser.tokens.operations.MultiplyToken;
-import picasso.parser.tokens.operations.PlusToken;
+import picasso.parser.tokens.operations.*;
+
 
 /**
  * Tests that the tokenizer tokens as expected. 
@@ -158,6 +158,16 @@ public class TokenizerTest {
 		assertEquals(new MultiplyToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		
+	}
+	@Test
+	public void testAssignmentExpression() {
+		String expression = "a=x+y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("a"), tokens.get(0));
+		assertEquals(new AssignmentToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new PlusToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
 	}
 
 }

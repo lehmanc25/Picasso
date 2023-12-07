@@ -75,9 +75,9 @@ public class Evaluator implements Command<Pixmap> {
 		render(target, expression);
 	}
 	
-//	public static void errorBox(String message){
- //       JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.INFORMATION_MESSAGE);
-//	}
+	public static void errorBox(String message){
+		JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.INFORMATION_MESSAGE);
+	}
 
 	/**
 	 * Convert from image space to domain space.
@@ -98,26 +98,20 @@ public class Evaluator implements Command<Pixmap> {
 		// String test = "floor(y)";
 		// String test = "x + y";
 	
-		//		try {
+		try {
 	
 			ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 			return expTreeGen.makeExpression(input);
-			//		}
+		}
 
-//		catch (IllegalArgumentException e) {
-		//		//			Evaluator.errorBox("Please enter a valid expression");
-		//	return null;
-		//		}//
-		//		cat//ch (RuntimeException e) {
-		//			Evaluator.errorBox("You did something wrong");
-		//			e.printStackTrace();
-		//			return null;
-		//		}
-		//		catch (Exception e) {
-		//			Evaluator.errorBox("Something went wrong");
-		//			e.printStackTrace();
-		//			return null;
-		//		}
-			}
-
+		catch (IllegalArgumentException e) {
+			Evaluator.errorBox("Please enter a valid expression");
+			return null;
+		}
+		catch (RuntimeException e) {
+			Evaluator.errorBox("You did something wrong");
+			e.printStackTrace();
+			return null;
+		}	
+	}
 }

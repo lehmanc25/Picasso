@@ -75,7 +75,13 @@ public class ErrorParsedEvaluatedTests {
 			parser.makeExpression("7 * 3 )");
 		});
 	}
-	
+	@Test
+	public void errorInvalidAssignmentTest() {
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("a + x = y");
+			parser.makeExpression("sin(y) = x");
+		});
+	}
 	@Test
 	public void errorMissingFunctionParenTest() {
 		assertThrows(ParseException.class, () -> {

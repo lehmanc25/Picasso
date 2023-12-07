@@ -20,8 +20,9 @@ import picasso.parser.tokens.operations.*;
 public class ExpressionTreeGenerator {
 
 	// TODO: Do these belong here?
-	private static final int CONSTANT = 0;
-	private static final int GROUPING = 1; // parentheses
+	private static final int CONSTANT = -1;
+	private static final int GROUPING = 0; // parentheses
+	private static final int ASSIGNMENT = 1;
 	private static final int ADD_OR_SUBTRACT = 2;
 	private static final int MULTIPLY_OR_DIVIDE = 3;
 
@@ -49,6 +50,8 @@ public class ExpressionTreeGenerator {
 
 		// Is this the best place to put this check?
 		if (!postfix.isEmpty()) {
+			System.out.println(postfix);
+			System.out.println(root);
 			throw new ParseException("Extra operands without operators or functions");
 		}
 		return root;
@@ -97,11 +100,14 @@ public class ExpressionTreeGenerator {
 				postfixResult.push(token);
 			} else if (token instanceof ColorToken) {
 				postfixResult.push(token);
+			} else if (token instanceof QuoteToken) {
+				postfixResult.push(token);
 			} else if (token instanceof IdentifierToken) {
 				postfixResult.push(token);
 			} else if (token instanceof FunctionToken) {
 				operators.push(token);
 			} else if (token instanceof OperationInterface) {
+			
 
 				/*
 				 * while there is an operator, o2, at the top of the stack (this excludes left
@@ -159,7 +165,8 @@ public class ExpressionTreeGenerator {
 					postfixResult.push(operators.pop());
 				}
 
-			} else {
+			} 
+			else {
 				System.out.println("ERROR: No match: " + token);
 			}
 			// System.out.println("Postfix: " + postfixResult);
@@ -199,6 +206,8 @@ public class ExpressionTreeGenerator {
 			return ADD_OR_SUBTRACT;
 		else if (token instanceof MultiplyToken)
 			return MULTIPLY_OR_DIVIDE;
+		else if (token instanceof AssignmentToken)
+			return ASSIGNMENT;
 			return CONSTANT;
 	}
 }
