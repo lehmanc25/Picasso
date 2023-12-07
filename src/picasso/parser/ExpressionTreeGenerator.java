@@ -50,6 +50,8 @@ public class ExpressionTreeGenerator {
 
 		// Is this the best place to put this check?
 		if (!postfix.isEmpty()) {
+			System.out.println(postfix);
+			System.out.println(root);
 			throw new ParseException("Extra operands without operators or functions");
 		}
 		return root;
@@ -98,11 +100,14 @@ public class ExpressionTreeGenerator {
 				postfixResult.push(token);
 			} else if (token instanceof ColorToken) {
 				postfixResult.push(token);
+			} else if (token instanceof QuoteToken) {
+				postfixResult.push(token);
 			} else if (token instanceof IdentifierToken) {
 				postfixResult.push(token);
 			} else if (token instanceof FunctionToken) {
 				operators.push(token);
 			} else if (token instanceof OperationInterface) {
+			
 
 				/*
 				 * while there is an operator, o2, at the top of the stack (this excludes left

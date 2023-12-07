@@ -14,26 +14,6 @@ import picasso.parser.tokens.Token;
  * @author Ford Scott
  */
 public class QuoteAnalyzer implements SemanticAnalyzerInterface {
-	
-	private static QuoteAnalyzer singleton;
-	
-	/**
-	 * Private constructor to ensure a single instance of QuoteAnalyzer.
-	 */
-	private QuoteAnalyzer() {}
-	
-	/**
-	 * Get the singleton instance of QuoteAnalyzer.
-	 * 
-	 * @return The singleton instance of QuoteAnalyzer.
-	 */
-	public static QuoteAnalyzer getInstance() {
-		if (singleton == null) {
-			singleton = new QuoteAnalyzer();
-		}
-		return singleton;
-	}
-	
 	/**
 	 * Generate an expression tree from a stack of tokens containing a QuoteToken.
 	 * 

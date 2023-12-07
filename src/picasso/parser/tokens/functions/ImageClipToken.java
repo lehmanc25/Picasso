@@ -12,4 +12,19 @@ public class ImageClipToken extends FunctionToken {
 	public ImageClipToken() {
 		super("ImageClip Function Token");
 	}
+	/**
+	 * @see picasso.parser.tokens.Token#isConstant()
+	 */
+	@Override
+	public boolean isConstant() {
+		return false;
+	}
+
+	/**
+	 * @see picasso.parser.tokens.Token#isFunction()
+	 */
+	@Override
+	public boolean isFunction() {
+		return true;
+	}
 }
