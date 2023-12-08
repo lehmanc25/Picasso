@@ -16,6 +16,7 @@ import picasso.parser.language.expressions.*;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.operations.AssignmentToken;
 import picasso.parser.tokens.functions.CosToken;
+import picasso.parser.tokens.functions.LogToken;
 import picasso.parser.tokens.functions.CeilToken;
 import picasso.parser.tokens.operations.*;
 
@@ -51,6 +52,43 @@ class SemanticAnalyzerTest {
 		assertEquals(new Addition(new X(), new Y()), actual);
 	}
 	@Test
+	void testParseSubtraction() {
+
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new MinusToken());
+
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+
+		assertEquals(new Subtraction(new X(), new Y()), actual);
+	}
+	@Test
+	void testParseMultiplication() {
+
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new MultiplyToken());
+
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+
+		assertEquals(new Multiplication(new X(), new Y()), actual);
+	}
+	
+	@Test
+	void testParseDivision() {
+
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new DivideToken());
+
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+
+		assertEquals(new Division(new X(), new Y()), actual);
+	}
+	@Test
 	void testParseAssignment() {
 		
 		Stack<Token> tokens = new Stack<>();
@@ -73,6 +111,17 @@ class SemanticAnalyzerTest {
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 		
 		assertEquals(new Cosine(new X()), actual);
+		
+	}
+void testParseLog() {
+		
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new LogToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new Log(new X()), actual);
 		
 	}
 

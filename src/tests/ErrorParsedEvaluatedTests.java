@@ -99,6 +99,10 @@ public class ErrorParsedEvaluatedTests {
 		assertThrows(ParseException.class, () -> {
 			parser.makeExpression("ceilx)");
 		});
+		
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("logx)");
+		});
 	}
 
 	@Test
@@ -113,12 +117,4 @@ public class ErrorParsedEvaluatedTests {
 			parser.makeExpression("logx)");
 		});
 	}
-	//don't know why this doesn't pass. We'll fix it. 
-	//@Test
-	//public void errorMissingLogFunctionNoParenTest() {
-		//assertThrows(ParseException.class, () -> {
-			//parser.makeExpression("logx");
-		//});
-	//}
-
 }
