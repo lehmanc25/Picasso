@@ -26,9 +26,11 @@ public class Image extends ExpressionTreeNode {
      */
     public Image(QuoteToken token) {
         try {
-            this.myfilename = token.toString(); // Extract filename from QuoteToken
+            this.myfilename = token.value(); // Extract filename from QuoteToken
             File file = new File("images/" + myfilename);
+            System.out.print(file);
             this.myImage = ImageIO.read(file);
+
         }
         catch (IOException e) {
             e.printStackTrace();

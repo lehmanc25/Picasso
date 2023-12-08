@@ -26,8 +26,8 @@ public class ImageClipAnalyzer implements SemanticAnalyzerInterface {
     public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) throws ParseException {
         tokens.pop(); // Remove the ImageClipToken.
         
-        ExpressionTreeNode paramx = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
         ExpressionTreeNode paramy = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
+        ExpressionTreeNode paramx = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
         
         if (tokens.peek() instanceof QuoteToken) {
             Image img = new Image((QuoteToken) tokens.pop());
