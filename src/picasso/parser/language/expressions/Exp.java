@@ -26,7 +26,7 @@ public class Exp extends UnaryFunction{
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		RGBColor result = param.evaluate(x, y);
+		RGBColor color = param.evaluate(x, y);
 		double red = Math.exp(color.getRed());
 		double green = Math.abs(color.getGreen());
 		double blue = Math.abs(color.getBlue());
