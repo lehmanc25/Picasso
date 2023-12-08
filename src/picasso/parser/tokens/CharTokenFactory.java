@@ -36,6 +36,7 @@ public class CharTokenFactory {
 		tokenList[CharConstants.EQUAL] = new AssignmentToken();
 		tokenList[CharConstants.COMMA] = new CommaToken();
 		tokenList[CharConstants.PLUS] = new PlusToken();
+		tokenList[CharConstants.MINUS] = new MinusToken();
 		tokenList[CharConstants.STAR] = new MultiplyToken();
 		tokenList[CharConstants.SLASH] = new DivideToken();
 				
