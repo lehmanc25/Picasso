@@ -164,6 +164,12 @@ public class TokenizerTest {
 		assertEquals(new DivideToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		
+		String expression4 = "x-y";
+		tokens = tokenizer.parseTokens(expression4);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new MinusToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+		
 	}
 	@Test
 	public void testAssignmentExpression() {

@@ -183,6 +183,14 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(-1, -1, -1), myTree2.evaluate(-1, 1));
 		assertEquals(new RGBColor(1, 1, 1), myTree2.evaluate(1, 1));
 		
+		Division myTree3 = new Division(new X(), new Y());
+		
+		assertEquals(new RGBColor(1, 1, 1), myTree3.evaluate(-1, -1));
+		assertEquals(new RGBColor(-1, -1, -1), myTree3.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree3.evaluate(0, 0));
+		assertEquals(new RGBColor(-1, -1, -1), myTree3.evaluate(-1, 1));
+		assertEquals(new RGBColor(1, 1, 1), myTree3.evaluate(1, 1));
+		
 	}
 	@Test
 	public void testAssignmentEvaluation() {
