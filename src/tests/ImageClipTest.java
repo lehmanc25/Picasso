@@ -33,22 +33,17 @@ public class ImageClipTest {
 	
 	@Test
 	public void testImageClipEvaluation() {
-	    QuoteToken filenameToken = new QuoteToken("\"vortex.jpg\""); // Correctly create QuoteToken
-	    Image image = new Image(filenameToken); // Create Image instance
+	    QuoteToken filenameToken = new QuoteToken("vortex.jpg");
+	    Image image = new Image(filenameToken);
 
-	    // Assuming you have constant expression classes X and Y
-	    ExpressionTreeNode xExpr = new X(); // Replace with your actual expression implementation
-	    ExpressionTreeNode yExpr = new Y(); // Replace with your actual expression implementation
+	    ExpressionTreeNode xExpr = new X(); // Example x coordinate
+	    ExpressionTreeNode yExpr = new Y(); // Example y coordinate
 
 	    ImageClip myTree = new ImageClip(image, xExpr, yExpr);
 
-	    // Test the evaluation method with actual expected colors
-	    // These colors should be determined based on the content of "vortex.jpg"
-	    // Example:
-	    RGBColor expectedColor = new RGBColor(-6, -6, -6); // Replace with actual expected color
-	    RGBColor actualColor = myTree.evaluate(-1, -1);
-	    assertEquals(expectedColor, actualColor, "Color should match expected value");
-
+        assertEquals(new RGBColor(-6, -6, -6), myTree.evaluate(-1, -1));
+        assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, -1));
+        assertEquals(new RGBColor(6, 6, 6), myTree.evaluate(1, -1));
 	    // Additional tests can be added here
 		double[] tests = {7, -10, 100, -.5};
 		
