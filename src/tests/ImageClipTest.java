@@ -14,7 +14,7 @@ public class ImageClipTest {
 
     @Test
     public void testImageClipFunctionality() {
-        QuoteToken filenameToken = new QuoteToken("\"testImage.jpg\"");
+        QuoteToken filenameToken = new QuoteToken("vortex.jpg");
         Image image = new Image(filenameToken);
 
         // Example x and y coordinate expressions (create these expressions as needed)

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.StringReader;
 import java.io.StreamTokenizer;
 import picasso.parser.tokens.TokenFactory;
+import picasso.parser.tokens.functions.FunctionToken;
 import picasso.parser.tokens.functions.ImageClipToken;
 import picasso.parser.tokens.Token;
 
@@ -12,7 +13,7 @@ public class ImageClipTokenTest {
 
     @Test
     public void testTokenizationOfImageClip() {
-        String input = "imageClip(\"image.jpg\", 0.5, -0.5)";
+        String input = "imageClip(\"vortex.jpg\", 0.5, -0.5)";
         StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(input));
 
         // Configure the tokenizer if needed

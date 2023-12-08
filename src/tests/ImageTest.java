@@ -11,7 +11,7 @@ public class ImageTest {
     @Test
     public void testImageCreation() {
         // Assuming you have a test image file in the correct location
-        QuoteToken filenameToken = new QuoteToken("\"vortex.jpg\"");
+        QuoteToken filenameToken = new QuoteToken("vortex.jpg");
         Image image = new Image(filenameToken);
 
         // Test that image is created successfully (not null)
@@ -20,7 +20,7 @@ public class ImageTest {
 
     @Test
     public void testImageEvaluate() {
-        QuoteToken filenameToken = new QuoteToken("\"vortex.jpg\"");
+        QuoteToken filenameToken = new QuoteToken("vortex.jpg");
         Image image = new Image(filenameToken);
 
         // Test the evaluate method at a specific coordinate
