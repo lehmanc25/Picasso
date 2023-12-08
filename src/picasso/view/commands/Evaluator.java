@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.ParseException;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
 
@@ -108,7 +109,7 @@ public class Evaluator implements Command<Pixmap> {
 			Evaluator.errorBox("Please enter a valid expression");
 			return null;
 		}
-		catch (RuntimeException e) {
+		catch (ParseException e) {
 			Evaluator.errorBox("You did something wrong");
 			e.printStackTrace();
 			return null;
