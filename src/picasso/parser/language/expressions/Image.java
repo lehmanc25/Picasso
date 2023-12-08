@@ -32,6 +32,7 @@ public class Image extends ExpressionTreeNode {
         }
         catch (IOException e) {
             e.printStackTrace();
+            
         }
     }
 	
