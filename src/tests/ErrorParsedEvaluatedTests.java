@@ -99,6 +99,18 @@ public class ErrorParsedEvaluatedTests {
 		assertThrows(ParseException.class, () -> {
 			parser.makeExpression("ceilx)");
 		});
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("sin(x");
+		});
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("tanx)");
+		});
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("atan(x");
+		});
+		assertThrows(ParseException.class, () -> {
+			parser.makeExpression("expx)");
+		});
 	}
 
 	@Test

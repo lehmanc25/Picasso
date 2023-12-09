@@ -96,6 +96,9 @@ public class TokenizerTest {
 		String expression2 = "cos(x)";
 		tokens = tokenizer.parseTokens(expression2);
 		assertEquals(new CosToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
 		
 		String expression3 = "ceil(x)";
 		tokens = tokenizer.parseTokens(expression3);
@@ -118,6 +121,33 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), newTokens.get(2));
 		assertEquals(new RightParenToken(), newTokens.get(3));	
 		
+		String expression6 = "sin(x)";
+		tokens = tokenizer.parseTokens(expression6);
+		assertEquals(new SinToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression7 = "tan(x)";
+		tokens = tokenizer.parseTokens(expression7);
+		assertEquals(new TanToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression8 = "exp(x)";
+		tokens = tokenizer.parseTokens(expression8);
+		assertEquals(new ExpToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression9 = "atan(x)";
+		tokens = tokenizer.parseTokens(expression9);
+		assertEquals(new AtanToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
 	}
 	
 	@Test

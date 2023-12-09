@@ -122,5 +122,37 @@ public class ExpressionTreeGeneratorTests {
 		e = parser.makeExpression("ceil( x + y )");
 		assertEquals(new Ceil(new Addition(new X(), new Y())), e);
 	}
+	public void sinFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("sin( x )");
+		assertEquals(new Sine(new X()), e);
+
+		e = parser.makeExpression("sin( x + y )");
+		assertEquals(new Sine(new Addition(new X(), new Y())), e);
+	}
+	public void tanFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("tan( x )");
+		assertEquals(new Tan(new X()), e);
+
+		e = parser.makeExpression("tan( x + y )");
+		assertEquals(new Tan(new Addition(new X(), new Y())), e);
+	}
+	public void atanFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("atan( x )");
+		assertEquals(new Atan(new X()), e);
+
+		e = parser.makeExpression("atan( x + y )");
+		assertEquals(new Atan(new Addition(new X(), new Y())), e);
+	}
+	public void expFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("exp( x )");
+		assertEquals(new Exp(new X()), e);
+
+		e = parser.makeExpression("exp( x + y )");
+		assertEquals(new Exp(new Addition(new X(), new Y())), e);
+	}
+	
+	
+	
+	
 
 }
