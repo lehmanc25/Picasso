@@ -19,10 +19,13 @@ import picasso.parser.tokens.functions.CosToken;
 import picasso.parser.tokens.functions.ExpToken;
 import picasso.parser.tokens.functions.FloorToken;
 import picasso.parser.tokens.functions.LogToken;
+import picasso.parser.tokens.functions.PerlinBWToken;
 import picasso.parser.tokens.functions.SinToken;
 import picasso.parser.tokens.functions.TanToken;
+import picasso.parser.tokens.functions.WrapToken;
 import picasso.parser.tokens.functions.AtanToken;
 import picasso.parser.tokens.functions.CeilToken;
+import picasso.parser.tokens.functions.ClampToken;
 import picasso.parser.tokens.operations.*;
 
 /**
@@ -209,6 +212,42 @@ class SemanticAnalyzerTest {
 		
 		assertEquals(new Atan(new X()), actual);
 		
+	}
+	@Test
+	void testParseClamp() {
+		
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new ClampToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new Clamp(new X()), actual);
+		
+	}
+	
+	@Test
+	void testParseWrap() {
+		
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new WrapToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new Wrap(new X()), actual);
+		
+	}
+	@Test
+	void testParsePerlinBW() {
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new PerlinBWToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new PerlinBW(new X(), new Y()), actual);
 	}
 	
 	

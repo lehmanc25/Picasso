@@ -148,8 +148,34 @@ public class TokenizerTest {
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression10 = "clamp(x)";
+		tokens = tokenizer.parseTokens(expression10);
+		assertEquals(new ClampToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression11 = "wrap(x)";
+		tokens = tokenizer.parseTokens(expression11);
+		assertEquals(new WrapToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+
 	}
-	
+	@Test
+	public void testTokenizeMultiArgumentFunctionExpressions() {
+		String expression = "perlinBW(x, y)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new PerlinBWToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new CommaToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));
+	}
 	@Test
 	public void testTokenizeNestedLogFunctionExpression() {
 		String expression = "log(log(y))";
@@ -168,7 +194,16 @@ public class TokenizerTest {
 	public void testTokenizeCombinedFunctionExpression() {
 		String expression = "perlinColor(floor(x), y)";
 		List<Token> tokens = tokenizer.parseTokens(expression);
-		// TODO: Check the tokens...
+		
+		assertEquals(new PerlinColorToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new FloorToken(), tokens.get(2));
+		assertEquals(new LeftParenToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("x"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));
+		assertEquals(new CommaToken(), tokens.get(6));
+		assertEquals(new IdentifierToken("y"), tokens.get(7));
+		assertEquals(new RightParenToken(), tokens.get(8));
 
 		expression = "sin(perlinColor(x, y))";
 		tokens = tokenizer.parseTokens(expression);
