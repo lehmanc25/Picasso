@@ -252,6 +252,28 @@ public class EvaluatorTests {
 		}
 	}
 	@Test
+	public void testClampEvaluation() {
+		Clamp myTree = new Clamp(new Addition(new X(), new Y()));
+		
+		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, 1));
+		
+	}
+	@Test
+	public void testWrapEvaluation() {
+		Wrap myTree = new Wrap(new Addition(new X(), new Y()));
+		
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 1));
+		
+	}
+	@Test
 	public void testArithmeticExpressionsEvaluation() {
 		Addition myTree1 = new Addition(new X(), new Y());
 		//first and last 2 assertions need work; colors need to be clamped between -1 and 1

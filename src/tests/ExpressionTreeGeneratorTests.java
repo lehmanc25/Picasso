@@ -209,5 +209,28 @@ public class ExpressionTreeGeneratorTests {
 		e = parser.makeExpression("exp( x + y )");
 		assertEquals(new Exp(new Addition(new X(), new Y())), e);
 	}
+	@Test
+	public void clampFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("clamp( x )");
+		assertEquals(new Clamp(new X()), e);
 
+		e = parser.makeExpression("clamp( x + y )");
+		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void wrapFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("wrap( x )");
+		assertEquals(new Wrap(new X()), e);
+
+		e = parser.makeExpression("wrap( x + y )");
+		assertEquals(new Wrap(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void perlinBWFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("perlinBW( x, y )");
+		assertEquals(new PerlinBW(new X(), new Y()), e);
+
+		e = parser.makeExpression("perlinBW( x + x, y + y )");
+		assertEquals(new PerlinBW(new Addition(new X(), new X()), new Addition(new Y(), new Y())), e);
+	}
 }
