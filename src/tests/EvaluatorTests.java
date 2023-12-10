@@ -10,6 +10,7 @@ import java.util.Stack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import picasso.model.ImprovedNoise;
 import picasso.parser.AssignmentAnalyzer;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.IdentifierAnalyzer;
@@ -164,6 +165,38 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(cosOfTestVal, cosOfTestVal, cosOfTestVal),
 					myTree.evaluate(testVal, testVal));
 		}
+	}
+	@Test
+	public void testPerlinColorEvaluation() {
+		PerlinColor myTree = new PerlinColor(new X(), new Y());
+		
+		double red = ImprovedNoise.noise(-1 + 0.3, -1 + 0.3, 0);
+		double blue = ImprovedNoise.noise(-1 + 0.1, -1 + 0.1, 0);
+		double green = ImprovedNoise.noise(-1 - 0.8, -1 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(-1, -1));
+		
+		red = ImprovedNoise.noise(-1 + 0.3, 1 + 0.3, 0);
+		blue = ImprovedNoise.noise(-1 + 0.1, 1 + 0.1, 0);
+		green = ImprovedNoise.noise(-1 - 0.8, 1 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(-1, 1));
+		
+		red = ImprovedNoise.noise(0 + 0.3, 0 + 0.3, 0);
+		blue = ImprovedNoise.noise(0 + 0.1, 0 + 0.1, 0);
+		green = ImprovedNoise.noise(0 - 0.8, 0 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(0, 0));
+		
+		red = ImprovedNoise.noise(1 + 0.3, -1 + 0.3, 0);
+		blue = ImprovedNoise.noise(1 + 0.1, -1 + 0.1, 0);
+		green = ImprovedNoise.noise(1 - 0.8, -1 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(1, -1));
+		
+		
+		red = ImprovedNoise.noise(1 + 0.3, 1 + 0.3, 0);
+		blue = ImprovedNoise.noise(1 + 0.1, 1 + 0.1, 0);
+		green = ImprovedNoise.noise(1 - 0.8, 1 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(1, 1));
+		
+		
 	}
 	@Test
 	public void testAbsEvaluation() {
