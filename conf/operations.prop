@@ -2,6 +2,6 @@
  -=Minus
 *=Multiply
 /=Divide
-!=Factorial
+\!=Neg
 %=Mod
 \==Assignment
