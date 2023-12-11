@@ -10,6 +10,7 @@ import java.util.Stack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import picasso.model.ImprovedNoise;
 import picasso.parser.AssignmentAnalyzer;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.IdentifierAnalyzer;
@@ -46,6 +47,13 @@ public class EvaluatorTests {
 		X x = new X();
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(i, i, i), x.evaluate(i, i));
+		}
+	}
+	@Test
+	public void testYEvaluation() {
+		Y y = new Y();
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(i, i, i), y.evaluate(i, i));
 		}
 	}
 
@@ -164,6 +172,38 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(cosOfTestVal, cosOfTestVal, cosOfTestVal),
 					myTree.evaluate(testVal, testVal));
 		}
+	}
+	@Test
+	public void testPerlinColorEvaluation() {
+		PerlinColor myTree = new PerlinColor(new X(), new Y());
+		
+		double red = ImprovedNoise.noise(-1 + 0.3, -1 + 0.3, 0);
+		double blue = ImprovedNoise.noise(-1 + 0.1, -1 + 0.1, 0);
+		double green = ImprovedNoise.noise(-1 - 0.8, -1 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(-1, -1));
+		
+		red = ImprovedNoise.noise(-1 + 0.3, 1 + 0.3, 0);
+		blue = ImprovedNoise.noise(-1 + 0.1, 1 + 0.1, 0);
+		green = ImprovedNoise.noise(-1 - 0.8, 1 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(-1, 1));
+		
+		red = ImprovedNoise.noise(0 + 0.3, 0 + 0.3, 0);
+		blue = ImprovedNoise.noise(0 + 0.1, 0 + 0.1, 0);
+		green = ImprovedNoise.noise(0 - 0.8, 0 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(0, 0));
+		
+		red = ImprovedNoise.noise(1 + 0.3, -1 + 0.3, 0);
+		blue = ImprovedNoise.noise(1 + 0.1, -1 + 0.1, 0);
+		green = ImprovedNoise.noise(1 - 0.8, -1 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(1, -1));
+		
+		
+		red = ImprovedNoise.noise(1 + 0.3, 1 + 0.3, 0);
+		blue = ImprovedNoise.noise(1 + 0.1, 1 + 0.1, 0);
+		green = ImprovedNoise.noise(1 - 0.8, 1 - 0.8, 0);
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(1, 1));
+		
+		
 	}
 	@Test
 	public void testAbsEvaluation() {
@@ -298,6 +338,31 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(0, 0, 0), myTree3.evaluate(0, 0));
 		assertEquals(new RGBColor(-1, -1, -1), myTree3.evaluate(-1, 1));
 		assertEquals(new RGBColor(1, 1, 1), myTree3.evaluate(1, 1));
+		
+		Subtraction myTree4 = new Subtraction(new X(), new Y());
+		//Some assertions need work; colors need to be clamped between -1 and 1
+		assertEquals(new RGBColor(0, 0, 0), myTree4.evaluate(-1, -1));
+		assertEquals(new RGBColor(2, 2, 2), myTree4.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree4.evaluate(0, 0));
+		assertEquals(new RGBColor(-2, -2, -2), myTree4.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree4.evaluate(1, 1));
+		
+		Modulo myTree5 = new Modulo(new X(), new Y());
+		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(-1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(1, 1));
+		
+		double[] testModX = { -.7, -.00001, .000001, .5 };
+		double[] testModY = {1, 0.5, -1, 0.1 };
+
+		for (double testXVal : testModX) {
+			for (double testYVal : testModY) {
+				double mod = testXVal % testYVal;
+				assertEquals(new RGBColor(mod, mod, mod),myTree5.evaluate(testXVal, testYVal));
+			}
+		}
 		
 	}
 	@Test

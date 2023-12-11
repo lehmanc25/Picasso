@@ -4,7 +4,6 @@ import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.Ceil;
-import picasso.parser.language.expressions.Floor;
 import picasso.parser.tokens.Token;
 
 /**

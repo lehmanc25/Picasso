@@ -175,6 +175,15 @@ public class TokenizerTest {
 		assertEquals(new CommaToken(), tokens.get(3));
 		assertEquals(new IdentifierToken("y"), tokens.get(4));
 		assertEquals(new RightParenToken(), tokens.get(5));
+		
+		expression = "perlinColor(x, y)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new PerlinColorToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new CommaToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));
 	}
 	@Test
 	public void testTokenizeNestedLogFunctionExpression() {
@@ -207,7 +216,15 @@ public class TokenizerTest {
 
 		expression = "sin(perlinColor(x, y))";
 		tokens = tokenizer.parseTokens(expression);
-		// TODO: Check the tokens...
+		assertEquals(new SinToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new PerlinColorToken(), tokens.get(2));
+		assertEquals(new LeftParenToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("x"), tokens.get(4));
+		assertEquals(new CommaToken(), tokens.get(5));
+		assertEquals(new IdentifierToken("y"), tokens.get(6));
+		assertEquals(new RightParenToken(), tokens.get(7));
+		assertEquals(new RightParenToken(), tokens.get(8));
 	}
 	@Test
 	public void testTokenizeArithmeticExpressions() {

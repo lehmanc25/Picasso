@@ -4,7 +4,6 @@ import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.Exp;
-import picasso.parser.language.expressions.Sine;
 import picasso.parser.tokens.Token;
 
 public class ExpAnalyzer implements SemanticAnalyzerInterface {
