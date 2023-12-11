@@ -39,6 +39,8 @@ public class CharTokenFactory {
 		tokenList[CharConstants.MINUS] = new MinusToken();
 		tokenList[CharConstants.STAR] = new MultiplyToken();
 		tokenList[CharConstants.SLASH] = new DivideToken();
+		tokenList[CharConstants.BANG] = new FactToken();
+		tokenList[CharConstants.MOD] = new ModToken();
 				
 
 
