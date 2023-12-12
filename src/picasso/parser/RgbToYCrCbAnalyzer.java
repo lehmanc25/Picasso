@@ -15,7 +15,7 @@ import picasso.parser.tokens.Token;
  * @author Desire Asinya. 
  * 
  */
-public class RGBToYCrCbAnalyzer implements SemanticAnalyzerInterface {
+public class RgbToYCrCbAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
