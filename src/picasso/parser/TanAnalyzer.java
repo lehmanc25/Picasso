@@ -4,7 +4,7 @@ import java.util.Stack;
 
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Sine;
+import picasso.parser.language.expressions.Sin;
 import picasso.parser.language.expressions.Tan;
 import picasso.parser.tokens.Token;
 

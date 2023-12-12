@@ -41,16 +41,11 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		Token t = tokens.peek();
 		if (t instanceof IdentifierToken) {
 			IdentifierToken token = (IdentifierToken) tokens.peek();
-			if (!(token.getName().equals("x") || token.getName().equals("y"))) {
 			idToExpr.put(token.getName(), expression);
 			
 			ExpressionTreeNode variable = SemanticAnalyzer.getInstance().generateExpressionTree(
 					tokens);
 			return new Assignment(variable, expression);
-			}
-			else {
-				throw new ParseException("Token " + token.getName() + " is a special identifier and cannot be assigned to an expression.");
-			}
 		} else {
 			throw new ParseException("Token on top of stack is not an identifier and cannot be assigned to an expression.");
 		}

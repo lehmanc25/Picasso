@@ -3,14 +3,14 @@ package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 
-public class Negate extends UnaryFunction {
+public class Neg extends UnaryFunction {
 
 	/**
 	 * @param param_right
 	 * 
 	 * Represents the Negate operator in the Picasso language.
 	 */
-	public Negate(ExpressionTreeNode param) {
+	public Neg(ExpressionTreeNode param) {
 		super(param);
 	}
 

@@ -41,6 +41,7 @@ public class CharTokenFactory {
 		tokenList[CharConstants.SLASH] = new DivideToken();
 		tokenList[CharConstants.BANG] = new NegToken();
 		tokenList[CharConstants.MOD] = new ModToken();
+		tokenList[CharConstants.CARET] = new ExponentiateToken();
 				
 
 

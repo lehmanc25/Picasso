@@ -38,7 +38,7 @@ public class Frame extends JFrame {
         
         // add animation buttons to test here
         ButtonPanel buttons = new ButtonPanel(canvas);
-        buttons.add("Start Animation", new ThreadedCommand<Pixmap>(canvas, new Animator(new Evaluator())));
+        buttons.add("Start Screensaver", new ThreadedCommand<Pixmap>(canvas, new Animator(new Evaluator())));
       //  buttons.add("Stop Animation", 
         
         panel1.setLayout(new BorderLayout());
@@ -46,6 +46,9 @@ public class Frame extends JFrame {
         panel1.add(textfield, BorderLayout.CENTER);
         panel1.add(label, BorderLayout.WEST);
         panel2.add(buttons, BorderLayout.SOUTH);
+
+    	commands.add("Random", new ThreadedCommand<Pixmap>(canvas, new RandomExpression(textfield)));
+
 
        
         // Add KeyListener to JTextField

@@ -3,7 +3,7 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Subtraction;
+import picasso.parser.language.expressions.Minus;
 import picasso.parser.tokens.Token;
 
 /**
@@ -23,7 +23,7 @@ public class MinusAnalyzer implements SemanticAnalyzerInterface {
 				tokens);
 		ExpressionTreeNode paramETN1 = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
-		return new Subtraction(paramETN1, paramETN2);
+		return new Minus(paramETN1, paramETN2);
 	}
 
 }

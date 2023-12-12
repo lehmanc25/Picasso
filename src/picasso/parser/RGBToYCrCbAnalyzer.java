@@ -6,7 +6,7 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.RbgToYCrCb;
+import picasso.parser.language.expressions.RGBToYCrCb;
 import picasso.parser.tokens.Token;
 
 /**
@@ -15,7 +15,7 @@ import picasso.parser.tokens.Token;
  * @author Desire Asinya. 
  * 
  */
-public class RgbToYCrCbAnalyzer implements SemanticAnalyzerInterface {
+public class RGBToYCrCbAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
@@ -23,7 +23,7 @@ public class RgbToYCrCbAnalyzer implements SemanticAnalyzerInterface {
 		
 		ExpressionTreeNode paramETN = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		
-		return new RbgToYCrCb(paramETN);
+		return new RGBToYCrCb(paramETN);
 	}
 
 }

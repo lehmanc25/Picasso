@@ -16,7 +16,6 @@ public class Modulo extends BinaryFunction {
 		super(param_left, param_right);
 	}
 	
-
 	
 	@Override
 	public RGBColor evaluate(double x, double y) {

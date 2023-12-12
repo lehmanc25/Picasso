@@ -6,7 +6,7 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Negate;
+import picasso.parser.language.expressions.Neg;
 import picasso.parser.tokens.Token;
 
 /**
@@ -27,7 +27,7 @@ public class NegAnalyzer implements SemanticAnalyzerInterface {
 		
 		ExpressionTreeNode param = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
-		return new Negate(param);
+		return new Neg(param);
 	}
 
 }

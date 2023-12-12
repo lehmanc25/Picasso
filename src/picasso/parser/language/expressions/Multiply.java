@@ -6,18 +6,23 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 
-public class Multiplication extends BinaryFunction {
+public class Multiply extends BinaryFunction {
 	
+
+
+
 	/**
 	 * @param param_left
 	 * @param param_right
 	 * 
 	 * Represents the Multiply operator in the Picasso language.
 	 */
-	public Multiplication(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
+	public Multiply(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
 		super(param_left, param_right);
+
 	}
-	
+
+
 	
 
 	@Override

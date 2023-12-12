@@ -166,6 +166,14 @@ public class TokenizerTest {
 
 	}
 	@Test
+	public void testTokenizeNoArgumentFunctionExpression() {
+		String expression = "random()";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new RandomToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new RightParenToken(), tokens.get(2));
+	}
+	@Test
 	public void testTokenizeMultiArgumentFunctionExpressions() {
 		String expression = "perlinBW(x, y)";
 		tokens = tokenizer.parseTokens(expression);
@@ -263,6 +271,12 @@ public class TokenizerTest {
 		assertEquals(new NegToken(), tokens.get(0));
 		assertEquals(new IdentifierToken("x"), tokens.get(1));
 			
+		String expression7 = "x^y";
+		tokens = tokenizer.parseTokens(expression7);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new ExponentiateToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
 	}
 	@Test
 	public void testAssignmentExpression() {

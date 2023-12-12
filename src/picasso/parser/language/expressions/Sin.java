@@ -10,14 +10,14 @@ import picasso.parser.language.ExpressionTreeNode;
  * 
  * @author Desire Asinya
  */
-public class Sine extends UnaryFunction {
+public class Sin extends UnaryFunction {
 
 	/**
 	 * Create a sine expression that takes as parameter the given parameter
 	 * 
 	 * @param the expression to evaluate the sine of. 
 	 */
-	public Sine(ExpressionTreeNode param) {
+	public Sin(ExpressionTreeNode param) {
 		super(param);
 	}
 

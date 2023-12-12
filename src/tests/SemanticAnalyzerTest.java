@@ -21,6 +21,7 @@ import picasso.parser.tokens.functions.FloorToken;
 import picasso.parser.tokens.functions.LogToken;
 import picasso.parser.tokens.functions.PerlinBWToken;
 import picasso.parser.tokens.functions.PerlinColorToken;
+import picasso.parser.tokens.functions.RandomToken;
 import picasso.parser.tokens.functions.SinToken;
 import picasso.parser.tokens.functions.TanToken;
 import picasso.parser.tokens.functions.WrapToken;
@@ -49,7 +50,7 @@ class SemanticAnalyzerTest {
 	}
 
 	@Test
-	void testParseAddition() {
+	void testParsePlus() {
 
 		Stack<Token> tokens = new Stack<>();
 		tokens.push(new IdentifierToken("x"));
@@ -58,10 +59,10 @@ class SemanticAnalyzerTest {
 
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 
-		assertEquals(new Addition(new X(), new Y()), actual);
+		assertEquals(new Plus(new X(), new Y()), actual);
 	}
 	@Test
-	void testParseSubtraction() {
+	void testParseMinus() {
 
 		Stack<Token> tokens = new Stack<>();
 		tokens.push(new IdentifierToken("x"));
@@ -70,10 +71,10 @@ class SemanticAnalyzerTest {
 
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 
-		assertEquals(new Subtraction(new X(), new Y()), actual);
+		assertEquals(new Minus(new X(), new Y()), actual);
 	}
 	@Test
-	void testParseMultiplication() {
+	void testParseMultiply() {
 
 		Stack<Token> tokens = new Stack<>();
 		tokens.push(new IdentifierToken("x"));
@@ -82,7 +83,7 @@ class SemanticAnalyzerTest {
 
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 
-		assertEquals(new Multiplication(new X(), new Y()), actual);
+		assertEquals(new Multiply(new X(), new Y()), actual);
 	}
 	
 	@Test
@@ -95,7 +96,7 @@ class SemanticAnalyzerTest {
 
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 
-		assertEquals(new Division(new X(), new Y()), actual);
+		assertEquals(new Divide(new X(), new Y()), actual);
 	}
 	
 	@Test
@@ -108,7 +109,7 @@ class SemanticAnalyzerTest {
 
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 
-		assertEquals(new Modulo(new X(), new Y()), actual);
+		assertEquals(new Mod(new X(), new Y()), actual);
 	}
 	@Test
 	void testParseNegate() {
@@ -119,9 +120,21 @@ class SemanticAnalyzerTest {
 
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 
-		assertEquals(new Negate(new X()), actual);
+		assertEquals(new Neg(new X()), actual);
 	}
 	
+	void testParseExponentiate() {
+		
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new ExponentiateToken());
+
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+
+		assertEquals(new Exponentiate(new X(), new Y()), actual);
+	}
+
 	@Test
 	void testParseAssignment() {
 		
@@ -134,7 +147,7 @@ class SemanticAnalyzerTest {
 		
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 		
-		assertEquals(new Assignment(new Variable("a"), new Addition(new X(), new Y())), actual);
+		assertEquals(new Assignment(new Variable("a"), new Plus(new X(), new Y())), actual);
 	}
 	
 	@Test
@@ -146,7 +159,7 @@ class SemanticAnalyzerTest {
 		
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 		
-		assertEquals(new Cosine(new X()), actual);
+		assertEquals(new Cos(new X()), actual);
 		
 	}
 	
@@ -197,7 +210,7 @@ class SemanticAnalyzerTest {
 		
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 		
-		assertEquals(new Sine(new X()), actual);
+		assertEquals(new Sin(new X()), actual);
 		
 	}
 	
@@ -285,6 +298,19 @@ class SemanticAnalyzerTest {
 		
 		assertEquals(new PerlinColor(new X(), new Y()), actual);
 	}
+	/**
+	 * Doens't work
+	@Test
+	void testParseRandom() {
+		Stack<Token> tokens = new Stack<>();
+		
+		tokens.push(new RandomToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new Random(), actual);
+	}
+	**/
 	
 	
 }

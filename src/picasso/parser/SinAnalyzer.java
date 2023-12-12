@@ -6,7 +6,7 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Sine;
+import picasso.parser.language.expressions.Sin;
 import picasso.parser.tokens.Token;
 
 /**
@@ -23,7 +23,7 @@ public class SinAnalyzer implements SemanticAnalyzerInterface {
 		ExpressionTreeNode paramETN = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 				
-		return new Sine(paramETN);
+		return new Sin(paramETN);
 	}
 
 }

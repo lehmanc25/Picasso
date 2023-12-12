@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.ParseException;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
 
@@ -87,7 +88,7 @@ public class Evaluator implements Command<Pixmap> {
 	/**
 	 * Convert from image space to domain space.
 	 */
-	protected double imageToDomainScale(int value, int bounds) {
+	protected static double imageToDomainScale(int value, int bounds) {
 		double range = DOMAIN_MAX - DOMAIN_MIN;
 		return ((double) value / bounds) * range + DOMAIN_MIN;
 	}
@@ -112,9 +113,10 @@ public class Evaluator implements Command<Pixmap> {
 		catch (IllegalArgumentException e) {
 			Evaluator.errorBox("Please enter a valid expression");
 			return null;
-		} catch (RuntimeException e) {
-			Evaluator.errorBox("You did something wrong");
-			e.printStackTrace();
+
+		}
+		catch (ParseException e) {
+			Evaluator.errorBox("Please enter a valid expression");
 			return null;
 		}
 	}
