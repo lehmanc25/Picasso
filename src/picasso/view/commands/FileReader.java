@@ -4,10 +4,14 @@ import javax.swing.JFileChooser;
 
 import picasso.model.Pixmap;
 import picasso.util.FileCommand;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 /**
  * Opens a selected file, reads expression, and display in the Pixmap target.
@@ -35,24 +39,22 @@ public class FileReader extends FileCommand<Pixmap> {
 	public void execute(Pixmap target) {
 	    JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir"), "expressions"));
 	    String fileName = getFileName(fileChooser);
-	    
+
 	    if (fileName != null && !fileName.isEmpty()) {
-	        try {
-	            expression = new String(Files.readAllBytes(Paths.get(fileName)));
-	         
-	        } 
-	        catch (IOException e) {
-	            e.printStackTrace();  
+	        try (BufferedReader reader = Files.newBufferedReader(Paths.get(fileName))) {
+	            
+	        	while ((expression = reader.readLine()) != null) {
+	                fileEvaluator.execute(target, expression);
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
 	        }
-	        
-	        fileEvaluator.execute(target, expression);
-	    } 
-	    else {
+	    } else {
 	        System.out.println("File selection cancelled or no file selected.");
 	    }
 	}
-
 }
+
 
 
 

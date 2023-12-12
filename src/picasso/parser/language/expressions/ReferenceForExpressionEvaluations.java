@@ -42,7 +42,7 @@ public enum ReferenceForExpressionEvaluations {
 			return new RGBColor(red, green, blue);
 		}
 	},
-	TIMES {
+	MULTIPLY {
 		public RGBColor evaluate(RGBColor left, RGBColor right) {
 			double red = left.getRed() * right.getRed();
 			double green = left.getGreen() * right.getGreen();
@@ -115,7 +115,7 @@ public enum ReferenceForExpressionEvaluations {
 			return new RGBColor(red, green, blue);
 		}
 	},
-	INVERT {
+	NEGATE {
 		/**
 		 * Convert color from RGB to YUV color space. Details and constants derived from
 		 * this site: http://www.answers.com/topic/yuv

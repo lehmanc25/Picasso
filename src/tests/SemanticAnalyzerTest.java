@@ -20,6 +20,8 @@ import picasso.parser.tokens.functions.ExpToken;
 import picasso.parser.tokens.functions.FloorToken;
 import picasso.parser.tokens.functions.LogToken;
 import picasso.parser.tokens.functions.PerlinBWToken;
+import picasso.parser.tokens.functions.PerlinColorToken;
+import picasso.parser.tokens.functions.RandomToken;
 import picasso.parser.tokens.functions.SinToken;
 import picasso.parser.tokens.functions.TanToken;
 import picasso.parser.tokens.functions.WrapToken;
@@ -97,6 +99,18 @@ class SemanticAnalyzerTest {
 		assertEquals(new Division(new X(), new Y()), actual);
 	}
 	
+	@Test
+	void testParseExponentiate() {
+		
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new ExponentiateToken());
+
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+
+		assertEquals(new Exponentiate(new X(), new Y()), actual);
+	}
 	@Test
 	void testParseAssignment() {
 		
@@ -249,6 +263,28 @@ class SemanticAnalyzerTest {
 		
 		assertEquals(new PerlinBW(new X(), new Y()), actual);
 	}
+	@Test
+	void testParsePerlinColor() {
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new PerlinColorToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new PerlinColor(new X(), new Y()), actual);
+	}
+	@Test
+	void testParseRandom() {
+		Stack<Token> tokens = new Stack<>();
+		
+		tokens.push(new RandomToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new Random(), actual);
+	}
+	
 	
 	
 }
