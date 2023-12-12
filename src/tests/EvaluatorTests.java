@@ -350,7 +350,8 @@ public class EvaluatorTests {
 		Modulo myTree5 = new Modulo(new X(), new Y());
 		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(-1, -1));
 		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(1, -1));
-		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(0, 0));
+		//x%0 is undefined
+		//assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(0, 0));
 		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(-1, 1));
 		assertEquals(new RGBColor(0, 0, 0), myTree5.evaluate(1, 1));
 		
@@ -363,6 +364,21 @@ public class EvaluatorTests {
 				assertEquals(new RGBColor(mod, mod, mod),myTree5.evaluate(testXVal, testYVal));
 			}
 		}
+		
+		Negate myTree6 = new Negate(new X());
+		assertEquals(new RGBColor(1, 1, 1), myTree6.evaluate(-1, -1));
+		assertEquals(new RGBColor(-1, -1, -1), myTree6.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree6.evaluate(0, 0));
+		assertEquals(new RGBColor(1, 1, 1), myTree6.evaluate(-1, 1));
+		assertEquals(new RGBColor(-1, -1, -1), myTree6.evaluate(1, 1));
+		
+		myTree6 = new Negate(new Y());
+		assertEquals(new RGBColor(1, 1, 1), myTree6.evaluate(-1, -1));
+		assertEquals(new RGBColor(1, 1, 1), myTree6.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree6.evaluate(0, 0));
+		assertEquals(new RGBColor(-1, -1, -1), myTree6.evaluate(-1, 1));
+		assertEquals(new RGBColor(-1, -1, -1), myTree6.evaluate(1, 1));
+		
 		
 	}
 	@Test
