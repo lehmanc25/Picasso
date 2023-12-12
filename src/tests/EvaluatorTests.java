@@ -176,6 +176,104 @@ public class EvaluatorTests {
 		
 	}
 	@Test
+	public void testSinEvaluation() {
+		Sine myTree = new Sine(new Y());
+		
+		assertEquals(new RGBColor(-0.8414709848078965, -0.8414709848078965, -0.8414709848078965), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(0.8414709848078965, 0.8414709848078965, 0.8414709848078965), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(-0.8414709848078965, -0.8414709848078965, -0.8414709848078965), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0.8414709848078965, 0.8414709848078965, 0.8414709848078965), myTree.evaluate(1, 1));
+		
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+		for (double testVal : tests) {
+			double sinOfTestVal = Math.sin(testVal);
+			assertEquals(new RGBColor(sinOfTestVal, sinOfTestVal, sinOfTestVal), myTree.evaluate(-1, testVal));
+			assertEquals(new RGBColor(sinOfTestVal, sinOfTestVal, sinOfTestVal),
+					myTree.evaluate(testVal, testVal));
+		}
+	}
+	@Test
+	public void testTanEvaluation() {
+		Tan myTree = new Tan(new Y());
+		
+		assertEquals(new RGBColor(-1.5574077246549023, -1.5574077246549023, -1.5574077246549023), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(1.5574077246549023, 1.5574077246549023, 1.5574077246549023), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(-1.5574077246549023, -1.5574077246549023, -1.5574077246549023), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(1.5574077246549023, 1.5574077246549023, 1.5574077246549023), myTree.evaluate(1, 1));
+		
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+		for (double testVal : tests) {
+			double tanOfTestVal = Math.tan(testVal);
+			assertEquals(new RGBColor(tanOfTestVal, tanOfTestVal, tanOfTestVal), myTree.evaluate(-1, testVal));
+			assertEquals(new RGBColor(tanOfTestVal, tanOfTestVal, tanOfTestVal),
+					myTree.evaluate(testVal, testVal));
+		}
+	}
+	@Test
+	public void testAtanEvaluation() {
+		Atan myTree = new Atan(new Y());
+		
+		assertEquals(new RGBColor(-0.7853981633974483, -0.7853981633974483, -0.7853981633974483), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(0.7853981633974483, 0.7853981633974483, 0.7853981633974483), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(-0.7853981633974483, -0.7853981633974483, -0.7853981633974483), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0.7853981633974483, 0.7853981633974483, 0.7853981633974483), myTree.evaluate(1, 1));
+		
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+		for (double testVal : tests) {
+			double atanOfTestVal = Math.atan(testVal);
+			assertEquals(new RGBColor(atanOfTestVal, atanOfTestVal, atanOfTestVal), myTree.evaluate(-1, testVal));
+			assertEquals(new RGBColor(atanOfTestVal, atanOfTestVal, atanOfTestVal),
+					myTree.evaluate(testVal, testVal));
+		}
+	}
+	@Test
+	public void testExpEvaluation() {
+		Exp myTree = new Exp(new Y());
+		
+		assertEquals(new RGBColor(0.36787944117144233, 0.36787944117144233, 0.36787944117144233), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(2.718281828459045, 2.718281828459045, 2.718281828459045), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0.36787944117144233, 0.36787944117144233, 0.36787944117144233), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(2.718281828459045, 2.718281828459045, 2.718281828459045), myTree.evaluate(1, 1));
+		
+		double[] tests = { -.7, -.00001, .000001, .5 };
+
+		for (double testVal : tests) {
+			double expOfTestVal = Math.exp(testVal);
+			assertEquals(new RGBColor(expOfTestVal, expOfTestVal, expOfTestVal), myTree.evaluate(-1, testVal));
+			assertEquals(new RGBColor(expOfTestVal, expOfTestVal, expOfTestVal),
+					myTree.evaluate(testVal, testVal));
+		}
+	}
+	@Test
+	public void testClampEvaluation() {
+		Clamp myTree = new Clamp(new Addition(new X(), new Y()));
+		
+		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, 1));
+		
+	}
+	@Test
+	public void testWrapEvaluation() {
+		Wrap myTree = new Wrap(new Addition(new X(), new Y()));
+		
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(-1, 1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(1, 1));
+		
+	}
+	@Test
 	public void testArithmeticExpressionsEvaluation() {
 		Addition myTree1 = new Addition(new X(), new Y());
 		//first and last 2 assertions need work; colors need to be clamped between -1 and 1

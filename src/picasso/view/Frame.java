@@ -34,6 +34,7 @@ public class Frame extends JFrame {
         commands.add("Open File", new FileReader(new Evaluator()));
         commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator(textfield)));
         commands.add("Save Image", new Writer());
+    	commands.add("Random", new ThreadedCommand<Pixmap>(canvas, new RandomExpression(textfield)));
 
         panel.setLayout(new BorderLayout());
         panel.add(commands, BorderLayout.NORTH);

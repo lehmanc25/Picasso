@@ -83,7 +83,7 @@ public class Evaluator implements Command<Pixmap> {
 	/**
 	 * Convert from image space to domain space.
 	 */
-	protected double imageToDomainScale(int value, int bounds) {
+	protected static double imageToDomainScale(int value, int bounds) {
 		double range = DOMAIN_MAX - DOMAIN_MIN;
 		return ((double) value / bounds) * range + DOMAIN_MIN;
 	}

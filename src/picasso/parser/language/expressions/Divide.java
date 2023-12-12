@@ -4,7 +4,7 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 
-public class Division extends BinaryFunction {
+public class Divide extends BinaryFunction {
 	
 	/**
 	 * @param param_left
@@ -12,7 +12,7 @@ public class Division extends BinaryFunction {
 	 * 
 	 * Represents the Division operator in the Picasso language.
 	 */
-	public Division(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
+	public Divide(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
 		super(param_left, param_right);
 	}
 	
