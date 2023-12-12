@@ -22,7 +22,9 @@ public class Frame extends JFrame {
         // create GUI components
         Canvas canvas = new Canvas(this);
         canvas.setSize(size);
-       
+        
+       // create animation constraints
+        int totalSteps = 50;
 
         JPanel panel = new JPanel();
         JTextField textfield = new JTextField(10);
@@ -33,6 +35,7 @@ public class Frame extends JFrame {
         commands.add("Open Image", new Reader());
         commands.add("Open File", new FileReader(new Evaluator()));
         commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator(textfield)));
+        commands.add("Animate", new ThreadedCommand<Pixmap>(canvas, new Animator(totalSteps)));
         commands.add("Save Image", new Writer());
 
         panel.setLayout(new BorderLayout());

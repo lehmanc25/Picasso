@@ -24,7 +24,7 @@ public class FileReader extends FileCommand<Pixmap> {
 	private String expression;
 
 	/**
-	 * Creates a Reader object, which prompts users for image files to open
+	 * Creates a FileReader object, which prompts users for image files to open
 	 */
 	public FileReader(Evaluator eval) {
 		super(JFileChooser.OPEN_DIALOG);
@@ -46,10 +46,12 @@ public class FileReader extends FileCommand<Pixmap> {
 	        	while ((expression = reader.readLine()) != null) {
 	                fileEvaluator.execute(target, expression);
 	            }
-	        } catch (IOException e) {
+	        } 
+	        catch (IOException e) {
 	            e.printStackTrace();
 	        }
-	    } else {
+	    } 
+	    else {
 	        System.out.println("File selection cancelled or no file selected.");
 	    }
 	}
