@@ -6,7 +6,7 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Modulo;
+import picasso.parser.language.expressions.Mod;
 import picasso.parser.tokens.Token;
 /**
  * The semantic analyzer for Division
@@ -24,7 +24,7 @@ public class ModAnalyzer implements SemanticAnalyzerInterface {
 		ExpressionTreeNode param2 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		ExpressionTreeNode param1 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		
-		return new Modulo(param1, param2);
+		return new Mod(param1, param2);
 	}
 
 }

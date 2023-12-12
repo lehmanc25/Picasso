@@ -114,14 +114,10 @@ public class Evaluator implements Command<Pixmap> {
 		catch (IllegalArgumentException e) {
 			Evaluator.errorBox("Please enter a valid expression");
 			return null;
-<<<<<<< HEAD
+
 		}
 		catch (ParseException e) {
-=======
-		} catch (RuntimeException e) {
->>>>>>> branch 'main' of https://github.com/WLU-CSCI209-F23/picasso-hotshots
-			Evaluator.errorBox("You did something wrong");
-			e.printStackTrace();
+			Evaluator.errorBox("Please enter a valid expression");
 			return null;
 		}
 	}

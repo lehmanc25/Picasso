@@ -137,7 +137,7 @@ public class RandomExpression implements Command<Pixmap> {
 				// generate operator
 				operator = generateOperator();
 				input = EXPRESSION_PACKAGE + operator;
-				if (operator.equals("Bang")) {
+				if (operator.equals("Neg")) {
 					node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor(ExpressionTreeNode.class).newInstance(generateExpression());
 				}
 				else {

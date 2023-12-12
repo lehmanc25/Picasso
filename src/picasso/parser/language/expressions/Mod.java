@@ -4,7 +4,7 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 
-public class Modulo extends BinaryFunction {
+public class Mod extends BinaryFunction {
 	
 	/**
 	 * @param param_left
@@ -12,7 +12,7 @@ public class Modulo extends BinaryFunction {
 	 * 
 	 * Represents the Modulo operator in the Picasso language.
 	 */
-	public Modulo(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
+	public Mod(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
 		super(param_left, param_right);
 	}
 	
