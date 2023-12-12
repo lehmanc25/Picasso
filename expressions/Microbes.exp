@@ -1,0 +1,2 @@
+// Microbes
+x + perlinColor ( clamp ( x ) , [ -0.13040989434230177 , -0.2903680828023354 , 0.25261911177503 ] / perlinBW ( perlinColor ( x , perlinColor ( y + x , clamp ( x ) ) ) / [ 0.6951294780551633 , -0.4788895501451147 , -0.67919766050699 ] , cos ( abs ( y ) - x ) ) ) 
