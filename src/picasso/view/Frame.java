@@ -23,10 +23,9 @@ public class Frame extends JFrame {
         Canvas canvas = new Canvas(this);
         canvas.setSize(size);
         
-       // create animation constraints
-        int totalSteps = 50;
-
-        JPanel panel = new JPanel();
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        
         JTextField textfield = new JTextField(10);
         JLabel label = new JLabel(" Enter your expression: ");
 
@@ -35,13 +34,18 @@ public class Frame extends JFrame {
         commands.add("Open Image", new Reader());
         commands.add("Open File", new FileReader(new Evaluator()));
         commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator(textfield)));
-        commands.add("Animate", new ThreadedCommand<Pixmap>(canvas, new Animator(totalSteps)));
         commands.add("Save Image", new Writer());
-
-        panel.setLayout(new BorderLayout());
-        panel.add(commands, BorderLayout.NORTH);
-        panel.add(textfield, BorderLayout.CENTER);
-        panel.add(label, BorderLayout.WEST);
+        
+        // add animation buttons to test here
+        ButtonPanel buttons = new ButtonPanel(canvas);
+        buttons.add("Start Animation", new ThreadedCommand<Pixmap>(canvas, new Animator(new Evaluator())));
+      //  buttons.add("Stop Animation", 
+        
+        panel1.setLayout(new BorderLayout());
+        panel1.add(commands, BorderLayout.NORTH);
+        panel1.add(textfield, BorderLayout.CENTER);
+        panel1.add(label, BorderLayout.WEST);
+        panel2.add(buttons, BorderLayout.SOUTH);
 
        
         // Add KeyListener to JTextField
@@ -69,7 +73,8 @@ public class Frame extends JFrame {
 
         // add our container to Frame and show it
         getContentPane().add(canvas, BorderLayout.CENTER);
-        getContentPane().add(panel, BorderLayout.NORTH);
+        getContentPane().add(panel1, BorderLayout.NORTH);
+        getContentPane().add(panel2, BorderLayout.SOUTH);
         pack();
     }
 }

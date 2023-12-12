@@ -5,6 +5,12 @@ import picasso.util.Command;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Random;
 
 /**
  * Evaluate an new animation pixel for pixmap
@@ -12,20 +18,16 @@ import java.awt.Dimension;
  * @author Connor Lehman
  */
 public class Animator implements Command<Pixmap> {
-	protected final int totalSteps;
+	protected final double totalSteps =  40;
+	private Evaluator eval;
 	private boolean rolling = false;
-
-	// delete when random pixmaps are made
-	protected Pixmap preImage = new Pixmap();
-	protected Pixmap postImage = new Pixmap();
-
 	/**
 	 * Creates an Animator object with max time duration
 	 * 
 	 * @param duration
 	 */
-	public Animator(int duration) {
-		this.totalSteps = duration;
+	public Animator(Evaluator eval) {
+		this.eval = eval;
 		rolling = true;
 	}
 
@@ -37,7 +39,7 @@ public class Animator implements Command<Pixmap> {
 	 * @param t
 	 */
 
-	public void animate(Pixmap preImage, Pixmap postImage, int t) {
+	public void animate(Pixmap target, Pixmap preImage, Pixmap postImage, int t) {
 		// evaluate animation
 		Dimension size = preImage.getSize();
 		for (int y = 0; y < size.height; y++) {
@@ -54,16 +56,46 @@ public class Animator implements Command<Pixmap> {
 				int postBlue = postImage.getColor(x, y).getBlue();
 
 				// New RBG for time step (t)
-				int red = (((postRed - preRed) / totalSteps) * t) + preRed;
-				int green = (((postGreen - preGreen) / totalSteps) * t) + preGreen;
-				int blue = (((postBlue - preBlue) / totalSteps) * t) + preBlue;
+				int red = (int) (((postRed - preRed) / totalSteps) * t) + preRed;
+				int green = (int) (((postGreen - preGreen) / totalSteps) * t) + preGreen;
+				int blue = (int) (((postBlue - preBlue) / totalSteps) * t) + preBlue;
 
 				// Set new pixel
 				Color pixelColor = new Color(red, green, blue);
-				preImage.setColor(x, y, pixelColor);
+				target.setColor(x, y, pixelColor);
 			}
 		}
 
+	}
+	
+	
+
+	/**
+	 * 
+	 * @return random expression string from expression files
+	 */
+
+	public String randomExpression() {
+		File expressionsDir = new File(System.getProperty("user.dir"), "expressions");
+		File[] files = expressionsDir.listFiles();
+		String expression = null;
+		String randomExpression = "";
+
+		if (files != null && files.length > 0) {
+			Random random = new Random();
+			File selectedFile = files[random.nextInt(files.length)];
+
+			try (BufferedReader reader = Files.newBufferedReader(Paths.get(selectedFile.getAbsolutePath()))) {
+				String title = reader.readLine();
+				System.out.println(title);
+				while ((expression = reader.readLine()) != null) {
+					return expression;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return randomExpression;
 	}
 
 	/**
@@ -72,27 +104,35 @@ public class Animator implements Command<Pixmap> {
 	 * @param target
 	 * @see picasso.util.Command#execute(java.lang.Object)
 	 */
-
 	@Override
 	public void execute(Pixmap target) {
-
-		// Create random preImage
-		// Create random postImage
 		while (rolling) {
+			Pixmap postImage = new Pixmap(target);
+			String randomExpression = randomExpression();
+			System.out.println(randomExpression);
+			eval.execute(postImage, randomExpression());
+
 			for (int t = 1; t <= totalSteps; t++) {
 				try {
-					if (target != null) {
-						animate(target, postImage, t);
-					} else {
-						animate(preImage, postImage, t);
+					// if (target != null) {
 
-						// Slow down rendering to see transition
-						Thread.sleep(1000);
-					}
+					Pixmap cloneTarget = new Pixmap(target);
+					animate(target, cloneTarget, postImage, t);
+					// } else {
+					// animate(preImage, postImage, t);
+					// }
+					// Slow down rendering to see transition
+					Thread.sleep(500);
+					System.out.println(target.getColor(0, 0));
+					System.out.println(postImage.getColor(0, 0));
+					System.out.println("");
+
 				} catch (InterruptedException e) {
 					rolling = false;
 				}
 			}
+			System.out.println(target.getColor(0, 0));
 		}
+
 	}
 }
