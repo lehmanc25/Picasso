@@ -1,6 +1,6 @@
 # Picasso
 ## Team Name: HotShots
-### Members: Connor, Ford, Desire, Nabil, and Alexander
+### Members: Connor, Ford, Desire, and Nabil
 
 An application that allows the user to create expressions that
 evaluate to colors and then eventually to images.

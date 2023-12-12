@@ -1,0 +1,2 @@
+// Birth of Color
+sin ( log ( atan ( x ) / log ( [ 0.5969982517066919 , 0.8007698879754397 , 0.79637077865578 ] * atan ( perlinColor ( x , yCrCbToRGB ( perlinColor ( x , y ) ) ) ) + y ) ) ) 

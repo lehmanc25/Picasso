@@ -46,89 +46,137 @@ public class ExpressionTreeGeneratorTests {
 	}
 
 	@Test
-	public void additionExpressionTests() {
+	public void PlusExpressionTests() {
 		ExpressionTreeNode e = parser.makeExpression("x + y");
-		assertEquals(new Addition(new X(), new Y()), e);
+		assertEquals(new Plus(new X(), new Y()), e);
 
 		// no spaces!
 		e = parser.makeExpression("x+y");
-		assertEquals(new Addition(new X(), new Y()), e);
+		assertEquals(new Plus(new X(), new Y()), e);
 
 		e = parser.makeExpression("[1,.3,-1] + y");
-		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e);
+		assertEquals(new Plus(new RGBColor(1, .3, -1), new Y()), e);
 
 		e = parser.makeExpression("x + y + [ -.51, 0, 1]");
-		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+		assertEquals(new Plus(new Plus(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
 	}
+
 	@Test
-	public void subtractionExpressionTests() {
+	public void MinusExpressionTests() {
 		ExpressionTreeNode e = parser.makeExpression("x - y");
-		assertEquals(new Subtraction(new X(), new Y()), e);
+		assertEquals(new Minus(new X(), new Y()), e);
 
 		// no spaces!
 		e = parser.makeExpression("x-y");
-		assertEquals(new Subtraction(new X(), new Y()), e);
+		assertEquals(new Minus(new X(), new Y()), e);
 
 		e = parser.makeExpression("[1,.3,-1] - y");
-		assertEquals(new Subtraction(new RGBColor(1, .3, -1), new Y()), e);
+		assertEquals(new Minus(new RGBColor(1, .3, -1), new Y()), e);
 
 		e = parser.makeExpression("x - y - [ -.51, 0, 1]");
-		assertEquals(new Subtraction(new Subtraction(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+		assertEquals(new Minus(new Minus(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
 	}
-	
+
 	@Test
-	public void multiplicationExpressionTests() {
+	public void MultiplyExpressionTests() {
 		ExpressionTreeNode e = parser.makeExpression("x * y");
-		assertEquals(new Multiplication(new X(), new Y()), e);
+		assertEquals(new Multiply(new X(), new Y()), e);
 
 		// no spaces!
 		e = parser.makeExpression("x*y");
-		assertEquals(new Multiplication(new X(), new Y()), e);
+		assertEquals(new Multiply(new X(), new Y()), e);
 
 		e = parser.makeExpression("[1,.3,-1] * y");
-		assertEquals(new Multiplication(new RGBColor(1, .3, -1), new Y()), e);
+		assertEquals(new Multiply(new RGBColor(1, .3, -1), new Y()), e);
 
 		e = parser.makeExpression("x * y * [ -.51, 0, 1]");
-		assertEquals(new Multiplication(new Multiplication(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+		assertEquals(new Multiply(new Multiply(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
 	}
+
 	@Test
-	public void divisionExpressionTests() {
+	public void DivideExpressionTests() {
 		ExpressionTreeNode e = parser.makeExpression("x / y");
-		assertEquals(new Division(new X(), new Y()), e);
+		assertEquals(new Divide(new X(), new Y()), e);
 
 		// no spaces!
 		e = parser.makeExpression("x/y");
-		assertEquals(new Division(new X(), new Y()), e);
+		assertEquals(new Divide(new X(), new Y()), e);
 
 		e = parser.makeExpression("[1,.3,-1] / y");
-		assertEquals(new Division(new RGBColor(1, .3, -1), new Y()), e);
+		assertEquals(new Divide(new RGBColor(1, .3, -1), new Y()), e);
 
 		e = parser.makeExpression("x / y / [ -.51, 0, 1]");
-		assertEquals(new Division(new Division(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+		assertEquals(new Divide(new Divide(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+	}
+
+	@Test
+	public void moduloExpressionTests() {
+		ExpressionTreeNode e = parser.makeExpression("x % y");
+		assertEquals(new Mod(new X(), new Y()), e);
+
+		// no spaces!
+		e = parser.makeExpression("x%y");
+		assertEquals(new Mod(new X(), new Y()), e);
+
+		e = parser.makeExpression("[1,.3,-1] % y");
+		assertEquals(new Mod(new RGBColor(1, .3, -1), new Y()), e);
+
+		e = parser.makeExpression("x % y % [ -.51, 0, 1]");
+		assertEquals(new Mod(new Mod(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+	}
+
+	@Test
+	public void NegExpressionTests() {
+		ExpressionTreeNode e = parser.makeExpression("! x");
+		assertEquals(new Neg(new X()), e);
+
+		// no spaces!
+		e = parser.makeExpression("!x");
+		assertEquals(new Neg(new X()), e);
+
+		// with parens
+		e = parser.makeExpression("!(x)");
+		assertEquals(new Neg(new X()), e);
+	}
+
+	public void exponentiateExpressionTests() {
+		ExpressionTreeNode e = parser.makeExpression("x ^ y");
+		assertEquals(new Exponentiate(new X(), new Y()), e);
+
+		// no spaces!
+		e = parser.makeExpression("x^y");
+		assertEquals(new Exponentiate(new X(), new Y()), e);
+
+		e = parser.makeExpression("[1,.3,-1] ^ y");
+		assertEquals(new Exponentiate(new RGBColor(1, .3, -1), new Y()), e);
+
+		e = parser.makeExpression("x ^ y ^ [ -.51, 0, 1]");
+		assertEquals(new Exponentiate(new Exponentiate(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
 	}
 
 	@Test
 	public void parenthesesExpressionTests() {
 		ExpressionTreeNode e = parser.makeExpression("( x + y )");
-		assertEquals(new Addition(new X(), new Y()), e);
+		assertEquals(new Plus(new X(), new Y()), e);
 
 		e = parser.makeExpression("( x + (y + [ 1, 1, 1] ) )");
-		assertEquals(new Addition(new X(), new Addition(new Y(), new RGBColor(1, 1, 1))), e);
+		assertEquals(new Plus(new X(), new Plus(new Y(), new RGBColor(1, 1, 1))), e);
 	}
-	
+
 	@Test
 	public void arithmeticAndAssignmentStackTests() {
 		Stack<Token> stack = parser.infixToPostfix("a = x * y");
 		Stack<Token> expected = new Stack<>();
-		
+
 		expected.push(new IdentifierToken("a"));
 		expected.push(new IdentifierToken("x"));
 		expected.push(new IdentifierToken("y"));
 		expected.push(new MultiplyToken());
 		expected.push(new AssignmentToken());
-		
+
 		assertEquals(expected, stack);
 	}
+
 	@Test
 	public void arithmeticStackTests() {
 		Stack<Token> stack = parser.infixToPostfix("x + y * x");
@@ -149,31 +197,101 @@ public class ExpressionTreeGeneratorTests {
 		assertEquals(new Floor(new X()), e);
 
 		e = parser.makeExpression("floor( x + y )");
-		assertEquals(new Floor(new Addition(new X(), new Y())), e);
+		assertEquals(new Floor(new Plus(new X(), new Y())), e);
 	}
-	
+
 	@Test
-	public void cosineFunctionTests() {
+	public void coSinFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("cos( x )");
-		assertEquals(new Cosine(new X()), e);
-		
+		assertEquals(new Cos(new X()), e);
+
 		e = parser.makeExpression("cos( x + y )");
-		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
+		assertEquals(new Cos(new Plus(new X(), new Y())), e);
 
 	}
+
+	@Test
 	public void ceilFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
 		assertEquals(new Ceil(new X()), e);
 
 		e = parser.makeExpression("ceil( x + y )");
-		assertEquals(new Ceil(new Addition(new X(), new Y())), e);
+		assertEquals(new Ceil(new Plus(new X(), new Y())), e);
 	}
+
+	@Test
 	public void logFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("log( x )");
 		assertEquals(new Log(new X()), e);
 
 		e = parser.makeExpression("log( x + y )");
-		assertEquals(new Log(new Addition(new X(), new Y())), e);
+		assertEquals(new Log(new Plus(new X(), new Y())), e);
 	}
 
+	@Test
+	public void sinFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("sin( x )");
+		assertEquals(new Sin(new X()), e);
+
+		e = parser.makeExpression("sin( x + y )");
+		assertEquals(new Sin(new Plus(new X(), new Y())), e);
+	}
+
+	@Test
+	public void tanFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("tan( x )");
+		assertEquals(new Tan(new X()), e);
+
+		e = parser.makeExpression("tan( x + y )");
+		assertEquals(new Tan(new Plus(new X(), new Y())), e);
+	}
+
+	@Test
+	public void atanFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("atan( x )");
+		assertEquals(new Atan(new X()), e);
+
+		e = parser.makeExpression("atan( x + y )");
+		assertEquals(new Atan(new Plus(new X(), new Y())), e);
+	}
+
+	@Test
+	public void expFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("exp( x )");
+		assertEquals(new Exp(new X()), e);
+
+		e = parser.makeExpression("exp( x + y )");
+		assertEquals(new Exp(new Plus(new X(), new Y())), e);
+	}
+
+	@Test
+	public void clampFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("clamp( x )");
+		assertEquals(new Clamp(new X()), e);
+
+		e = parser.makeExpression("clamp( x + y )");
+		assertEquals(new Clamp(new Plus(new X(), new Y())), e);
+	}
+
+	@Test
+	public void wrapFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("wrap( x )");
+		assertEquals(new Wrap(new X()), e);
+
+		e = parser.makeExpression("wrap( x + y )");
+		assertEquals(new Wrap(new Plus(new X(), new Y())), e);
+	}
+
+	@Test
+	public void perlinBWFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("perlinBW( x, y )");
+		assertEquals(new PerlinBW(new X(), new Y()), e);
+
+		e = parser.makeExpression("perlinBW( x + x, y + y )");
+		assertEquals(new PerlinBW(new Plus(new X(), new X()), new Plus(new Y(), new Y())), e);
+	}
+	public void randomFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("random()");
+		assertEquals(new Random(), e);
+	}
 }

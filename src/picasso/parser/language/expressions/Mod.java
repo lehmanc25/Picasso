@@ -4,15 +4,15 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 
-public class Division extends BinaryFunction {
+public class Mod extends BinaryFunction {
 	
 	/**
 	 * @param param_left
 	 * @param param_right
 	 * 
-	 * Represents the Division operator in the Picasso language.
+	 * Represents the Modulo operator in the Picasso language.
 	 */
-	public Division(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
+	public Mod(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
 		super(param_left, param_right);
 	}
 	
@@ -25,19 +25,18 @@ public class Division extends BinaryFunction {
 		if (y == 0) {
 			return new RGBColor(0, 0, 0);
 		}
-
 		RGBColor result_right = param_right.evaluate(x, y);
 		
-		double red = result_left.getRed() / result_right.getRed();
-		double green = result_left.getGreen() / result_right.getGreen();
-		double blue = result_left.getBlue() / result_right.getBlue();
+		double red = result_left.getRed() % result_right.getRed();
+		double green = result_left.getGreen() % result_right.getGreen();
+		double blue = result_left.getBlue() % result_right.getBlue();
 
 		return new RGBColor(red, green, blue);
 	}
 	
 	@Override
     public String toString() {
-        return this.param_left + " / " + this.param_right;
+        return this.param_left + " % " + this.param_right;
     }
 
 }

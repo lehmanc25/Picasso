@@ -2,4 +2,7 @@
  -=Minus
 *=Multiply
 /=Divide
+\!=Neg
+%=Mod
 \==Assignment
+^=Exponentiate

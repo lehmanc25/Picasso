@@ -1,2 +1,2 @@
 // Test Expression
-cos(log(x) + log(y)) + [0,1,0.5] 
+cos(log(x) + log(y)) + [1,1,0.5] 
