@@ -15,9 +15,8 @@ import picasso.util.Command;
 /**
  * Evaluate an expression for each pixel in a image.
  * 
- * @author Robert C Duvall
- * @author Sara Sprenkle
- * @author Hotshots
+ * @author Connor Lehman
+ * 
  */
 public class Evaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
@@ -81,7 +80,7 @@ public class Evaluator implements Command<Pixmap> {
 		// render the expression
 		render(target, expression);
 	}
-
+	
 	public static void errorBox(String message) {
 		JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.INFORMATION_MESSAGE);
 	}

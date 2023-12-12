@@ -1,0 +1,2 @@
+// Flying Carpet
+sin ( atan ( x ) / ( y - perlinColor ( perlinBW ( x , y ) * y , x ) ) )
