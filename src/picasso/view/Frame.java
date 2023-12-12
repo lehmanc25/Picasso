@@ -38,8 +38,7 @@ public class Frame extends JFrame {
         
         // add animation buttons to test here
         ButtonPanel buttons = new ButtonPanel(canvas);
-        buttons.add("Start Screensaver", new ThreadedCommand<Pixmap>(canvas, new Animator(new Evaluator())));
-      //  buttons.add("Stop Animation", 
+        buttons.add("Screensaver", new ThreadedCommand<Pixmap>(canvas, new Animator(new Evaluator())));
         
         panel1.setLayout(new BorderLayout());
         panel1.add(commands, BorderLayout.NORTH);
