@@ -25,6 +25,8 @@ public class ExpressionTreeGenerator {
 	private static final int ASSIGNMENT = 1;
 	private static final int ADD_OR_SUBTRACT = 2;
 	private static final int MULTIPLY_OR_DIVIDE = 3;
+	private static final int EXPONENTIATE = 4;
+	private static final int NEGATE = 5;
 
 	/**
 	 * Converts the given string into expression tree for easier manipulation.
@@ -204,10 +206,14 @@ public class ExpressionTreeGenerator {
 
 		if (token instanceof PlusToken || token instanceof MinusToken)
 			return ADD_OR_SUBTRACT;
-		else if (token instanceof MultiplyToken || token instanceof DivideToken)
+		else if (token instanceof MultiplyToken || token instanceof DivideToken || token instanceof ModToken)
 			return MULTIPLY_OR_DIVIDE;
 		else if (token instanceof AssignmentToken)
 			return ASSIGNMENT;
+		else if (token instanceof ExponentiateToken)
+			return EXPONENTIATE;
+		else if (token instanceof NegToken)
+			return NEGATE;
 			return CONSTANT;
 	}
 }
