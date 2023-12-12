@@ -85,9 +85,9 @@ public class Animator implements Command<Pixmap> {
 
 			try (BufferedReader reader = Files.newBufferedReader(Paths.get(selectedFile.getAbsolutePath()))) {
 				String title = reader.readLine();
-				System.out.println(title);
+			//	System.out.println(title);
 				while ((expression = reader.readLine()) != null) {
-					System.out.println(expression);
+			//		System.out.println(expression);
 					return expression;
 				}
 			} catch (IOException e) {
