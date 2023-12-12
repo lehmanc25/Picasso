@@ -67,8 +67,6 @@ public class Animator implements Command<Pixmap> {
 		}
 
 	}
-	
-	
 
 	/**
 	 * 
@@ -89,6 +87,7 @@ public class Animator implements Command<Pixmap> {
 				String title = reader.readLine();
 				System.out.println(title);
 				while ((expression = reader.readLine()) != null) {
+					System.out.println(expression);
 					return expression;
 				}
 			} catch (IOException e) {
@@ -109,29 +108,19 @@ public class Animator implements Command<Pixmap> {
 		while (rolling) {
 			Pixmap postImage = new Pixmap(target);
 			String randomExpression = randomExpression();
-			System.out.println(randomExpression);
-			eval.execute(postImage, randomExpression());
+			eval.execute(postImage, randomExpression);
 
 			for (int t = 1; t <= totalSteps; t++) {
 				try {
-					// if (target != null) {
-
 					Pixmap cloneTarget = new Pixmap(target);
 					animate(target, cloneTarget, postImage, t);
-					// } else {
-					// animate(preImage, postImage, t);
-					// }
-					// Slow down rendering to see transition
 					Thread.sleep(500);
-					System.out.println(target.getColor(0, 0));
-					System.out.println(postImage.getColor(0, 0));
-					System.out.println("");
 
 				} catch (InterruptedException e) {
 					rolling = false;
 				}
 			}
-			System.out.println(target.getColor(0, 0));
+			//System.out.println(target.getColor(0, 0));
 		}
 
 	}
