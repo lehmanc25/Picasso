@@ -18,9 +18,10 @@ import java.util.Random;
  * @author Connor Lehman
  */
 public class Animator implements Command<Pixmap> {
-	protected final double totalSteps =  40;
+	protected final double totalSteps = 40;
 	private Evaluator eval;
 	private boolean rolling = false;
+
 	/**
 	 * Creates an Animator object with max time duration
 	 * 
@@ -85,9 +86,9 @@ public class Animator implements Command<Pixmap> {
 
 			try (BufferedReader reader = Files.newBufferedReader(Paths.get(selectedFile.getAbsolutePath()))) {
 				String title = reader.readLine();
-			//	System.out.println(title);
+				// System.out.println(title);
 				while ((expression = reader.readLine()) != null) {
-			//		System.out.println(expression);
+					// System.out.println(expression);
 					return expression;
 				}
 			} catch (IOException e) {
@@ -120,7 +121,7 @@ public class Animator implements Command<Pixmap> {
 					rolling = false;
 				}
 			}
-			//System.out.println(target.getColor(0, 0));
+			// System.out.println(target.getColor(0, 0));
 		}
 
 	}

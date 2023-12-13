@@ -1,6 +1,3 @@
-/**
- * 
- */
 package picasso.parser;
 
 import java.util.HashMap;
@@ -13,11 +10,14 @@ import picasso.parser.tokens.IdentifierToken;
 import picasso.parser.tokens.Token;
 
 /**
+ * Handles parsing assignment functions.
  * 
+ * @author Desire Ansinya.
  */
 public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 
 	/**
+	 * Generate an expression tree for an Assigment expression.
 	 * @param tokens
 	 * @return
 	 * @see picasso.parser.SemanticAnalyzerInterface#generateExpressionTree(java.util.Stack)

@@ -18,8 +18,6 @@ import picasso.parser.tokens.operations.*;
  * @author Sara Sprenkle modified for Picasso
  */
 public class ExpressionTreeGenerator {
-
-	// TODO: Do these belong here?
 	private static final int CONSTANT = -1;
 	private static final int GROUPING = 0; // parentheses
 	private static final int ASSIGNMENT = 1;
@@ -30,9 +28,7 @@ public class ExpressionTreeGenerator {
 
 	/**
 	 * Converts the given string into expression tree for easier manipulation.
-	 * 
 	 * @param infix - a non-empty expression to parse.
-	 * 
 	 * @return ExpressionTreeNode representing the root node of the given infix
 	 *         formula
 	 */
@@ -193,7 +189,7 @@ public class ExpressionTreeGenerator {
 	}
 
 	/**
-	 * 
+	 * This method handles the token processing order of operations 
 	 * @param token
 	 * @return
 	 */

@@ -17,7 +17,12 @@ import picasso.parser.tokens.Token;
  * 
  */
 public class ColorAnalyzer implements SemanticAnalyzerInterface {
-
+	/**
+	 * Generate an expression tree for the Color expression.
+	 * @param tokens
+	 * @return
+	 * @see picasso.parser.SemanticAnalyzerInterface#generateExpressionTree(java.util.Stack)
+	 */
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		Token t = tokens.pop();

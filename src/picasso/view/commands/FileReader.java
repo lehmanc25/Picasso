@@ -24,7 +24,8 @@ public class FileReader extends FileCommand<Pixmap> {
 	private String expression;
 
 	/**
-	 * Creates a FileReader object, which prompts users for image files to open
+	 * Creates a FileReader object, which prompts users for image files to open.
+	 * @param eval
 	 */
 	public FileReader(Evaluator eval) {
 		super(JFileChooser.OPEN_DIALOG);
@@ -33,6 +34,7 @@ public class FileReader extends FileCommand<Pixmap> {
 	
 	/**
 	 * Displays the expression from a given file.
+	 * @param target
 	 */
 	
 	@Override

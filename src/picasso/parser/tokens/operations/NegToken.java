@@ -4,7 +4,9 @@ import picasso.parser.language.CharConstants;
 import picasso.parser.tokens.chars.CharToken;
 
 /**
- * Represents the negate sign token
+ * Represents the negate sign token.
+ * 
+ * @author Connor Lehman.
  * 
  */
 public class NegToken extends CharToken implements OperationInterface {

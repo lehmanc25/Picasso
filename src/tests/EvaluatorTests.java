@@ -272,8 +272,7 @@ public class EvaluatorTests {
 					myTree.evaluate(testVal, testVal));
 		}
 	}
-	/**
-	 * Doens't work
+	
 	@Test
 	public void testExpEvaluation() {
 		Exp myTree = new Exp(new Y());
@@ -293,7 +292,7 @@ public class EvaluatorTests {
 					myTree.evaluate(testVal, testVal));
 		}
 	}
-	**/
+
 	
 	@Test
 	public void testClampEvaluation() {
@@ -365,7 +364,7 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(-1, -1, -1), myTree5.evaluate(-1, 1));
 		assertEquals(new RGBColor(1, 1, 1), myTree5.evaluate(1, 1));
 		
-		Modulo myTree7 = new Modulo(new X(), new Y());
+		Mod myTree7 = new Mod(new X(), new Y());
 		assertEquals(new RGBColor(0, 0, 0), myTree7.evaluate(-1, -1));
 		assertEquals(new RGBColor(0, 0, 0), myTree7.evaluate(1, -1));
 		//Mod 0 is undefined

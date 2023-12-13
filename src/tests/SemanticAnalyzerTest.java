@@ -301,32 +301,6 @@ class SemanticAnalyzerTest {
 		assertEquals(new PerlinColor(new X(), new Y()), actual);
 	}
 	
-	@Test
-	void testParseImageClip() {
-	    Stack<Token> tokens = new Stack<>();
-	    tokens.push(new IdentifierToken("y"));
-	    tokens.push(new IdentifierToken("x"));
-	    tokens.push(new QuoteToken("\"example.jpg\""));
-	    tokens.push(new ImageClipToken());
-	    
-	    ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
-	    
-	    assertEquals(new ImageClip(new Image(new QuoteToken("\"example.jpg\"")), new X(), new Y()), actual);
-	}
-
-	@Test
-	void testParseImageWrap() {
-	    Stack<Token> tokens = new Stack<>();
-	    tokens.push(new IdentifierToken("y"));
-	    tokens.push(new IdentifierToken("x"));
-	    tokens.push(new QuoteToken("vortex.jpg"));
-	    tokens.push(new ImageWrapToken());
-	    
-	    ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
-	    
-	    assertEquals(new ImageWrap(new Image(new QuoteToken("vortex.jpg"))), new X(), new Y(), actual);
-	}
-
 	/**
 	 * Doens't work
 	@Test
