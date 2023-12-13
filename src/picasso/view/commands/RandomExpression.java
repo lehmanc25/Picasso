@@ -37,7 +37,7 @@ public class RandomExpression implements Command<Pixmap> {
 	static ExpressionTreeNode node;
 	JTextField textfield;
 
-	private static final String EXPRESSION_PACKAGE = "picasso.parser.language.expressions.";
+	private static final String EXPRESSION_PATH = "picasso.parser.language.expressions.";
 	private static final String OPS_FILE = "conf/operations.prop";
 
 	static List<String> expression = new ArrayList<String>();
@@ -125,62 +125,63 @@ public class RandomExpression implements Command<Pixmap> {
 		// generates random color
 		return "Random";
 	}
-
+	
 	public ExpressionTreeNode generateExpression() {
-		try {
-			int upperbound = 4;
-			java.util.Random rd = new java.util.Random();
-			int int_random = rd.nextInt(upperbound);
+	    try {
+	        int upperbound = 6; // Increase the upperbound for more cases and higher probabilty for operators and functions
+	        java.util.Random rd = new java.util.Random();
+	        int int_random = rd.nextInt(upperbound);
 
-			if (int_random == 0) {
-				// generate random function
-				function = generateFunction();
-				input = EXPRESSION_PACKAGE + function;
-				if (function.equals("PerlinColor") | function.equals("PerlinBW")) {
-					node = (ExpressionTreeNode) Class.forName(input)
-							.getDeclaredConstructor(ExpressionTreeNode.class, ExpressionTreeNode.class)
-							.newInstance(generateExpression(), generateExpression());
-				} else {
-					node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor(ExpressionTreeNode.class)
-							.newInstance(generateExpression());
-				}
-			} else if (int_random == 1) {
-				// generate operator
-				operator = generateOperator();
-				input = EXPRESSION_PACKAGE + operator;
-				if (operator.equals("Neg")) {
-					node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor(ExpressionTreeNode.class)
-							.newInstance(generateExpression());
-				} else {
-					node = (ExpressionTreeNode) Class.forName(input)
-							.getDeclaredConstructor(ExpressionTreeNode.class, ExpressionTreeNode.class)
-							.newInstance(generateExpression(), generateExpression());
-				}
-			} else if (int_random == 2) {
-				// generate x or y
-				xy = generateXY();
-				input = EXPRESSION_PACKAGE + xy;
-				node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor().newInstance();
-			} else {
-				// generate color
-				color = generateColor();
-				input = EXPRESSION_PACKAGE + color;
-				node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor().newInstance();
-
-			}
-			return node;
-		} catch (ClassNotFoundException e) {
-			throw new ParseException(input + " not found " + e);
-		} catch (InstantiationException e) {
-			throw new ParseException(input + " not instantiated " + e);
-		} catch (IllegalAccessException e) {
-			throw new ParseException(input + " not creatable " + e);
-		} catch (IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			throw new ParseException(input + " not creatable " + e);
-		} catch (StackOverflowError e) {
-			return generateExpression();
-		}
+	        if (int_random == 0 || int_random == 1) {
+	            // generate random function
+	            function = generateFunction();
+	            input = EXPRESSION_PATH + function;
+	            if (function.equals("PerlinColor") || function.equals("PerlinBW")) {
+	                node = (ExpressionTreeNode) Class.forName(input)
+	                        .getDeclaredConstructor(ExpressionTreeNode.class, ExpressionTreeNode.class)
+	                        .newInstance(generateExpression(), generateExpression());
+	            } else {
+	                node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor(ExpressionTreeNode.class)
+	                        .newInstance(generateExpression());
+	            }
+	        } else if (int_random == 2 || int_random == 3) {
+	            // generate operator
+	            operator = generateOperator();
+	            input = EXPRESSION_PATH + operator;
+	            if (operator.equals("Neg")) {
+	                node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor(ExpressionTreeNode.class)
+	                        .newInstance(generateExpression());
+	            } else {
+	                node = (ExpressionTreeNode) Class.forName(input)
+	                        .getDeclaredConstructor(ExpressionTreeNode.class, ExpressionTreeNode.class)
+	                        .newInstance(generateExpression(), generateExpression());
+	            }
+	        } else if (int_random == 4) {
+	            // generate x or y
+	            xy = generateXY();
+	            input = EXPRESSION_PATH + xy;
+	            node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor().newInstance();
+	        } else {
+	            // generate color
+	            color = generateColor();
+	            input = EXPRESSION_PATH + color;
+	            node = (ExpressionTreeNode) Class.forName(input).getDeclaredConstructor().newInstance();
+	        }
+	        return node;
+	    } catch (ClassNotFoundException e) {
+	        throw new ParseException(input + " not found " + e);
+	    } catch (InstantiationException e) {
+	        throw new ParseException(input + " not instantiated " + e);
+	    } catch (IllegalAccessException e) {
+	        throw new ParseException(input + " not creatable " + e);
+	    } catch (IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+	        throw new ParseException(input + " not creatable " + e);
+	    } catch (StackOverflowError e) {
+	        return generateExpression();
+	    }
 	}
+
+
 	/**
 	 * Evaluator an expression and render onto Pixmap.
 	 * @param target
