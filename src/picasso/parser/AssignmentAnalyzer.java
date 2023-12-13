@@ -12,7 +12,7 @@ import picasso.parser.tokens.Token;
 /**
  * Handles parsing assignment functions.
  * 
- * @author Desire Ansinya.
+ * @author Desire Asinya.
  */
 public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 
@@ -31,10 +31,21 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 	public static boolean checkForKey(String var) {
 		return idToExpr.containsKey(var);
 	}
+	
+	public static String getMapString() {
+		StringBuilder mapString = new StringBuilder();
+		for (String key : idToExpr.keySet()) {
+			ExpressionTreeNode value = idToExpr.get(key);
+			mapString.append("Variable: " + key + ";" + " Expression: " + value.toString());
+			mapString.append("\n");
+		}
+		
+		return mapString.toString();
+	}
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop();
-		
+
 		ExpressionTreeNode expression = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 
@@ -47,7 +58,7 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 					tokens);
 			return new Assignment(variable, expression);
 		} else {
-			throw new ParseException("Token on top of stack is not an identifier and cannot be assigned to an expression.");
+			throw new ParseException(t.toString() + " is not an identifier and cannot be assigned to an expression.");
 		}
 	}
 
