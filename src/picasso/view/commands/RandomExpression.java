@@ -183,9 +183,7 @@ public class RandomExpression implements Command<Pixmap> {
 
 
 	/**
-	 * Evaluator an expression and render onto Pixmap.
 	 * @param target
-	 * @see picasso.util.Command#execute(java.lang.Object)
 	 */
 	public void execute(Pixmap target) {
 
