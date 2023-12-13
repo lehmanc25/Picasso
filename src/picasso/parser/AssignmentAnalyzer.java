@@ -12,7 +12,7 @@ import picasso.parser.tokens.Token;
 /**
  * Handles parsing assignment functions.
  * 
- * @author Desire Ansinya.
+ * @author Desire Asinya.
  */
 public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 
@@ -30,6 +30,17 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 	
 	public static boolean checkForKey(String var) {
 		return idToExpr.containsKey(var);
+	}
+	
+	public static String getMapString() {
+		StringBuilder mapString = new StringBuilder();
+		for (String key : idToExpr.keySet()) {
+			ExpressionTreeNode value = idToExpr.get(key);
+			mapString.append("Variable: " + key + ";" + " Expression: " + value.toString());
+			mapString.append("\n");
+		}
+		
+		return mapString.toString();
 	}
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
