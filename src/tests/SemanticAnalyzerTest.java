@@ -28,6 +28,8 @@ import picasso.parser.tokens.functions.WrapToken;
 import picasso.parser.tokens.functions.AtanToken;
 import picasso.parser.tokens.functions.CeilToken;
 import picasso.parser.tokens.functions.ClampToken;
+import picasso.parser.tokens.functions.ImageClipToken;
+import picasso.parser.tokens.functions.ImageWrapToken;
 import picasso.parser.tokens.operations.*;
 
 /**
@@ -298,6 +300,7 @@ class SemanticAnalyzerTest {
 		
 		assertEquals(new PerlinColor(new X(), new Y()), actual);
 	}
+	
 	/**
 	 * Doens't work
 	@Test

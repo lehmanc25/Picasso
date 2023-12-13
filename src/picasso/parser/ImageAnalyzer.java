@@ -16,7 +16,6 @@ public class ImageAnalyzer implements SemanticAnalyzerInterface {
     
     /**
      * Generate an expression tree for the Image expression.
-     * 
      * @param tokens A stack of tokens to process.
      * @return An ExpressionTreeNode representing the parsed Image expression.
      * @throws ParseException If a Quote Token is not found or if the found token is not a QuoteToken.

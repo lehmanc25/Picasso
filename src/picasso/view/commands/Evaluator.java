@@ -80,7 +80,7 @@ public class Evaluator implements Command<Pixmap> {
 		// render the expression
 		render(target, expression);
 	}
-	
+
 	public static void errorBox(String message) {
 		JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -95,6 +95,9 @@ public class Evaluator implements Command<Pixmap> {
 
 	/**
 	 * A place holder for a more interesting way to build the expression.
+	 * 
+	 * @param input
+	 * @return
 	 */
 	private ExpressionTreeNode createExpression(String input) {
 		// Note, when you're testing, you can use the ExpressionTreeGenerator to
@@ -114,8 +117,7 @@ public class Evaluator implements Command<Pixmap> {
 			Evaluator.errorBox("Please enter a valid expression");
 			return null;
 
-		}
-		catch (ParseException e) {
+		} catch (ParseException e) {
 			Evaluator.errorBox("Please enter a valid expression");
 			return null;
 		}

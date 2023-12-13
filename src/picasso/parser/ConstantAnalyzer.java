@@ -23,7 +23,12 @@ public class ConstantAnalyzer implements SemanticAnalyzerInterface {
 		}
 		return singleton;
 	}
-
+	/**
+	 * Generate an expression tree for the Constant expression.
+	 * @param tokens
+	 * @return
+	 * @see picasso.parser.SemanticAnalyzerInterface#generateExpressionTree(java.util.Stack)
+	 */
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		NumberToken token = (NumberToken) tokens.pop();

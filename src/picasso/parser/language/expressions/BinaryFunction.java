@@ -2,12 +2,10 @@ package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 
+public abstract class BinaryFunction extends ExpressionTreeNode {
 
-public abstract class BinaryFunction extends ExpressionTreeNode{
-	
 	ExpressionTreeNode param_left;
 	ExpressionTreeNode param_right;
-
 
 	/**
 	 * 
@@ -17,7 +15,7 @@ public abstract class BinaryFunction extends ExpressionTreeNode{
 		this.param_left = param_left;
 		this.param_right = param_right;
 	}
-	
+
 	/**
 	 * Returns the string representation of the function in the format "<ClassName>:
 	 * <parameter>"
@@ -29,7 +27,7 @@ public abstract class BinaryFunction extends ExpressionTreeNode{
 		String classname = this.getClass().getName();
 		return classname.substring(classname.lastIndexOf(".")) + "(" + param_left + ", " + param_right + ")";
 	}
-    
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == this) {
@@ -55,4 +53,3 @@ public abstract class BinaryFunction extends ExpressionTreeNode{
 		return true;
 	}
 }
-

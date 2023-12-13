@@ -1,19 +1,23 @@
-
 package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 
+/**
+ * Represents the negate function in the Picasso language.
+ * 
+ * @author Connor Lehman.
+ */
 public class Neg extends UnaryFunction {
-
-	/**
-	 * @param param_right
-	 * 
-	 * Represents the Negate operator in the Picasso language.
-	 */
 	public Neg(ExpressionTreeNode param) {
 		super(param);
 	}
 
+	/**
+	 * @param x
+	 * @param unused
+	 * @return
+	 * @see picasso.parser.language.ExpressionTreeNode#evaluate(double, double)
+	 */
 	@Override
 	public RGBColor evaluate(double x, double unused) {
 		RGBColor result = param.evaluate(x, unused);

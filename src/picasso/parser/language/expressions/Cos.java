@@ -1,14 +1,11 @@
-/**
- * 
- */
 package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the cosine function in the picasso language
+ * Represents the cosine function in the picasso language.
  * 
- * @author Desire Asinya
+ * @author Desire Asinya.
  */
 public class Cos extends UnaryFunction {
 
@@ -23,8 +20,8 @@ public class Cos extends UnaryFunction {
 
 	/**
 	 *
-	 * Evaluates this expression at the given x,y point by evaluating the cosine
-	 * of the function's parameter. 
+	 * Evaluates this expression at the given x,y point by evaluating the cosine of
+	 * the function's parameter.
 	 * 
 	 * @return the color by evaluating the cosine of the expression's parameter
 	 */
@@ -34,7 +31,7 @@ public class Cos extends UnaryFunction {
 		double red = Math.cos(result.getRed());
 		double green = Math.cos(result.getGreen());
 		double blue = Math.cos(result.getBlue());
-		
+
 		return new RGBColor(red, green, blue);
 	}
 
