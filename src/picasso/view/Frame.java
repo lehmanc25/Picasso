@@ -35,6 +35,7 @@ public class Frame extends JFrame {
         commands.add("Open File", new FileReader(new Evaluator()));
         commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator(textfield)));
         commands.add("Save Image", new Writer());
+        commands.add("View Saved Variables", new SavedVariablesReader());
         
         // add animation buttons to test here
         ButtonPanel buttons = new ButtonPanel(canvas);
