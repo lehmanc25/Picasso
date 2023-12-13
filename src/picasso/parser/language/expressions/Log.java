@@ -2,6 +2,11 @@ package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 
+/**
+ * Represents the log function in the Picasso language.
+ * 
+ * @author Connor Lehman.
+ */
 public class Log extends UnaryFunction {
 
 	/**
@@ -14,34 +19,34 @@ public class Log extends UnaryFunction {
 	}
 
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the log of
-	 * the function's parameter.
+	 * Evaluates this expression at the given x,y point by evaluating the log of the
+	 * function's parameter.
 	 * 
 	 * @return the color from evaluating the log of the expression's parameter
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		//Handling for log(0) undefined cases; defaulting to zero. Adjusting by 4.9E-324 to avoid negative infinity values
+		// Handling for log(0) undefined cases; defaulting to zero. Adjusting by
+		// 4.9E-324 to avoid negative infinity values
 		RGBColor result;
 		if (x == 0.0) {
-			result = param.evaluate(x+ 4.9E-324, y);
+			result = param.evaluate(x + 4.9E-324, y);
 		}
-		if (y== 0.0) {
-			result = param.evaluate(x, y+ 4.9E-324);
-		}
-		else {
-			result = param.evaluate(x, y);		
+		if (y == 0.0) {
+			result = param.evaluate(x, y + 4.9E-324);
+		} else {
+			result = param.evaluate(x, y);
 		}
 		double red = Math.log(Math.abs(result.getRed()));
 		double green = Math.log(Math.abs(result.getGreen()));
 		double blue = Math.log(Math.abs(result.getBlue()));
-		
-		return new RGBColor(red, green, blue);	
+
+		return new RGBColor(red, green, blue);
 	}
-	
+
 	@Override
-    public String toString() {
-        return "log(" + this.param + ")";
-    }
+	public String toString() {
+		return "log(" + this.param + ")";
+	}
 
 }

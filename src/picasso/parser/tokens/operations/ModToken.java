@@ -4,7 +4,9 @@ import picasso.parser.language.CharConstants;
 import picasso.parser.tokens.chars.CharToken;
 
 /**
- * Represents the division sign token
+ * Represents the mod sign token.
+ * 
+ * @author Connor Lehman.
  * 
  */
 public class ModToken extends CharToken implements OperationInterface {

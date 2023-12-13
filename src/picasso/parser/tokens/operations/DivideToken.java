@@ -4,7 +4,9 @@ import picasso.parser.language.CharConstants;
 import picasso.parser.tokens.chars.CharToken;
 
 /**
- * Represents the division sign token
+ * Represents the division sign token.
+ * 
+ * @author Connor Lehman.
  * 
  */
 public class DivideToken extends CharToken implements OperationInterface {

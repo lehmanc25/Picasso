@@ -1,15 +1,11 @@
-/**
- * 
- */
 package picasso.parser.language.expressions;
-
-import picasso.parser.IdentifierAnalyzer;
-import picasso.parser.language.ExpressionTreeNode;
-import java.util.Map;
 import java.util.Objects;
-import java.util.HashMap;
+import picasso.parser.language.ExpressionTreeNode;
+
 /**
+ * Represents the assignment function in the Picasso language.
  * 
+ * @author Desire Asinya.
  */
 public class Assignment extends ExpressionTreeNode {
 	
@@ -17,6 +13,7 @@ public class Assignment extends ExpressionTreeNode {
 	private ExpressionTreeNode expr;
 
 	/**
+	 * Constructor for assignment
 	 * @param x
 	 * @param y
 	 * @return
@@ -26,7 +23,12 @@ public class Assignment extends ExpressionTreeNode {
 		this.var = var;
 		this.expr = expr;
 	}
-
+	/**
+	 * @param x
+	 * @param y
+	 * @return
+	 * @see picasso.parser.language.ExpressionTreeNode#evaluate(double, double)
+	 */
 
 	@Override
 	public RGBColor evaluate(double x, double y) {

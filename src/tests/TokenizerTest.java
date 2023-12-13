@@ -260,11 +260,23 @@ public class TokenizerTest {
 		assertEquals(new MinusToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		
-		String expression5 = "x^y";
+		String expression5 = "x%y";
 		tokens = tokenizer.parseTokens(expression5);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new ModToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+		
+		String expression6 = "!x";
+		tokens = tokenizer.parseTokens(expression6);
+		assertEquals(new NegToken(), tokens.get(0));
+		assertEquals(new IdentifierToken("x"), tokens.get(1));
+			
+		String expression7 = "x^y";
+		tokens = tokenizer.parseTokens(expression7);
 		assertEquals(new IdentifierToken("x"), tokens.get(0));
 		assertEquals(new ExponentiateToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
 	}
 	@Test
 	public void testAssignmentExpression() {

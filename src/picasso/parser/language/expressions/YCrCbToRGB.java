@@ -6,7 +6,7 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the rgbToYCrCb function in the Picasso language.
+ * Represents the YCrCbToRGB function in the Picasso language.
  * 
  * @author Connor Lehman
  * 

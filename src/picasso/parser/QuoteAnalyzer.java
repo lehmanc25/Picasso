@@ -8,8 +8,9 @@ import picasso.parser.tokens.QuoteToken;
 import picasso.parser.tokens.Token;
 
 /**
- * A semantic analyzer for processing quote tokens and generating expression trees.
- * This class implements the SemanticAnalyzerInterface and is responsible for handling quote tokens.
+ * A semantic analyzer for processing quote tokens and generating expression
+ * trees. This class implements the SemanticAnalyzerInterface and is responsible
+ * for handling quote tokens.
  * 
  * @author Ford Scott
  */
@@ -23,9 +24,9 @@ public class QuoteAnalyzer implements SemanticAnalyzerInterface {
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		QuoteToken token = (QuoteToken) tokens.pop();
-		
+
 		String value = token.value();
-		
+
 		return new Quote(value);
 	}
 }

@@ -1,20 +1,21 @@
-/**
- * 
- */
 package picasso.parser;
 
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Cosine;
+import picasso.parser.language.expressions.Cos;
 import picasso.parser.tokens.Token;
 
 /**
+ * Handles parsing the Cosine function.
+ * 
+ * @author Nabil Youssef
  * 
  */
 public class CosAnalyzer implements SemanticAnalyzerInterface {
 
 	/**
+	 * Generate an expression tree for the Cos expression.
 	 * @param tokens
 	 * @return
 	 * @see picasso.parser.SemanticAnalyzerInterface#generateExpressionTree(java.util.Stack)
@@ -25,7 +26,7 @@ public class CosAnalyzer implements SemanticAnalyzerInterface {
 		
 		ExpressionTreeNode paramETN = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
-		return new Cosine(paramETN);
+		return new Cos(paramETN);
 	}
 
 }

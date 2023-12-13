@@ -1,8 +1,8 @@
 package picasso.parser.tokens.functions;
 
 /**
- * Represents the wrap function token.
- * This class extends FunctionToken and represents the wrap function.
+ * Represents the wrap function token. This class extends FunctionToken and
+ * represents the wrap function.
  * 
  * @author Desire Asinya
  */

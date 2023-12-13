@@ -1,18 +1,15 @@
-/**
- * 
- */
 package picasso.parser.tokens.functions;
 
 /**
- * Represents the sin function token
+ * Represents the sin function token.
  * 
- * @author Desire Asinya
+ * @author Desire Asinya.
  */
 public class SinToken extends FunctionToken {
 
 	public SinToken() {
-		super("Sine function token");
-		
+		super("Sin function token");
+
 	}
 
 }

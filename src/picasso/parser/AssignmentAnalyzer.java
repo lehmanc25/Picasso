@@ -1,6 +1,3 @@
-/**
- * 
- */
 package picasso.parser;
 
 import java.util.HashMap;
@@ -13,11 +10,14 @@ import picasso.parser.tokens.IdentifierToken;
 import picasso.parser.tokens.Token;
 
 /**
+ * Handles parsing assignment functions.
  * 
+ * @author Desire Ansinya.
  */
 public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 
 	/**
+	 * Generate an expression tree for an Assigment expression.
 	 * @param tokens
 	 * @return
 	 * @see picasso.parser.SemanticAnalyzerInterface#generateExpressionTree(java.util.Stack)
@@ -41,16 +41,11 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		Token t = tokens.peek();
 		if (t instanceof IdentifierToken) {
 			IdentifierToken token = (IdentifierToken) tokens.peek();
-			if (!(token.getName().equals("x") || token.getName().equals("y"))) {
 			idToExpr.put(token.getName(), expression);
 			
 			ExpressionTreeNode variable = SemanticAnalyzer.getInstance().generateExpressionTree(
 					tokens);
 			return new Assignment(variable, expression);
-			}
-			else {
-				throw new ParseException("Token " + token.getName() + " is a special identifier and cannot be assigned to an expression.");
-			}
 		} else {
 			throw new ParseException(t.toString() + " is not an identifier and cannot be assigned to an expression.");
 		}
