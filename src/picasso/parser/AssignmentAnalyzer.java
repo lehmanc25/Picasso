@@ -34,7 +34,7 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop();
-		
+
 		ExpressionTreeNode expression = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 
@@ -52,7 +52,7 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 				throw new ParseException("Token " + token.getName() + " is a special identifier and cannot be assigned to an expression.");
 			}
 		} else {
-			throw new ParseException("Token on top of stack is not an identifier and cannot be assigned to an expression.");
+			throw new ParseException(t.toString() + " is not an identifier and cannot be assigned to an expression.");
 		}
 	}
 
