@@ -3,11 +3,12 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the rgbToYCrCb function in the Picasso language.
+ * Represents the perlinBW function in the Picasso language.
  * 
- * @author Desire Asinya
+ * @authorDesire Asinya
  * 
  */
+
 public class RgbToYCrCb extends UnaryFunction {
 
 	/**
@@ -36,5 +37,4 @@ public class RgbToYCrCb extends UnaryFunction {
 
 		return new RGBColor(red, green, blue);
 	}
-
 }
