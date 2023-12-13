@@ -13,7 +13,12 @@ import picasso.parser.tokens.Token;
  * 
  */
 public class CeilAnalyzer extends UnaryFunctionAnalyzer {
-
+	/**
+	 * Generate an expression tree for the Ceil expression.
+	 * @param tokens
+	 * @return
+	 * @see picasso.parser.UnaryFunctionAnalyzer#generateExpressionTree(java.util.Stack)
+	 */
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop(); 

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package picasso.parser.tokens.functions;
 
 import picasso.parser.tokens.Token;

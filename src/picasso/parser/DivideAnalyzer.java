@@ -1,6 +1,3 @@
-/**
- * 
- */
 package picasso.parser;
 
 import java.util.Stack;
@@ -16,7 +13,12 @@ import picasso.parser.tokens.Token;
  */
 
 public class DivideAnalyzer implements SemanticAnalyzerInterface {
-	
+	/**
+	 * Generate an expression tree for the Divide expression.
+	 * @param tokens
+	 * @return
+	 * @see picasso.parser.SemanticAnalyzerInterface#generateExpressionTree(java.util.Stack)
+	 */
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop(); 

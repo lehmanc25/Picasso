@@ -33,8 +33,7 @@ public class Tokenizer {
 	/**
 	 * Parses the given string into a list of Picasso tokens (in order)
 	 * 
-	 * @param s
-	 *            the string to parse; may or may not be in valid format.
+	 * @param s the string to parse; may or may not be in valid format.
 	 * @return the list of Picasso tokens (in order) in the string
 	 */
 	public List<Token> parseTokens(String s) {
@@ -62,7 +61,6 @@ public class Tokenizer {
 
 		tokenizer.slashSlashComments(true);
 		tokenizer.slashStarComments(true);
-		
 
 		List<Token> tokens = new ArrayList<Token>();
 
@@ -109,11 +107,9 @@ public class Tokenizer {
 	 * Try to match a token. If unsuccessful throw an exception. Otherwise match
 	 * succeeds, and next token is obtained and returned
 	 * 
-	 * @param rhs
-	 *            token being matched
+	 * @param rhs token being matched
 	 * @return the next read token
-	 * @throws ParseException
-	 *             if match fails
+	 * @throws ParseException if match fails
 	 */
 	public Token match(Token rhs) {
 		Token result = getToken();

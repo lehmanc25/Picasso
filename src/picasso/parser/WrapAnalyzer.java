@@ -7,8 +7,8 @@ import picasso.parser.language.expressions.Wrap;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the wrap function.
- * This class extends UnaryFunctionAnalyzer and is responsible for parsing the wrap function.
+ * Handles parsing the wrap function. This class extends UnaryFunctionAnalyzer
+ * and is responsible for parsing the wrap function.
  * 
  * @author Desire Asinya
  */
@@ -23,10 +23,9 @@ public class WrapAnalyzer implements SemanticAnalyzerInterface {
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop();
-		
-		ExpressionTreeNode paramETN = SemanticAnalyzer.getInstance().generateExpressionTree(
-				tokens);
-		
+
+		ExpressionTreeNode paramETN = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
+
 		return new Wrap(paramETN);
 	}
 

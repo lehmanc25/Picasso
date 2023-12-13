@@ -1,8 +1,9 @@
 package picasso.parser.tokens.functions;
 
 /**
- * Represents the log function token
+ * Represents the log function token.
  * 
+ * @author Connor Lehman.
  */
 public class LogToken extends FunctionToken {
 

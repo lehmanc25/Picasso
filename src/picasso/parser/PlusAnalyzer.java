@@ -14,15 +14,19 @@ import picasso.parser.tokens.Token;
  * 
  */
 public class PlusAnalyzer implements SemanticAnalyzerInterface {
-
+	/**
+	 * Generate an expression tree for the plus expression.
+	 * 
+	 * @param tokens
+	 * @return
+	 * @see picasso.parser.SemanticAnalyzerInterface#generateExpressionTree(java.util.Stack)
+	 */
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop(); // Remove the plus token
 		// processes the next 2 tokens on the stack
-		ExpressionTreeNode paramETN2 = SemanticAnalyzer.getInstance().generateExpressionTree(
-				tokens);
-		ExpressionTreeNode paramETN1 = SemanticAnalyzer.getInstance().generateExpressionTree(
-				tokens);
+		ExpressionTreeNode paramETN2 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
+		ExpressionTreeNode paramETN1 = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 		return new Plus(paramETN1, paramETN2);
 	}
 

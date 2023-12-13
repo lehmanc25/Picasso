@@ -7,14 +7,18 @@ import picasso.parser.language.expressions.Minus;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the minus or "subtraction function".
+ * Handles parsing the minus operator.
  * 
- * @author Robert C. Duvall
- * @author Sara Sprenkle
+ * @author Connor Lehman
  * 
  */
 public class MinusAnalyzer implements SemanticAnalyzerInterface {
-
+	/**
+	 * Generate an expression tree for the minus expression.
+	 * @param tokens
+	 * @return
+	 * @see picasso.parser.SemanticAnalyzerInterface#generateExpressionTree(java.util.Stack)
+	 */
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop(); 
