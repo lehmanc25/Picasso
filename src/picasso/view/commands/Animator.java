@@ -29,7 +29,6 @@ public class Animator implements Command<Pixmap> {
 	 */
 	public Animator(Evaluator eval) {
 		this.eval = eval;
-		rolling = true;
 	}
 
 	/**
@@ -106,23 +105,29 @@ public class Animator implements Command<Pixmap> {
 	 */
 	@Override
 	public void execute(Pixmap target) {
-		while (rolling) {
-			Pixmap postImage = new Pixmap(target);
-			String randomExpression = randomExpression();
-			eval.execute(postImage, randomExpression);
+		if (!rolling) {
+			rolling = true;
 
-			for (int t = 1; t <= totalSteps; t++) {
-				try {
-					Pixmap cloneTarget = new Pixmap(target);
-					animate(target, cloneTarget, postImage, t);
-					Thread.sleep(500);
+			while (rolling) {
+				Pixmap postImage = new Pixmap(target);
+				String randomExpression = randomExpression();
+				eval.execute(postImage, randomExpression);
 
-				} catch (InterruptedException e) {
-					rolling = false;
+				for (int t = 1; t <= totalSteps; t++) {
+					try {
+						Pixmap cloneTarget = new Pixmap(target);
+						animate(target, cloneTarget, postImage, t);
+						Thread.sleep(500);
+
+					} catch (InterruptedException e) {
+				//		rolling = false;
+					}
 				}
+				// System.out.println(target.getColor(0, 0));
 			}
-			// System.out.println(target.getColor(0, 0));
+		} else {
+			rolling = false;
+			System.out.println("done.");
 		}
-
 	}
 }
