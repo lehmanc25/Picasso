@@ -15,7 +15,7 @@ public class Divide extends BinaryFunction {
 	 * @param param_left
 	 * @param param_right
 	 * 
-	 *                    Represents the Division operator in the Picasso language.
+	 * Represents the Division operator in the Picasso language.
 	 */
 	public Divide(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
 		super(param_left, param_right);
@@ -31,11 +31,6 @@ public class Divide extends BinaryFunction {
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result_left = param_left.evaluate(x, y);
-
-		if (y == 0) {
-			return new RGBColor(0, 0, 0);
-		}
-
 		RGBColor result_right = param_right.evaluate(x, y);
 
 		double red = result_left.getRed() / result_right.getRed();
