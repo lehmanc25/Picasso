@@ -184,6 +184,7 @@ public class RandomExpression implements Command<Pixmap> {
 
 	/**
 	 * @param input
+	 * @return functions with correct capitalization
 	 */
 	
     public static String convertFirstLetterToLowercase(String input) {
