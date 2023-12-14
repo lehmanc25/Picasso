@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
+
 import javax.imageio.*;
 
 /**
@@ -24,9 +26,10 @@ public class Image extends ExpressionTreeNode {
 	 * 
 	 * @param token A QuoteToken representing the image file.
 	 */
-	public Image(QuoteToken token) {
+	public Image(ExpressionTreeNode quote) {
 		try {
-			this.myfilename = token.value(); // Extract filename from QuoteToken
+			Quote qt = (Quote) quote;
+			this.myfilename = qt.getValue(); // Extract filename from QuoteToken
 			File file = new File("images/" + myfilename);
 			System.out.print(file);
 			this.myImage = ImageIO.read(file);
@@ -35,6 +38,38 @@ public class Image extends ExpressionTreeNode {
 			e.printStackTrace();
 
 		}
+	}
+
+	/**
+	 * @return the string representation of this image object
+	 */
+	@Override
+	public String toString() {
+		return "Image(" + myfilename + ")";
+	}
+
+	/**
+	 * @return the hashcode of this image object
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(myImage, myfilename);
+	}
+
+	/**
+	 * @param obj
+	 * @return true if both images are equal, or false otherwise
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Image)) {
+			return false;
+		}
+		Image other = (Image) obj;
+		return Objects.equals(myfilename, other.myfilename);
 	}
 
 	/**
