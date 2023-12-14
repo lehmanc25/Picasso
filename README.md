@@ -11,6 +11,18 @@ as your application grows, you may need to refactor.
 
 See the specification for Picasso on the course web site.
 
+## Extensions 
+
+### 1.  Animation for mutated expressions
+Expressions saved in the expressions directory are mutated with randomly generated expressions. The 'Create Animations' button creates 10 random mutations and cross-fades into the next image. The GUI must be reset before creating more mutations.
+
+
+### 2. Random expression generation:
+
+
+###3. Saved assignment expressions:
+
+
 ## Running Picasso
 
 To run Picasso, run `picasso.Main`

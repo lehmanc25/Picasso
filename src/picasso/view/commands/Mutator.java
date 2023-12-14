@@ -100,11 +100,11 @@ public class Mutator implements Command<Pixmap> {
 					ExpressionTreeNode randomNode4 = randomGeneration.generateExpression();
 					ExpressionTreeNode randomNode5 = randomGeneration.generateExpression();
 
-					String extension1 = String.valueOf(randomNode1).toLowerCase();
-					String extension2 = String.valueOf(randomNode2).toLowerCase();
-					String extension3 = String.valueOf(randomNode3).toLowerCase();
-					String extension4 = String.valueOf(randomNode4).toLowerCase();
-					String extension5 = String.valueOf(randomNode5).toLowerCase();
+					String extension1 = String.valueOf(randomNode1);
+					String extension2 = String.valueOf(randomNode2);
+					String extension3 = String.valueOf(randomNode3);
+					String extension4 = String.valueOf(randomNode4);
+					String extension5 = String.valueOf(randomNode5);
 
 					return extension5 + "/" + expression + "+" + extension4 + "*" + extension3 + "*" + extension2 + "+"
 							+ extension1;
