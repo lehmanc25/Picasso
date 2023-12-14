@@ -181,6 +181,20 @@ public class RandomExpression implements Command<Pixmap> {
 	    }
 	}
 
+	/**
+	 * @param input
+	 */
+	
+    public static String convertFirstLetterToLowercase(String input) {
+//        String[] functions = {"floor", "ceil", "log", "cos", "abs", "imageClip", "perlinColor", "imageWrap",
+//               "sin", "tan", "atan", "exp", "clamp", "wrap", "perlinBW", "rgbToYCrCb", "yCrCbToRGB", "random"};
+
+        for (String function : functions) {
+            input = input.replaceAll("\\b" + function + "\\b", function.substring(0, 1).toLowerCase() + function.substring(1));
+        }
+
+        return input;
+    }
 
 	/**
 	 * @param target
@@ -188,7 +202,7 @@ public class RandomExpression implements Command<Pixmap> {
 	public void execute(Pixmap target) {
 
 		ExpressionTreeNode output = this.generateExpression();
-		String output_str = String.valueOf(output);
+		String output_str = convertFirstLetterToLowercase(String.valueOf(output));
 		textfield.setText(output_str);
 		ExpressionTreeNode expr = output;
 
