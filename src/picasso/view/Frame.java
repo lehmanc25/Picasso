@@ -24,6 +24,7 @@ public class Frame extends JFrame {
 
 		// mutation duration - # of pictures
 		int duration = 10;
+        // add commands to test here
 
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
@@ -37,6 +38,7 @@ public class Frame extends JFrame {
 		commands.add("Open File", new FileReader(new Evaluator()));
 		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator(textfield)));
 		commands.add("Save Image", new Writer());
+		commands.add("View Saved Variables", new SavedVariablesReader());
 
 		// add mutator buttons to test here
 		ButtonPanel buttons = new ButtonPanel(canvas);

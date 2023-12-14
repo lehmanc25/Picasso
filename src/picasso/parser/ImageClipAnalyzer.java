@@ -4,6 +4,7 @@ import java.util.Stack;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.Image;
 import picasso.parser.language.expressions.ImageClip;
+import picasso.parser.language.expressions.ImageWrap;
 import picasso.parser.tokens.QuoteToken; // Import QuoteToken class
 import picasso.parser.tokens.Token;
 
@@ -24,17 +25,20 @@ public class ImageClipAnalyzer implements SemanticAnalyzerInterface {
      */
     @Override
     public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) throws ParseException {
-        tokens.pop(); // Remove the ImageClipToken.
+        tokens.pop(); // Remove the ImageClipoken.
         
         ExpressionTreeNode paramy = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
         ExpressionTreeNode paramx = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
-        
+ 
         if (tokens.peek() instanceof QuoteToken) {
-            Image img = new Image((QuoteToken) tokens.pop());
+        	ExpressionTreeNode quote = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
+            Image img = new Image(quote);
             return new ImageClip(img, paramx, paramy);
         } else {
             throw new ParseException("No Image Token (QuoteToken) Found.");
         }
+        
+       
     }
 }
 

@@ -315,5 +315,33 @@ class SemanticAnalyzerTest {
 	}
 	**/
 	
+	@Test
+	void testParseImageClip() {
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new QuoteToken("vortex.jpg"));
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new PlusToken());
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new ImageClipToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new ImageClip(new Image(new Quote("vortex.jpg")), new Plus(new X(), new X()), new Y()), actual);
+	}
 	
+	@Test
+	void testParseImageWrap() {
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new QuoteToken("vortex.jpg"));
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new IdentifierToken("x"));
+		tokens.push(new PlusToken());
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new ImageWrapToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new ImageWrap(new Image(new Quote("vortex.jpg")), new Plus(new X(), new X()), new Y()), actual);
+	}
 }

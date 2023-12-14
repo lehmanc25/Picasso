@@ -54,6 +54,7 @@ public class ErrorParsedEvaluatedTests {
 		assertThrows(ParseException.class, () -> {
 			parser.makeExpression("perlinColor(x)");
 		});
+		
 	}
 
 	@Test
