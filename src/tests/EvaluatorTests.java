@@ -400,7 +400,6 @@ public class EvaluatorTests {
 	}
 	@Test
 	public void testAssignmentEvaluation() {
-		//Variable testVar = new Variable("a");
 		Assignment myTree1 = new Assignment(new Variable("a"), new Plus(new X(), new Y()));
 		//check that Plus is evaluated when the assignment is created
 		assertEquals(new RGBColor(-2, -2, -2), myTree1.evaluate(-1, -1));
@@ -408,30 +407,7 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(0, 0, 0), myTree1.evaluate(0, 0));
 		assertEquals(new RGBColor(0, 0, 0), myTree1.evaluate(-1, 1));
 		assertEquals(new RGBColor(2, 2, 2), myTree1.evaluate(1, 1));
-		//test that cos(a) is evaluated as cos(x+y) when it is called after a has been instantiated. Worked before the refactor, but does not work after. Will
-		//try to fix later. 
-		/**Stack<Token> tokens = new Stack<>();
-		tokens.push(new IdentifierToken("a"));
-		tokens.push(new IdentifierToken("x"));
-		tokens.push(new IdentifierToken("y"));
-		tokens.push(new PlusToken());
-		tokens.push(new AssignmentToken());
-		*/
-		/**String expression = "a=x+y";
-		ExpressionTreeGenerator treeGen = new ExpressionTreeGenerator();
-		Stack<Token> tokens = treeGen.infixToPostfix(expression);
-		AssignmentAnalyzer assignmentAnalyzer = new AssignmentAnalyzer();
-		IdentifierAnalyzer idAnalyzer = new IdentifierAnalyzer();
-		ExpressionTreeNode rhs = assignmentAnalyzer.generateExpressionTree(tokens);
-		ExpressionTreeNode id = idAnalyzer.generateExpressionTree(tokens);	
 		
-		Cosine myTree2 = new Cosine(id);
-		assertEquals(new RGBColor(-0.4161468365471424, -0.4161468365471424, -0.4161468365471424), myTree2.evaluate(-1, -1));
-		assertEquals(new RGBColor(1, 1, 1), myTree2.evaluate(1, -1));
-		assertEquals(new RGBColor(1, 1, 1), myTree2.evaluate(0, 0));
-		assertEquals(new RGBColor(1, 1, 1), myTree2.evaluate(-1, 1));
-		assertEquals(new RGBColor(-0.4161468365471424, -0.4161468365471424, -0.4161468365471424), myTree2.evaluate(1, 1));
-	*/
 	}
 	
 }

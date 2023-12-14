@@ -1,5 +1,7 @@
 package picasso.parser.language.expressions;
 
+import java.util.Objects;
+
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
@@ -10,7 +12,8 @@ import picasso.parser.language.ExpressionTreeNode;
  */
 public class ImageClip extends ExpressionTreeNode {
     
-    public static Image img;
+
+	public static Image img;
     private ExpressionTreeNode paramx;
     private ExpressionTreeNode paramy;
     
@@ -27,6 +30,34 @@ public class ImageClip extends ExpressionTreeNode {
         ImageClip.img = img;
     }
     
+    /**
+	 * @return the hashcode of 2 image clip objects
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(paramx, paramy);
+	}
+
+	/**
+	 * @param obj
+	 * @return true if both image clip objects are equal, and false otherwise
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof ImageClip)) {
+			return false;
+		}
+		ImageClip other = (ImageClip) obj;
+		return Objects.equals(img, other.img) && Objects.equals(paramx, other.paramx) && Objects.equals(paramy, other.paramy);
+	}
+
+	@Override
+	public String toString() {
+		return "ImageClip(" + img + " , " + paramx + " , " + paramy + " )";
+	}
     /**
      * Evaluates the ImageClip expression by evaluating the x and y coordinate expressions
      * and applying the resulting color to the image.

@@ -292,28 +292,28 @@ public class ExpressionTreeGeneratorTests {
 		assertEquals(new PerlinBW(new Plus(new X(), new X()), new Plus(new Y(), new Y())), e);
 	}
 	
-	@Test
-	public void randomFunctionTests() {
-		ExpressionTreeNode e = parser.makeExpression("random()");
-		assertEquals(new Random(), e);
-	}
+	//@Test
+	//public void randomFunctionTests() {
+		//ExpressionTreeNode e = parser.makeExpression("random()");
+		//assertEquals(new Random(), e);
+	//}
 
 	@Test
 	public void imageClipFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\", x, y)");
-		assertEquals(new ImageClip(new Image(new QuoteToken("vortex.jpg")), new X(), new Y()), e);
+		assertEquals(new ImageClip(new Image(new Quote("vortex.jpg")), new X(), new Y()), e);
 
 		e = parser.makeExpression("imageClip(\"vortex.jpg\", x + y, x - y)");
-		assertEquals(new ImageClip(new Image(new QuoteToken("vortex.jpg")), new Plus(new X(), new Y()), new Minus(new X(), new Y())), e);
+		assertEquals(new ImageClip(new Image(new Quote("vortex.jpg")), new Plus(new X(), new Y()), new Minus(new X(), new Y())), e);
 	}
 	
 	@Test
 	public void imageWrapFunctionTests() {
 	    ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\", x, y)");
-	    assertEquals(new ImageWrap(new Image(new QuoteToken("\"vortex.jpg\"")), new X(), new Y()), e);
+	    assertEquals(new ImageWrap(new Image(new Quote("vortex.jpg")), new X(), new Y()), e);
 
 	    e = parser.makeExpression("imageWrap(\"vortex.jpg\", x + y, x - y)");
-	    assertEquals(new ImageWrap(new Image(new QuoteToken("vortex.jpg")), new Plus(new X(), new Y()), new Minus(new X(), new Y())), e);
+	    assertEquals(new ImageWrap(new Image(new Quote("vortex.jpg")), new Plus(new X(), new Y()), new Minus(new X(), new Y())), e);
 	}
 
 

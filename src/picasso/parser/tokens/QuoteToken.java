@@ -1,5 +1,7 @@
 package picasso.parser.tokens;
 
+import java.util.Objects;
+
 /**
  * Represents a quote token.
  * This class extends Token and represents a string enclosed in quotation marks.
@@ -8,6 +10,7 @@ package picasso.parser.tokens;
  */
 public class QuoteToken extends Token {
 	
+
 	private final String myValue;
 	
 	/**
@@ -20,6 +23,30 @@ public class QuoteToken extends Token {
 		myValue = value;
 	}
 	
+	/**
+	 * @return the hash value of this quote token
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(myValue);
+	}
+
+
+	/**
+	 * @param obj
+	 * @return true if the 2 quote tokens are equal, and false otherwise
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof QuoteToken)) {
+			return false;
+		}
+		QuoteToken other = (QuoteToken) obj;
+		return Objects.equals(myValue, other.myValue);
+	}
 	/**
 	 * Gets the value of this quote token.
 	 * 
