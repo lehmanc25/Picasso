@@ -338,5 +338,18 @@ public class ExpressionTreeGeneratorTests {
 	    ExpressionTreeNode e = parser.makeExpression("random()");
 	    assertTrue(e instanceof Random); // Check if the parsed expression is an instance of Random class.
 	}
+	@Test
+	public void assignmentWithSingleVariableTest() {
+	    // Test for assignment with a single variable (x) to another variable
+	    ExpressionTreeNode e = parser.makeExpression("b = x");
+	    assertEquals(new Assignment(new Variable("b"), new X()), e);
+	}
+
+	@Test
+	public void assignmentWithCompoundExpressionTest() {
+	    // Test for assignment with a compound expression (x + y) to a variable
+	    ExpressionTreeNode e = parser.makeExpression("c = x + y");
+	    assertEquals(new Assignment(new Variable("c"), new Plus(new X(), new Y())), e);
+	}
 
 }
