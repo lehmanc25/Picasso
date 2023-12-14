@@ -52,6 +52,9 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		Token t = tokens.peek();
 		if (t instanceof IdentifierToken) {
 			IdentifierToken token = (IdentifierToken) tokens.peek();
+			if (tokens.size() > 1) {
+				throw new ParseException("Expression is invalid and cannot be assigned to a value");
+			}
 			idToExpr.put(token.getName(), expression);
 			
 			ExpressionTreeNode variable = SemanticAnalyzer.getInstance().generateExpressionTree(
