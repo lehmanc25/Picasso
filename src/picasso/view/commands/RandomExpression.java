@@ -70,6 +70,7 @@ public class RandomExpression implements Command<Pixmap> {
 		// gets list of operators
 		Properties opProps = new Properties();
 		List<String> ops = new ArrayList<String>();
+		
 		try {
 			opProps.load(new FileReader(OPS_FILE));
 		} catch (FileNotFoundException e1) {
