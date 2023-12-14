@@ -318,11 +318,6 @@ public class EvaluatorTests {
 	}
 	
 	@Test
-	public void testRandomEvaluation() {
-		Random myTree = new Random();
-		// TODO: test 
-	}
-	@Test
 	public void testArithmeticExpressionsEvaluation() {
 		Plus myTree1 = new Plus(new X(), new Y());
 		//first and last 2 assertions need work; colors need to be clamped between -1 and 1
@@ -409,4 +404,43 @@ public class EvaluatorTests {
 		
 	}
 	
+	@Test
+	public void testRandomEvaluation() {
+	    Random myTree = new Random();
+
+	    // Perform multiple evaluations to ensure consistency in the range of generated colors
+	    for (int i = 0; i < 10; i++) {
+	        RGBColor result = myTree.evaluate(Math.random(), Math.random()); // x and y values are irrelevant for Random.
+	        assertNotNull(result); // Check that result is not null.
+	        // Check if color components are within the expected range [-1, 1].
+	        assertTrue(result.getRed() >= -1 && result.getRed() <= 1);
+	        assertTrue(result.getGreen() >= -1 && result.getGreen() <= 1);
+	        assertTrue(result.getBlue() >= -1 && result.getBlue() <= 1);
+	    }
+	}
+
+	@Test
+	public void testPerlinBWEvaluation() {
+	    ExpressionTreeNode leftExp = new X(); 
+	    ExpressionTreeNode rightExp = new Y(); 
+	    PerlinBW myTree = new PerlinBW(leftExp, rightExp);
+
+	    // Testing with various coordinates
+	    testPerlinBWAtCoordinate(myTree, -1, -1);
+	    testPerlinBWAtCoordinate(myTree, -1, 1);
+	    testPerlinBWAtCoordinate(myTree, 0, 0);
+	    testPerlinBWAtCoordinate(myTree, 1, -1);
+	    testPerlinBWAtCoordinate(myTree, 1, 1);
+	}
+	
+	private void testPerlinBWAtCoordinate(PerlinBW perlinBW, double x, double y) {
+	    RGBColor result = perlinBW.evaluate(x, y);
+	    assertNotNull(result); // Check that result is not null
+	    // Check if the color is a valid grayscale (R=G=B) and within range [-1, 1]
+	    double grey = result.getRed();
+	    assertTrue(grey >= -1 && grey <= 1);
+	    assertEquals(grey, result.getGreen());
+	    assertEquals(grey, result.getBlue());
+	}
+
 }

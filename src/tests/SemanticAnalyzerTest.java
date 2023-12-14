@@ -30,6 +30,7 @@ import picasso.parser.tokens.functions.CeilToken;
 import picasso.parser.tokens.functions.ClampToken;
 import picasso.parser.tokens.functions.ImageClipToken;
 import picasso.parser.tokens.functions.ImageWrapToken;
+import picasso.parser.tokens.functions.AbsToken;
 import picasso.parser.tokens.operations.*;
 
 /**
@@ -344,4 +345,27 @@ class SemanticAnalyzerTest {
 		
 		assertEquals(new ImageWrap(new Image(new Quote("vortex.jpg")), new Plus(new X(), new X()), new Y()), actual);
 	}
+	
+	@Test
+	void testParseAbs() {
+	    Stack<Token> tokens = new Stack<>();
+	    tokens.push(new IdentifierToken("x"));
+	    tokens.push(new AbsToken());
+
+	    ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+
+	    assertEquals(new Abs(new X()), actual);
+	    
+	}
+	
+	@Test
+	void testParseRandom() {
+	    Stack<Token> tokens = new Stack<>();
+	    tokens.push(new RandomToken());
+
+	    ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+
+	    assertTrue(actual instanceof Random); // Check if the generated expression tree is an instance of Random class.
+	}
+
 }

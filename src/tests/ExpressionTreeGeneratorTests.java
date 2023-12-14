@@ -17,6 +17,7 @@ import picasso.parser.tokens.Token;
 import picasso.parser.tokens.operations.AssignmentToken;
 import picasso.parser.tokens.operations.MultiplyToken;
 import picasso.parser.tokens.operations.PlusToken;
+import picasso.parser.tokens.IdentifierToken;
 
 /**
  * Tests of creating an expression tree from a string expression. Will have
@@ -292,11 +293,16 @@ public class ExpressionTreeGeneratorTests {
 		assertEquals(new PerlinBW(new Plus(new X(), new X()), new Plus(new Y(), new Y())), e);
 	}
 	
-	//@Test
-	//public void randomFunctionTests() {
-		//ExpressionTreeNode e = parser.makeExpression("random()");
-		//assertEquals(new Random(), e);
-	//}
+	@Test
+	public void perlinColorFunctionTests() {
+	    // Test for PerlinColor with two single variables (x and y)
+	    ExpressionTreeNode e = parser.makeExpression("perlinColor( x, y )");
+	    assertEquals(new PerlinColor(new X(), new Y()), e);
+
+	    // Test for PerlinColor with compound expressions (x + y and x - y)
+	    e = parser.makeExpression("perlinColor( x + y, x - y )");
+	    assertEquals(new PerlinColor(new Plus(new X(), new Y()), new Minus(new X(), new Y())), e);
+	}
 
 	@Test
 	public void imageClipFunctionTests() {
@@ -315,6 +321,22 @@ public class ExpressionTreeGeneratorTests {
 	    e = parser.makeExpression("imageWrap(\"vortex.jpg\", x + y, x - y)");
 	    assertEquals(new ImageWrap(new Image(new Quote("vortex.jpg")), new Plus(new X(), new Y()), new Minus(new X(), new Y())), e);
 	}
+	
+	@Test
+	public void absFunctionTests() {
+	    // Test for Abs with a single variable (x)
+	    ExpressionTreeNode e = parser.makeExpression("abs( x )");
+	    assertEquals(new Abs(new X()), e);
 
+	    // Test for Abs with a compound expression (x + y)
+	    e = parser.makeExpression("abs( x + y )");
+	    assertEquals(new Abs(new Plus(new X(), new Y())), e);
+	}
+	
+	@Test
+	public void randomFunctionTests() {
+	    ExpressionTreeNode e = parser.makeExpression("random()");
+	    assertTrue(e instanceof Random); // Check if the parsed expression is an instance of Random class.
+	}
 
 }
