@@ -1,5 +1,7 @@
 package picasso.parser.language.expressions;
 
+import java.util.Objects;
+
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
@@ -11,7 +13,8 @@ import picasso.parser.language.ExpressionTreeNode;
  */
 public class ImageWrap extends ExpressionTreeNode {
     
-    private Image image;
+
+	private Image image;
     private ExpressionTreeNode xExpr;
     private ExpressionTreeNode yExpr;
 
@@ -27,8 +30,42 @@ public class ImageWrap extends ExpressionTreeNode {
         this.xExpr = xExpr;
         this.yExpr = yExpr;
     }
+    
+    /**
+	 * @return the hash value of this image wrap object
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(image, xExpr, yExpr);
+	}
+
+	/**
+	 * @param obj
+	 * @return true if both image wrap objects are equal, and false otherwise. 
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof ImageWrap)) {
+			return false;
+		}
+		ImageWrap other = (ImageWrap) obj;
+		return this.image.equals(other.image) && this.xExpr.equals(other.xExpr)
+				&& this.yExpr.equals(other.yExpr);
+	}
+
 
     /**
+	 * @return the string representation of the image wrap object
+	 */
+	@Override
+	public String toString() {
+		return "ImageWrap(" + image + " , " + xExpr + " , " + yExpr + " )";
+	}
+
+	/**
      * Evaluates the ImageWrap expression at a specific (x, y) coordinate.
      *
      * @param x The x-coordinate.

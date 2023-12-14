@@ -26,7 +26,9 @@ public class ImageAnalyzer implements SemanticAnalyzerInterface {
         if (!(t instanceof QuoteToken)) {
             throw new ParseException("Expected a filename in quotes.");
         }
-        QuoteToken qt = (QuoteToken) t;
-        return new Image(qt);
+        
+        ExpressionTreeNode quote = SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
+        
+        return new Image(quote);
     }
 }
