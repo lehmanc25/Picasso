@@ -443,4 +443,28 @@ public class EvaluatorTests {
 	    assertEquals(grey, result.getBlue());
 	}
 
+	@Test
+	public void testImageWrapEvaluation() {
+	    ImageWrap myWrap = new ImageWrap(new Image(new Quote("vortex.jpg")), new X(), new Y());
+
+	    RGBColor color = myWrap.evaluate(0.5, 0.5);
+	    assertNotNull(color);
+	    assertColorRange(color);
+	}
+
+	@Test
+	public void testImageClipEvaluation() {
+	    ImageClip myClip = new ImageClip(new Image(new Quote("vortex.jpg")), new X(), new Y());
+
+	    RGBColor color = myClip.evaluate(0.5, 0.5);
+	    assertNotNull(color);
+	    assertColorRange(color);
+	}
+
+	private void assertColorRange(RGBColor color) {
+	    assertTrue(color.getRed() >= -1 && color.getRed() <= 1);
+	    assertTrue(color.getGreen() >= -1 && color.getGreen() <= 1);
+	    assertTrue(color.getBlue() >= -1 && color.getBlue() <= 1);
+	}
+
 }
