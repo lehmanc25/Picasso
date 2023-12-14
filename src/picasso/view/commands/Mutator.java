@@ -1,6 +1,7 @@
 package picasso.view.commands;
 
 import picasso.model.Pixmap;
+import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
 
 import java.awt.Color;
@@ -17,18 +18,19 @@ import java.util.Random;
  * 
  * @author Connor Lehman
  */
-public class Animator implements Command<Pixmap> {
-	protected final double totalSteps = 40;
-	private Evaluator eval;
-	private boolean rolling = false;
+public class Mutator implements Command<Pixmap> {
+	protected final double totalSteps = 33.33;
+	private Evaluator evaluator;
+	private int duration;
 
 	/**
 	 * Creates an Animator object with max time duration
 	 * 
 	 * @param duration
 	 */
-	public Animator(Evaluator eval) {
-		this.eval = eval;
+	public Mutator(Evaluator eval, int dur) {
+		this.evaluator = eval;
+		this.duration = dur;
 	}
 
 	/**
@@ -40,7 +42,7 @@ public class Animator implements Command<Pixmap> {
 	 */
 
 	public void animate(Pixmap target, Pixmap preImage, Pixmap postImage, int t) {
-		// evaluate animation
+		// evaluate animation for mutation
 		Dimension size = preImage.getSize();
 		for (int y = 0; y < size.height; y++) {
 			for (int x = 0; x < size.width; x++) {
@@ -69,6 +71,8 @@ public class Animator implements Command<Pixmap> {
 	}
 
 	/**
+	 * Creates the mutation expression from random file expressions and generated random
+	 * expressions
 	 * 
 	 * @return random expression string from expression files
 	 */
@@ -76,6 +80,7 @@ public class Animator implements Command<Pixmap> {
 	public String randomExpression() {
 		File expressionsDir = new File(System.getProperty("user.dir"), "expressions");
 		File[] files = expressionsDir.listFiles();
+		RandomExpression randomGeneration = new RandomExpression(null);
 		String expression = null;
 		String randomExpression = "";
 
@@ -85,10 +90,24 @@ public class Animator implements Command<Pixmap> {
 
 			try (BufferedReader reader = Files.newBufferedReader(Paths.get(selectedFile.getAbsolutePath()))) {
 				String title = reader.readLine();
-				// System.out.println(title);
+				System.out.println("Mutation of : " + title + " expression");
 				while ((expression = reader.readLine()) != null) {
-					// System.out.println(expression);
-					return expression;
+
+					// Insane code smell idk time for
+					ExpressionTreeNode randomNode1 = randomGeneration.generateExpression();
+					ExpressionTreeNode randomNode2 = randomGeneration.generateExpression();
+					ExpressionTreeNode randomNode3 = randomGeneration.generateExpression();
+					ExpressionTreeNode randomNode4 = randomGeneration.generateExpression();
+					ExpressionTreeNode randomNode5 = randomGeneration.generateExpression();
+
+					String extension1 = String.valueOf(randomNode1).toLowerCase();
+					String extension2 = String.valueOf(randomNode2).toLowerCase();
+					String extension3 = String.valueOf(randomNode3).toLowerCase();
+					String extension4 = String.valueOf(randomNode4).toLowerCase();
+					String extension5 = String.valueOf(randomNode5).toLowerCase();
+
+					return extension5 + "/" + expression + "+" + extension4 + "*" + extension3 + "*" + extension2 + "+"
+							+ extension1;
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -105,29 +124,26 @@ public class Animator implements Command<Pixmap> {
 	 */
 	@Override
 	public void execute(Pixmap target) {
-		if (!rolling) {
-			rolling = true;
+		int count = 0;
 
-			while (rolling) {
-				Pixmap postImage = new Pixmap(target);
-				String randomExpression = randomExpression();
-				eval.execute(postImage, randomExpression);
+		while (count <= duration) {
+			Pixmap postImage = new Pixmap(target);
+			String randomExpression = randomExpression();
+			System.out.println(randomExpression);
+			evaluator.execute(postImage, randomExpression);
+			count++;
 
-				for (int t = 1; t <= totalSteps; t++) {
-					try {
-						Pixmap cloneTarget = new Pixmap(target);
-						animate(target, cloneTarget, postImage, t);
-						Thread.sleep(500);
+			for (int t = 1; t <= totalSteps; t++) {
+				try {
+					Pixmap cloneTarget = new Pixmap(target);
+					animate(target, cloneTarget, postImage, t);
+					Thread.sleep(500);
 
-					} catch (InterruptedException e) {
-				//		rolling = false;
-					}
+				} catch (InterruptedException e) {
+					System.out.println(e);
 				}
-				// System.out.println(target.getColor(0, 0));
 			}
-		} else {
-			rolling = false;
-			System.out.println("done.");
 		}
+
 	}
 }
