@@ -33,6 +33,9 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 	}
 	
 	public static String getMapString() {
+		if (idToExpr.isEmpty()) {
+			return "You have no saved variables yet :(";
+		}
 		StringBuilder mapString = new StringBuilder();
 		for (String key : idToExpr.keySet()) {
 			ExpressionTreeNode value = idToExpr.get(key);
