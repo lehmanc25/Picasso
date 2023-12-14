@@ -97,17 +97,14 @@ public class Mutator implements Command<Pixmap> {
 					ExpressionTreeNode randomNode1 = randomGeneration.generateExpression();
 					ExpressionTreeNode randomNode2 = randomGeneration.generateExpression();
 					ExpressionTreeNode randomNode3 = randomGeneration.generateExpression();
-					ExpressionTreeNode randomNode4 = randomGeneration.generateExpression();
-					ExpressionTreeNode randomNode5 = randomGeneration.generateExpression();
+			
 
-					String extension1 = String.valueOf(randomNode1);
-					String extension2 = String.valueOf(randomNode2);
-					String extension3 = String.valueOf(randomNode3);
-					String extension4 = String.valueOf(randomNode4);
-					String extension5 = String.valueOf(randomNode5);
+					String extension1 = randomGeneration.convertFirstLetterToLowercase(String.valueOf(randomNode1));
+					String extension2 = randomGeneration.convertFirstLetterToLowercase(String.valueOf(randomNode2));
+					String extension3 = randomGeneration.convertFirstLetterToLowercase(String.valueOf(randomNode3));
+					
 
-					return extension5 + "/" + expression + "+" + extension4 + "*" + extension3 + "*" + extension2 + "+"
-							+ extension1;
+					return extension3 + "/" + expression + "+" + extension2 + "*" + extension1;
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

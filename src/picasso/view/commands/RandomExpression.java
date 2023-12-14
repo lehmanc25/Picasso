@@ -187,7 +187,7 @@ public class RandomExpression implements Command<Pixmap> {
 	 * @return functions with correct capitalization
 	 */
 	
-    public static String convertFirstLetterToLowercase(String input) {
+    public String convertFirstLetterToLowercase(String input) {
 //        String[] functions = {"floor", "ceil", "log", "cos", "abs", "imageClip", "perlinColor", "imageWrap",
 //               "sin", "tan", "atan", "exp", "clamp", "wrap", "perlinBW", "rgbToYCrCb", "yCrCbToRGB", "random"};
 

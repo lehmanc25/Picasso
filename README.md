@@ -16,6 +16,7 @@ See the specification for Picasso on the course web site.
 ### 1.  Animation for mutated expressions
 Expressions saved in the expressions directory are mutated with randomly generated expressions. The 'Create Animations' button creates 10 random mutations and cross-fades into the next image. The GUI must be reset before creating more mutations.
 
+*Note: A mutant may sometimes be evaluated as black for every pixel on the canvas.
 
 ### 2. Random expression generation:
 
