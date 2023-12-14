@@ -204,6 +204,7 @@ public class RandomExpression implements Command<Pixmap> {
 		ExpressionTreeNode output = this.generateExpression();
 		String output_str = convertFirstLetterToLowercase(String.valueOf(output));
 		textfield.setText(output_str);
+		
 		ExpressionTreeNode expr = output;
 
 		Dimension size = target.getSize();
