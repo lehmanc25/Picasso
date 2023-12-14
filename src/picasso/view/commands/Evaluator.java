@@ -115,11 +115,11 @@ public class Evaluator implements Command<Pixmap> {
 
 		catch (IllegalArgumentException e) {
 			Evaluator.errorBox("Please enter a valid expression");
-			return null;
-
+			throw new IllegalArgumentException(input + " is not a valid expression" + e);
+	
 		} catch (ParseException e) {
 			Evaluator.errorBox("Please enter a valid expression");
-			return null;
+			throw new ParseException(input + " is not a valid expression" + e);
 		}
 	}
 }

@@ -70,6 +70,7 @@ public class RandomExpression implements Command<Pixmap> {
 		// gets list of operators
 		Properties opProps = new Properties();
 		List<String> ops = new ArrayList<String>();
+		
 		try {
 			opProps.load(new FileReader(OPS_FILE));
 		} catch (FileNotFoundException e1) {
@@ -181,17 +182,31 @@ public class RandomExpression implements Command<Pixmap> {
 	    }
 	}
 
+	/**
+	 * @param input
+	 * @return functions with correct capitalization
+	 */
+	
+    public static String convertFirstLetterToLowercase(String input) {
+//        String[] functions = {"floor", "ceil", "log", "cos", "abs", "imageClip", "perlinColor", "imageWrap",
+//               "sin", "tan", "atan", "exp", "clamp", "wrap", "perlinBW", "rgbToYCrCb", "yCrCbToRGB", "random"};
+
+        for (String function : functions) {
+            input = input.replaceAll("\\b" + function + "\\b", function.substring(0, 1).toLowerCase() + function.substring(1));
+        }
+
+        return input;
+    }
 
 	/**
-	 * Evaluator an expression and render onto Pixmap.
 	 * @param target
-	 * @see picasso.util.Command#execute(java.lang.Object)
 	 */
 	public void execute(Pixmap target) {
 
 		ExpressionTreeNode output = this.generateExpression();
-		String output_str = String.valueOf(output);
+		String output_str = convertFirstLetterToLowercase(String.valueOf(output));
 		textfield.setText(output_str);
+		
 		ExpressionTreeNode expr = output;
 
 		Dimension size = target.getSize();
