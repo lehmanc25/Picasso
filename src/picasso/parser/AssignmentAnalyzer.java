@@ -36,7 +36,7 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		StringBuilder mapString = new StringBuilder();
 		for (String key : idToExpr.keySet()) {
 			ExpressionTreeNode value = idToExpr.get(key);
-			mapString.append("Variable: " + key + ";" + " Expression: " + value.toString());
+			mapString.append(key.toString());
 			mapString.append("\n");
 		}
 		
@@ -54,6 +54,9 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 			IdentifierToken token = (IdentifierToken) tokens.peek();
 			if (tokens.size() > 1) {
 				throw new ParseException("Expression is invalid and cannot be assigned to a value");
+			}
+			if (token.getName().equals("x") || token.getName().equals("y")) {
+				throw new ParseException("Token " + token.getName() + "cannot be assigned to a variable");
 			}
 			idToExpr.put(token.getName(), expression);
 			
