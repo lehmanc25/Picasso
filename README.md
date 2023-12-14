@@ -20,6 +20,9 @@ Expressions saved in the expressions directory are mutated with randomly generat
 
 ### 2. Random expression generation:
 
+A recursive method generates expressions randomly, displays them in the text field and evaluates them.  
+
+*Note: Method is written to have a higher chance of generating functions and operators than colors and xy in order to create more interesting expressions
 
 ###3. Saved assignment expressions:
 
