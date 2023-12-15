@@ -1,6 +1,13 @@
 package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
+/**
+ * Represents a function (and an operator) that takes two arguments.
+ * 
+ * @author Nabil Youssef
+ *
+ */
+
 
 public abstract class BinaryFunction extends ExpressionTreeNode {
 
@@ -9,7 +16,8 @@ public abstract class BinaryFunction extends ExpressionTreeNode {
 
 	/**
 	 * 
-	 * @param param
+	 * @param param_left
+	 * @param param_right
 	 */
 	public BinaryFunction(ExpressionTreeNode param_left, ExpressionTreeNode param_right) {
 		this.param_left = param_left;

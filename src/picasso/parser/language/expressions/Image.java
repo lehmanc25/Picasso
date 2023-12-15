@@ -31,7 +31,7 @@ public class Image extends ExpressionTreeNode {
 			Quote qt = (Quote) quote;
 			this.myfilename = qt.getValue(); // Extract filename from QuoteToken
 			File file = new File("images/" + myfilename);
-			System.out.print(file);
+			//System.out.print(file);
 			this.myImage = ImageIO.read(file);
 
 		} catch (IOException e) {

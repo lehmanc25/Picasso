@@ -4,6 +4,8 @@ import picasso.parser.language.ExpressionTreeNode;
 
 /**
  * Represents the Atan function in the Picasso language.
+ * 
+ * @author Desire Asinya
  */
 public class Atan extends UnaryFunction {
 

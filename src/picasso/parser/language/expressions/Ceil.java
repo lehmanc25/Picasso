@@ -35,6 +35,11 @@ public class Ceil extends UnaryFunction {
 		return new RGBColor(red, green, blue);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * @see picasso.parser.language.expressions.UnaryFunction#toString()
+	 */
 	@Override
     public String toString() {
         return "ceil(" + this.param + ")";

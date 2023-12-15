@@ -30,7 +30,11 @@ public class Minus extends BinaryFunction {
 
 		return new RGBColor(red, green, blue);
 	}
-
+	/**
+	 * 
+	 * @return
+	 * @see picasso.parser.language.expressions.BinaryFunction#toString()
+	 */
 	@Override
 	public String toString() {
 		return this.param_left + " - " + this.param_right;
