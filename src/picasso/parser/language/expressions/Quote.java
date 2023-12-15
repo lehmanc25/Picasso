@@ -1,6 +1,14 @@
 package picasso.parser.language.expressions;
 
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import picasso.model.Pixmap;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
@@ -12,6 +20,7 @@ import picasso.parser.language.ExpressionTreeNode;
 public class Quote extends ExpressionTreeNode {
 
 	protected String value;
+	private BufferedImage image;
 
 	/**
 	 * Constructs a Quote expression with a given string value.
@@ -23,6 +32,14 @@ public class Quote extends ExpressionTreeNode {
 			throw new IllegalArgumentException("Parameter must not be null.");
 		}
 		this.value = value;
+		File file = new File("images/" + value);
+		//System.out.print(file);
+		try {
+			this.image = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -43,19 +60,20 @@ public class Quote extends ExpressionTreeNode {
 	public String toString() {
 		return "Quote: " + value;
 	}
-
+	
 	/**
-	 * Evaluates the Quote expression. Depending on the context, this method might
-	 * return a default value or be handled differently.
+	 * Evaluates the image represented by the quoted expression at a specific (x, y) coordinate and returns the RGB
+	 * color.
 	 * 
-	 * @param x The x-coordinate (unused).
-	 * @param y The y-coordinate (unused).
-	 * @return An RGBColor (example: returning black by default).
+	 * @param x The x-coordinate.
+	 * @param y The y-coordinate.
+	 * @return The RGB color at the specified coordinates.
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		// Depending on the context, this method might return a default color,
-		// or handle the quote differently.
-		return new RGBColor(0, 0, 0); // Example: returning black by default.
+		int xexpr = Image.scale(x, image.getWidth());
+		int yexpr = Image.scale(y, image.getHeight());
+
+		return new RGBColor(new Color(image.getRGB(xexpr, yexpr)));
 	}
 }
