@@ -318,6 +318,62 @@ public class EvaluatorTests {
 	}
 	
 	@Test
+	public void testRgbToYCrCbEvaluation() {
+		RgbToYCrCb myTree = new RgbToYCrCb(new X());
+		
+		double red = -1 * 0.2989 + -1 * 0.5866 + -1 * 0.1145;
+		double green = -1 * -0.1687 + -1 * -0.3312 + -1 * 0.5;
+		double blue = -1 * 0.5000 + -1 * -0.4183 + -1 * -0.0816;
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(-1, -1));
+		
+		
+		red = -1 * 0.2989 + -1 * 0.5866 + -1 * 0.1145;
+		green = -1 * -0.1687 + -1 * -0.3312 + -1 * 0.5;
+		blue = -1 * 0.5000 + -1 * -0.4183 + -1 * -0.0816;
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(-1, 1));
+		
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		
+		red = 1 * 0.2989 + 1 * 0.5866 + 1 * 0.1145;
+		green = 1 * -0.1687 + 1 * -0.3312 + 1 * 0.5;
+		blue = 1 * 0.5000 + 1 * -0.4183 + 1 * -0.0816;
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(1, -1));
+		
+		red = 1 * 0.2989 + 1 * 0.5866 + 1 * 0.1145;
+		green = 1 * -0.1687 + 1 * -0.3312 + 1 * 0.5;
+		blue = 1 * 0.5000 + 1 * -0.4183 + 1 * -0.0816;
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(1, 1));
+		
+	}
+	
+	@Test
+	public void testYCrCbToRGBEvaluation() {
+		YCrCbToRGB myTree = new YCrCbToRGB(new X());
+		
+		double red = -1 + -1 * 1.4022;
+		double green = -1 + -1 * -0.3456 + -1 * -0.7145;
+		double blue = -1 + -1 * 1.7710;
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(-1, -1));
+		
+		red = -1 + -1 * 1.4022;
+		green = -1 + -1 * -0.3456 + -1 * -0.7145;
+		blue = -1 + -1 * 1.7710;
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(-1, 1));
+		
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(0, 0));
+		
+		red = 1 + 1 * 1.4022;
+		green = 1 + 1 * -0.3456 + 1 * -0.7145;
+		blue = 1 + 1 * 1.7710;
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(1, -1));
+		
+		red = 1 + 1 * 1.4022;
+		green = 1 + 1 * -0.3456 + 1 * -0.7145;
+		blue = 1 + 1 * 1.7710;
+		assertEquals(new RGBColor(red, green, blue), myTree.evaluate(1, 1));
+		
+	}
+	@Test
 	public void testArithmeticExpressionsEvaluation() {
 		Plus myTree1 = new Plus(new X(), new Y());
 		//first and last 2 assertions need work; colors need to be clamped between -1 and 1
@@ -432,7 +488,7 @@ public class EvaluatorTests {
 	    testPerlinBWAtCoordinate(myTree, 1, -1);
 	    testPerlinBWAtCoordinate(myTree, 1, 1);
 	}
-	
+	@Test
 	private void testPerlinBWAtCoordinate(PerlinBW perlinBW, double x, double y) {
 	    RGBColor result = perlinBW.evaluate(x, y);
 	    assertNotNull(result); // Check that result is not null
@@ -460,7 +516,7 @@ public class EvaluatorTests {
 	    assertNotNull(color);
 	    assertColorRange(color);
 	}
-
+	@Test
 	private void assertColorRange(RGBColor color) {
 	    assertTrue(color.getRed() >= -1 && color.getRed() <= 1);
 	    assertTrue(color.getGreen() >= -1 && color.getGreen() <= 1);

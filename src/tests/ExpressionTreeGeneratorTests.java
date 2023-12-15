@@ -283,6 +283,24 @@ public class ExpressionTreeGeneratorTests {
 		e = parser.makeExpression("wrap( x + y )");
 		assertEquals(new Wrap(new Plus(new X(), new Y())), e);
 	}
+	
+	@Test
+	public void rgbToYCrCbFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("rgbToYCrCb( x )");
+		assertEquals(new RgbToYCrCb(new X()), e);
+
+		e = parser.makeExpression("rgbToYCrCb( x + y )");
+		assertEquals(new RgbToYCrCb(new Plus(new X(), new Y())), e);
+	}
+
+	@Test
+	public void YCrCbToRGBFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("yCrCbToRGB( x )");
+		assertEquals(new YCrCbToRGB(new X()), e);
+
+		e = parser.makeExpression("yCrCbToRGB( x + y )");
+		assertEquals(new YCrCbToRGB(new Plus(new X(), new Y())), e);
+	}
 
 	@Test
 	public void perlinBWFunctionTests() {

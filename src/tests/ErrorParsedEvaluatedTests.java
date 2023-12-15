@@ -89,6 +89,7 @@ public class ErrorParsedEvaluatedTests {
 		assertThrows(ParseException.class, () -> {
 			parser.makeExpression("a + x = y");
 			parser.makeExpression("sin(y) = x");
+			parser.makeExpression("a = x y");
 		});
 	}
 	@Test

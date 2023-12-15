@@ -121,46 +121,60 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), newTokens.get(2));
 		assertEquals(new RightParenToken(), newTokens.get(3));	
 		
-		String expression6 = "sin(x)";
+		String expression6 = "sin(y)";
 		tokens = tokenizer.parseTokens(expression6);
 		assertEquals(new SinToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
-		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
-		String expression7 = "tan(x)";
+		String expression7 = "tan(y)";
 		tokens = tokenizer.parseTokens(expression7);
 		assertEquals(new TanToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
-		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
-		String expression8 = "exp(x)";
+		String expression8 = "exp(y)";
 		tokens = tokenizer.parseTokens(expression8);
 		assertEquals(new ExpToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
-		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
-		String expression9 = "atan(x)";
+		String expression9 = "atan(y)";
 		tokens = tokenizer.parseTokens(expression9);
 		assertEquals(new AtanToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
-		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
-		String expression10 = "clamp(x)";
+		String expression10 = "clamp(y)";
 		tokens = tokenizer.parseTokens(expression10);
 		assertEquals(new ClampToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
-		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
-		String expression11 = "wrap(x)";
+		String expression11 = "wrap(y)";
 		tokens = tokenizer.parseTokens(expression11);
 		assertEquals(new WrapToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression12 = "rgbToYCrCb(x)";
+		tokens = tokenizer.parseTokens(expression12);
+		assertEquals(new RgbToYCrCbToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression13 = "yCrCbToRGB(y)";
+		tokens = tokenizer.parseTokens(expression13);
+		assertEquals(new YCrCbToRGBToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
 

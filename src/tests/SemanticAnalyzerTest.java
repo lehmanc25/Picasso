@@ -22,9 +22,11 @@ import picasso.parser.tokens.functions.LogToken;
 import picasso.parser.tokens.functions.PerlinBWToken;
 import picasso.parser.tokens.functions.PerlinColorToken;
 import picasso.parser.tokens.functions.RandomToken;
+import picasso.parser.tokens.functions.RgbToYCrCbToken;
 import picasso.parser.tokens.functions.SinToken;
 import picasso.parser.tokens.functions.TanToken;
 import picasso.parser.tokens.functions.WrapToken;
+import picasso.parser.tokens.functions.YCrCbToRGBToken;
 import picasso.parser.tokens.functions.AtanToken;
 import picasso.parser.tokens.functions.CeilToken;
 import picasso.parser.tokens.functions.ClampToken;
@@ -125,7 +127,7 @@ class SemanticAnalyzerTest {
 
 		assertEquals(new Neg(new X()), actual);
 	}
-	
+	@Test
 	void testParseExponentiate() {
 		
 		Stack<Token> tokens = new Stack<>();
@@ -302,19 +304,28 @@ class SemanticAnalyzerTest {
 		assertEquals(new PerlinColor(new X(), new Y()), actual);
 	}
 	
-	/**
-	 * Doens't work
 	@Test
-	void testParseRandom() {
+	void testParseRgbToYCrCb() {
 		Stack<Token> tokens = new Stack<>();
-		
-		tokens.push(new RandomToken());
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new RgbToYCrCbToken());
 		
 		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
 		
-		assertEquals(new Random(), actual);
+		assertEquals(new RgbToYCrCb(new Y()), actual);
 	}
-	**/
+	
+	@Test
+	void testParseYCrCbToRGB() {
+		Stack<Token> tokens = new Stack<>();
+		tokens.push(new IdentifierToken("y"));
+		tokens.push(new YCrCbToRGBToken());
+		
+		ExpressionTreeNode actual = semAnalyzer.generateExpressionTree(tokens);
+		
+		assertEquals(new YCrCbToRGB(new Y()), actual);
+	}
+	
 	
 	@Test
 	void testParseImageClip() {
