@@ -24,7 +24,7 @@ A recursive method generates expressions randomly, displays them in the text fie
 
 *Note: Method is written to have a higher chance of generating functions and operators than colors and xy in order to create more interesting expressions
 
-###3. Saved assignment expressions:
+### 3. Saved assignment expressions:
 Expressions assigned to variables can be viewed by clicking the "View saved expressions" button. The variables and their expressions are displayed on a pop-up box in alphabetical order. When there are no saved variables, a user-friendly message is displayed on the pop-up box. 
 
 ## Running Picasso
