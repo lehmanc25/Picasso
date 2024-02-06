@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Picasso
 ## Team Name: HotShots
 ### Members: Connor, Ford, Desire, and Nabil
@@ -42,3 +43,6 @@ The `images` directory contains some sample images generated from Picasso.  Some
 ## Code Base History
 
 This code base originated as a project in a course at Duke University.  The professors realized that the code could be designed better and refactored.  This code base has some code leftover from the original version.
+=======
+# Picasso
+>>>>>>> e3e47d86d5e418a11c90521f4b031592d2f09b59
